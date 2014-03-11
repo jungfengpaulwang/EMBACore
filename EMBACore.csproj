@@ -1,0 +1,1242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{08EFED99-1D1A-4C69-930C-264351F44F46}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EMBACore</RootNamespace>
+    <AssemblyName>EMBACore</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\FiscaRuntime\addmodules\MOD_EMBACore\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ELDebug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\FiscaRuntime\addmodules\MOD_ELCore\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>..\FiscaRuntime\addmodules\MOD_ELCore\ElementaryCore.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.Cells">
+      <HintPath>..\FiscaRuntime\modules\LIB_ASPOSE\Aspose.Cells.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Aspose.Words">
+      <HintPath>..\FiscaRuntime\modules\LIB_ASPOSE\Aspose.Words.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Campus">
+      <HintPath>..\FiscaRuntime\modules\LIB_Campus\Campus.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Campus.Report">
+      <HintPath>..\FiscaRuntime\modules\LIB_Campus\Campus.Report.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Campus.Windows">
+      <HintPath>..\FiscaRuntime\modules\LIB_Campus\Campus.Windows.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Customization.Tagging">
+      <HintPath>..\FiscaRuntime\modules\MOD_Tagging\Customization.Tagging.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar2, Version=9.5.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
+    <Reference Include="FISCA">
+      <HintPath>..\FiscaRuntime\kernel\FISCA.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Authentication">
+      <HintPath>..\FiscaRuntime\kernel\FISCA.Authentication.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Core">
+      <HintPath>..\FiscaRuntime\kernel\FISCA.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Data">
+      <HintPath>..\FiscaRuntime\kernel\FISCA.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.DSAClient">
+      <HintPath>..\FiscaRuntime\kernel\FISCA.DSAClient.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.DSAUtil">
+      <HintPath>..\FiscaRuntime\kernel\FISCA.DSAUtil.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.LogAgent">
+      <HintPath>..\FiscaRuntime\kernel\FISCA.LogAgent.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Permission">
+      <HintPath>..\FiscaRuntime\kernel\FISCA.Permission.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.Presentation, Version=1.1.0.17, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\FiscaRuntime\kernel\FISCA.Presentation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="FISCA.UDT">
+      <HintPath>..\FiscaRuntime\kernel\FISCA.UDT.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="JHSchool.Data">
+      <HintPath>..\FiscaRuntime\modules\LIB_K12DAL\JHSchool.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="K12.Data">
+      <HintPath>..\FiscaRuntime\modules\LIB_K12DAL\K12.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="K12.Presentation">
+      <HintPath>..\FiscaRuntime\modules\LIB_Campus\K12.Presentation.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="SHSchool.Data">
+      <HintPath>..\FiscaRuntime\modules\LIB_K12DAL\SHSchool.Data.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tagging">
+      <HintPath>..\FiscaRuntime\modules\MOD_Tagging\Tagging.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessLogic\SubjectScore.cs" />
+    <Compile Include="CacheProvider.cs" />
+    <Compile Include="DataItems\ClassItem.cs" />
+    <Compile Include="DataItems\CourseItem.cs" />
+    <Compile Include="DataItems\SemesterItem.cs" />
+    <Compile Include="DataItems\TagItem.cs" />
+    <Compile Include="DataItems\TeacherItem.cs" />
+    <Compile Include="DetailItems\Class_Brief.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Class_Brief.designer.cs">
+      <DependentUpon>Class_Brief.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_Experience.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_Experience.Designer.cs">
+      <DependentUpon>Student_Experience.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_PaymentHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_PaymentHistory.Designer.cs">
+      <DependentUpon>Student_PaymentHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_DoNotTakeCourseInSummer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_DoNotTakeCourseInSummer.Designer.cs">
+      <DependentUpon>Student_DoNotTakeCourseInSummer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_AddDropCourse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_AddDropCourse.Designer.cs">
+      <DependentUpon>Student_AddDropCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Course_BasicInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Course_BasicInfo.Designer.cs">
+      <DependentUpon>Course_BasicInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Course_SCAttend.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Course_SCAttend.designer.cs">
+      <DependentUpon>Course_SCAttend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_Email.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_Email.Designer.cs">
+      <DependentUpon>Student_Email.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_Paper.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_Paper.designer.cs">
+      <DependentUpon>Student_Paper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_SubjectScore.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_SubjectScore.Designer.cs">
+      <DependentUpon>Student_SubjectScore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_UpdateRecord.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_UpdateRecord.Designer.cs">
+      <DependentUpon>Student_UpdateRecord.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Teacher_Brief.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Teacher_Brief.designer.cs">
+      <DependentUpon>Teacher_Brief.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Course_Instructor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Course_Instructor.Designer.cs">
+      <DependentUpon>Course_Instructor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Course_TimeSection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Course_TimeSection.Designer.cs">
+      <DependentUpon>Course_TimeSection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_Address.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_Address.designer.cs">
+      <DependentUpon>Student_Address.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_Brief.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_Brief.designer.cs">
+      <DependentUpon>Student_Brief.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_Brief2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_Brief2.Designer.cs">
+      <DependentUpon>Student_Brief2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_Class.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_Class.Designer.cs">
+      <DependentUpon>Student_Class.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_EducationBackground.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_EducationBackground.Designer.cs">
+      <DependentUpon>Student_EducationBackground.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_EducationBackground_SingleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_EducationBackground_SingleForm.Designer.cs">
+      <DependentUpon>Student_EducationBackground_SingleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_Experience_SingleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_Experience_SingleForm.Designer.cs">
+      <DependentUpon>Student_Experience_SingleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_Parent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_Parent.designer.cs">
+      <DependentUpon>Student_Parent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_Phone.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_Phone.designer.cs">
+      <DependentUpon>Student_Phone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_Remark.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_Remark.Designer.cs">
+      <DependentUpon>Student_Remark.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_TakeCourse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_TakeCourse.Designer.cs">
+      <DependentUpon>Student_TakeCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_TakeCourse_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_TakeCourse_Form.Designer.cs">
+      <DependentUpon>Student_TakeCourse_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\TeacherExtDetail.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\TeacherExtDetail.designer.cs">
+      <DependentUpon>TeacherExtDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_Experience_Ext.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_Experience_Ext.Designer.cs">
+      <DependentUpon>Student_Experience_Ext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetailItems\Student_Experience_SingleForm_Ext.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetailItems\Student_Experience_SingleForm_Ext.Designer.cs">
+      <DependentUpon>Student_Experience_SingleForm_Ext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Event\DeliverActiveRecord.cs" />
+    <Compile Include="Event\DeliverActiveRecordEvent.cs" />
+    <Compile Include="Export\Course_Brief_Export_DBF.cs" />
+    <Compile Include="Export\Course_Brief_Export_Excel.cs" />
+    <Compile Include="Export\Course_Score_Export_Excel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Export\Course_Score_Export_Excel.Designer.cs">
+      <DependentUpon>Course_Score_Export_Excel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Export\Paper_Export_Excel.cs" />
+    <Compile Include="Export\Payment_History_Export_Excel.cs" />
+    <Compile Include="Export\SCAttend_Export_DBF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Export\SCAttend_Export_DBF.Designer.cs">
+      <DependentUpon>SCAttend_Export_DBF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Export\SCAttend_Export_Excel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Export\SCAttend_Export_Excel.Designer.cs">
+      <DependentUpon>SCAttend_Export_Excel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Export\ScoreDegreeMapping.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Export\ScoreDegreeMapping.Designer.cs">
+      <DependentUpon>ScoreDegreeMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Export\Student_Brief_Export_Excel.cs" />
+    <Compile Include="Export\Student_Education_Export_Excel.cs" />
+    <Compile Include="Export\Student_Experience_Export_Excel.cs" />
+    <Compile Include="Export\Student_Photo_Export_Excel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Export\Student_Photo_Export_Excel.Designer.cs">
+      <DependentUpon>Student_Photo_Export_Excel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Export\Student_UpdateRecord_Export_Excel.cs" />
+    <Compile Include="Export\Subject_Export_Excel.cs" />
+    <Compile Include="Export\Subject_Score_Export_DBF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Export\Subject_Score_Export_DBF.Designer.cs">
+      <DependentUpon>Subject_Score_Export_DBF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Export\Subject_Score_Export_Excel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Export\Subject_Score_Export_Excel.Designer.cs">
+      <DependentUpon>Subject_Score_Export_Excel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Export\Teacher_Brief_Export_Excel.cs" />
+    <Compile Include="Export\Course_Brief_Export_Excel_1.cs" />
+    <Compile Include="Extension\UDT.cs" />
+    <Compile Include="Forms\CompoundQueries.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CompoundQueries.Designer.cs">
+      <DependentUpon>CompoundQueries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CS_Template.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CS_Template.Designer.cs">
+      <DependentUpon>CS_Template.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CS_Template_NoSubject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CS_Template_NoSubject.Designer.cs">
+      <DependentUpon>CS_Template_NoSubject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CS_Template_CourseAttendance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CS_Template_CourseAttendance.Designer.cs">
+      <DependentUpon>CS_Template_CourseAttendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DepartmentGroupForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DepartmentGroupForm.designer.cs">
+      <DependentUpon>DepartmentGroupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DepartmentGroup_SingleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DepartmentGroup_SingleForm.Designer.cs">
+      <DependentUpon>DepartmentGroup_SingleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Filters\Course.cs" />
+    <Compile Include="Filters\FilterService.cs" />
+    <Compile Include="Filters\Student.cs" />
+    <Compile Include="Filters\Teacher.cs" />
+    <Compile Include="Forms\ApproveAddDropCourseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ApproveAddDropCourseForm.Designer.cs">
+      <DependentUpon>ApproveAddDropCourseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CourseAttendance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CourseAttendance.Designer.cs">
+      <DependentUpon>CourseAttendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CourseAttendance_Makeup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CourseAttendance_Makeup.Designer.cs">
+      <DependentUpon>CourseAttendance_Makeup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Email_Content_Template.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Email_Content_Template.Designer.cs">
+      <DependentUpon>Email_Content_Template.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Email_Credential.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Email_Credential.Designer.cs">
+      <DependentUpon>Email_Credential.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Email_Sender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Email_Sender.Designer.cs">
+      <DependentUpon>Email_Sender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ExperienceDataSourceManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ExperienceDataSourceManagement.Designer.cs">
+      <DependentUpon>ExperienceDataSourceManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmQueryCourseAttendance_EmailNotification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmQueryCourseAttendance_EmailNotification.Designer.cs">
+      <DependentUpon>frmQueryCourseAttendance_EmailNotification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSSAttend_Student.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSSAttend_Student.Designer.cs">
+      <DependentUpon>frmSSAttend_Student.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\NotYetUploadSubjectSemesterScoreTeacherDetector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NotYetUploadSubjectSemesterScoreTeacherDetector.Designer.cs">
+      <DependentUpon>NotYetUploadSubjectSemesterScoreTeacherDetector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ScoreInputSemesterSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ScoreInputSemesterSetting.Designer.cs">
+      <DependentUpon>ScoreInputSemesterSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SeatTable\AssignStudentEventArgs.cs" />
+    <Compile Include="Forms\SeatTable\CellCoordinate.cs" />
+    <Compile Include="Forms\SeatTable\ClassRoomLayout.cs" />
+    <Compile Include="Forms\SeatTable\ClassRoomLayouts.cs" />
+    <Compile Include="Forms\SeatTable\DAO.cs" />
+    <Compile Include="Forms\SeatTable\frmSeatTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SeatTable\frmSeatTable.Designer.cs">
+      <DependentUpon>frmSeatTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\QueryAdvisor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\QueryAdvisor.Designer.cs">
+      <DependentUpon>QueryAdvisor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SeatTable\SeatTableStudent.cs" />
+    <Compile Include="Forms\SeatTable\ucBourdaryCell.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\SeatTable\ucBourdaryCell.designer.cs">
+      <DependentUpon>ucBourdaryCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SeatTable\ucContentCell.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\SeatTable\ucContentCell.designer.cs">
+      <DependentUpon>ucContentCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SeatTable\ucTransparentPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\SeatTable\UDT_ClassRoom_Layout.cs" />
+    <Compile Include="Forms\SenateTab.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\GenerateCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GenerateCourse.Designer.cs">
+      <DependentUpon>GenerateCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HelpContentPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\HelpContentPanel.designer.cs">
+      <DependentUpon>HelpContentPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ImportCourse_And_SCAttend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ImportCourse_And_SCAttend.Designer.cs">
+      <DependentUpon>ImportCourse_And_SCAttend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ImportTeacher.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ImportTeacher.Designer.cs">
+      <DependentUpon>ImportTeacher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LearningGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LearningGroup.Designer.cs">
+      <DependentUpon>LearningGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MapForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MapForm.Designer.cs">
+      <DependentUpon>MapForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SchoolInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SchoolInfo.designer.cs">
+      <DependentUpon>SchoolInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SemesterSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SemesterSetting.Designer.cs">
+      <DependentUpon>SemesterSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SubjectForm.designer.cs">
+      <DependentUpon>SubjectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubjectScore.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SubjectScore.Designer.cs">
+      <DependentUpon>SubjectScore.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubjectScoreLockForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SubjectScoreLockForm.Designer.cs">
+      <DependentUpon>SubjectScoreLockForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Subject_SingleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Subject_SingleForm.Designer.cs">
+      <DependentUpon>Subject_SingleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Import\Course_Import.cs" />
+    <Compile Include="Import\RowValidatorFactory.cs" />
+    <Compile Include="Import\SCAttendExt_Import.cs" />
+    <Compile Include="Import\Student_Experience_Import.cs" />
+    <Compile Include="Import\Student_Paper_Import.cs" />
+    <Compile Include="Import\Student_Payment_History_Import.cs" />
+    <Compile Include="Import\SubjectSemesterScore_Import.cs" />
+    <Compile Include="Import\Subject_Import.cs" />
+    <Compile Include="Import\Teacher_Import.cs" />
+    <Compile Include="Import\Unique_StudentIDNumber_Status.cs" />
+    <Compile Include="Import\Student_Brief_Import.cs" />
+    <Compile Include="Import\TeacherNameCheck.cs" />
+    <Compile Include="Initialization\ClassInit.cs" />
+    <Compile Include="Initialization\CourseInit.cs" />
+    <Compile Include="Initialization\OtherInit.cs" />
+    <Compile Include="Initialization\StudentInit.cs" />
+    <Compile Include="Initialization\TeacherInit.cs" />
+    <Compile Include="Initialization\UDTInit.cs" />
+    <Compile Include="Legacy\ComboBoxAdv.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ListPaneFields\Class_ClassName.cs" />
+    <Compile Include="ListPaneFields\Course_ClassName.cs" />
+    <Compile Include="ListPaneFields\Course_CourseName.cs" />
+    <Compile Include="ListPaneFields\Course_SerialNumber.cs" />
+    <Compile Include="ListPaneFields\Student_Class.cs" />
+    <Compile Include="ListPaneFields\Student_Gender.cs" />
+    <Compile Include="ListPaneFields\Student_GraduationRequirement.cs" />
+    <Compile Include="ListPaneFields\Student_Name.cs" />
+    <Compile Include="ListPaneFields\Student_SeatNo.cs" />
+    <Compile Include="ListPaneFields\Student_StudentNumber.cs" />
+    <Compile Include="ListPaneFields\Teacher_Name.cs" />
+    <Compile Include="Log\BatchLogAgent.cs" />
+    <Compile Include="Log\LogAgent.cs" />
+    <Compile Include="Log\LogValue.cs" />
+    <Compile Include="Photo\DAL\StudPhotoEntity.cs" />
+    <Compile Include="Photo\DAL\Transfer.cs" />
+    <Compile Include="Photo\PhotosBatchExportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Photo\PhotosBatchExportForm.Designer.cs">
+      <DependentUpon>PhotosBatchExportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Photo\PermRecLogProcess.cs" />
+    <Compile Include="Photo\Photo.cs" />
+    <Compile Include="Photo\PhotoBatchFileManager.cs" />
+    <Compile Include="Photo\PhotoCompleteMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Photo\PhotoCompleteMessage.designer.cs">
+      <DependentUpon>PhotoCompleteMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Photo\PhotosBatchImportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Photo\PhotosBatchImportForm.designer.cs">
+      <DependentUpon>PhotosBatchImportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Course_Student_List.cs" />
+    <Compile Include="Report\GraduationAuditReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\GraduationAuditReport.Designer.cs">
+      <DependentUpon>GraduationAuditReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Student_CourseList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Student_CourseList.designer.cs">
+      <DependentUpon>Student_CourseList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\Course_RollCallReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\Course_RollCallReport.designer.cs">
+      <DependentUpon>Course_RollCallReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Course_Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\Course_Add.Designer.cs">
+      <DependentUpon>Course_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Teacher_Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\Teacher_Add.Designer.cs">
+      <DependentUpon>Teacher_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Class_Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\Class_Add.Designer.cs">
+      <DependentUpon>Class_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\Student_Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\Student_Add.Designer.cs">
+      <DependentUpon>Student_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GraduationRequirementRule.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GraduationRequirementRule.Designer.cs">
+      <DependentUpon>GraduationRequirementRule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GraduationRequirementRuleCreator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GraduationRequirementRuleCreator.designer.cs">
+      <DependentUpon>GraduationRequirementRuleCreator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UDT\Absence.cs" />
+    <Compile Include="UDT\AbsenceConfiguration.cs" />
+    <Compile Include="UDT\AddDropCourse.cs" />
+    <Compile Include="UDT\CSConfiguration.cs" />
+    <Compile Include="UDT\CSOpeningInfo.cs" />
+    <Compile Include="UDT\FieldAttribute.cs" />
+    <Compile Include="UDT\CourseInstructor.cs" />
+    <Compile Include="UDT\CourseExtVO.cs" />
+    <Compile Include="UDT\DepartmentGroup.cs" />
+    <Compile Include="UDT\DoNotTakeCourseInSummer.cs" />
+    <Compile Include="UDT\EducationBackground.cs" />
+    <Compile Include="UDT\Experience.cs" />
+    <Compile Include="UDT\ExperienceDataSource.cs" />
+    <Compile Include="UDT\GraduationRequirement.cs" />
+    <Compile Include="UDT\GraduationSubjectGroupRequirement.cs" />
+    <Compile Include="UDT\GraduationSubjectList.cs" />
+    <Compile Include="UDT\MandrillApiKey.cs" />
+    <Compile Include="UDT\MailLog.cs" />
+    <Compile Include="UDT\Paper.cs" />
+    <Compile Include="UDT\PaymentHistory.cs" />
+    <Compile Include="UDT\SCAttendExt.cs" />
+    <Compile Include="UDT\GradeScoreMappingTable.cs" />
+    <Compile Include="UDT\ScoreInputSemester.cs" />
+    <Compile Include="UDT\StringArrayEventArgs.cs" />
+    <Compile Include="UDT\StudentBrief2.cs" />
+    <Compile Include="UDT\StudentRemark.cs" />
+    <Compile Include="UDT\Subject.cs" />
+    <Compile Include="UDT\SubjectScoreLock.cs" />
+    <Compile Include="UDT\SubjectSemesterScore.cs" />
+    <Compile Include="UDT\SyncLock.cs" />
+    <Compile Include="UDT\TeacherExtVO.cs" />
+    <Compile Include="Util.cs" />
+    <Compile Include="ViewHelper\KeyCatalog.cs" />
+    <Compile Include="ViewHelper\KeyCatalogCollection.cs" />
+    <Compile Include="ViewHelper\KeyCatalogFactory.cs" />
+    <Compile Include="ViewHelper\KeyNode.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Views\Class_GradeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Student_DepartmentGroupView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Student_DepartmentGroupView.Designer.cs">
+      <DependentUpon>Student_DepartmentGroupView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Student_GradeClassView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Student_GradeClassView.Designer.cs">
+      <DependentUpon>Student_GradeClassView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewHelper\TreeNavViewBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ViewHelper\TreeNavViewBase.Designer.cs">
+      <DependentUpon>TreeNavViewBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Teacher_AdvisorView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DetailItems\Class_Brief.resx">
+      <DependentUpon>Class_Brief.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_AddDropCourse.resx">
+      <DependentUpon>Student_AddDropCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Course_BasicInfo.resx">
+      <DependentUpon>Course_BasicInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Course_SCAttend.resx">
+      <DependentUpon>Course_SCAttend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_DoNotTakeCourseInSummer.resx">
+      <DependentUpon>Student_DoNotTakeCourseInSummer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_Email.resx">
+      <DependentUpon>Student_Email.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_Experience.resx">
+      <DependentUpon>Student_Experience.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_Paper.resx">
+      <DependentUpon>Student_Paper.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_PaymentHistory.resx">
+      <DependentUpon>Student_PaymentHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_SubjectScore.resx">
+      <DependentUpon>Student_SubjectScore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_UpdateRecord.resx">
+      <DependentUpon>Student_UpdateRecord.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Teacher_Brief.resx">
+      <DependentUpon>Teacher_Brief.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Course_Instructor.resx">
+      <DependentUpon>Course_Instructor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Course_TimeSection.resx">
+      <DependentUpon>Course_TimeSection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_Address.resx">
+      <DependentUpon>Student_Address.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_Brief.resx">
+      <DependentUpon>Student_Brief.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_Brief2.resx">
+      <DependentUpon>Student_Brief2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_Class.resx">
+      <DependentUpon>Student_Class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_EducationBackground.resx">
+      <DependentUpon>Student_EducationBackground.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_EducationBackground_SingleForm.resx">
+      <DependentUpon>Student_EducationBackground_SingleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_Experience_SingleForm.resx">
+      <DependentUpon>Student_Experience_SingleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_Parent.resx">
+      <DependentUpon>Student_Parent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_Phone.resx">
+      <DependentUpon>Student_Phone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_Remark.resx">
+      <DependentUpon>Student_Remark.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_TakeCourse.resx">
+      <DependentUpon>Student_TakeCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_TakeCourse_Form.resx">
+      <DependentUpon>Student_TakeCourse_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\TeacherExtDetail.resx">
+      <DependentUpon>TeacherExtDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_Experience_Ext.resx">
+      <DependentUpon>Student_Experience_Ext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetailItems\Student_Experience_SingleForm_Ext.resx">
+      <DependentUpon>Student_Experience_SingleForm_Ext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Export\Course_Score_Export_Excel.resx">
+      <DependentUpon>Course_Score_Export_Excel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Export\SCAttend_Export_DBF.resx">
+      <DependentUpon>SCAttend_Export_DBF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Export\SCAttend_Export_Excel.resx">
+      <DependentUpon>SCAttend_Export_Excel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Export\ScoreDegreeMapping.resx">
+      <DependentUpon>ScoreDegreeMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Export\Student_Photo_Export_Excel.resx">
+      <DependentUpon>Student_Photo_Export_Excel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Export\Subject_Score_Export_DBF.resx">
+      <DependentUpon>Subject_Score_Export_DBF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Export\Subject_Score_Export_Excel.resx">
+      <DependentUpon>Subject_Score_Export_Excel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CompoundQueries.resx">
+      <DependentUpon>CompoundQueries.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CS_Template.resx">
+      <DependentUpon>CS_Template.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CS_Template_NoSubject.resx">
+      <DependentUpon>CS_Template_NoSubject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CS_Template_CourseAttendance.resx">
+      <DependentUpon>CS_Template_CourseAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DepartmentGroupForm.resx">
+      <DependentUpon>DepartmentGroupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DepartmentGroup_SingleForm.resx">
+      <DependentUpon>DepartmentGroup_SingleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ApproveAddDropCourseForm.resx">
+      <DependentUpon>ApproveAddDropCourseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CourseAttendance.resx">
+      <DependentUpon>CourseAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CourseAttendance_Makeup.resx">
+      <DependentUpon>CourseAttendance_Makeup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Email_Content_Template.resx">
+      <DependentUpon>Email_Content_Template.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Email_Credential.resx">
+      <DependentUpon>Email_Credential.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Email_Sender.resx">
+      <DependentUpon>Email_Sender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ExperienceDataSourceManagement.resx">
+      <DependentUpon>ExperienceDataSourceManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmQueryCourseAttendance_EmailNotification.resx">
+      <DependentUpon>frmQueryCourseAttendance_EmailNotification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSSAttend_Student.resx">
+      <DependentUpon>frmSSAttend_Student.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NotYetUploadSubjectSemesterScoreTeacherDetector.resx">
+      <DependentUpon>NotYetUploadSubjectSemesterScoreTeacherDetector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ScoreInputSemesterSetting.resx">
+      <DependentUpon>ScoreInputSemesterSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SeatTable\frmSeatTable.resx">
+      <DependentUpon>frmSeatTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GenerateCourse.resx">
+      <DependentUpon>GenerateCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HelpContentPanel.resx">
+      <DependentUpon>HelpContentPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ImportCourse_And_SCAttend.resx">
+      <DependentUpon>ImportCourse_And_SCAttend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ImportTeacher.resx">
+      <DependentUpon>ImportTeacher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LearningGroup.resx">
+      <DependentUpon>LearningGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MapForm.resx">
+      <DependentUpon>MapForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\QueryAdvisor.resx">
+      <DependentUpon>QueryAdvisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SchoolInfo.resx">
+      <DependentUpon>SchoolInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SeatTable\ucBourdaryCell.resx">
+      <DependentUpon>ucBourdaryCell.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SeatTable\ucContentCell.resx">
+      <DependentUpon>ucContentCell.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SemesterSetting.resx">
+      <DependentUpon>SemesterSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SenateTab.resx">
+      <DependentUpon>SenateTab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SubjectForm.resx">
+      <DependentUpon>SubjectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SubjectScore.resx">
+      <DependentUpon>SubjectScore.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SubjectScoreLockForm.resx">
+      <DependentUpon>SubjectScoreLockForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Subject_SingleForm.resx">
+      <DependentUpon>Subject_SingleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Photo\PhotosBatchExportForm.resx">
+      <DependentUpon>PhotosBatchExportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Photo\PhotoCompleteMessage.resx">
+      <DependentUpon>PhotoCompleteMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Photo\PhotosBatchImportForm.resx">
+      <DependentUpon>PhotosBatchImportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\GraduationAuditReport.resx">
+      <DependentUpon>GraduationAuditReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Student_CourseList.resx">
+      <DependentUpon>Student_CourseList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Course_RollCallReport.resx">
+      <DependentUpon>Course_RollCallReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Course_Add.resx">
+      <DependentUpon>Course_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Teacher_Add.resx">
+      <DependentUpon>Teacher_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Class_Add.resx">
+      <DependentUpon>Class_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\Student_Add.resx">
+      <DependentUpon>Student_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GraduationRequirementRule.resx">
+      <DependentUpon>GraduationRequirementRule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GraduationRequirementRuleCreator.resx">
+      <DependentUpon>GraduationRequirementRuleCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Student_DepartmentGroupView.resx">
+      <DependentUpon>Student_DepartmentGroupView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Student_GradeClassView.resx">
+      <DependentUpon>Student_GradeClassView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewHelper\TreeNavViewBase.resx">
+      <DependentUpon>TreeNavViewBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EMBA-歷年成績表-樣版.xls" />
+    <None Include="Resources\EMBA-研究生成績審核表-樣版.doc" />
+    <None Include="Resources\loading.gif" />
+    <None Include="Resources\座位表_100A .xls" />
+    <None Include="Resources\座位表_100B .xls" />
+    <None Include="Resources\點名單樣版.xls" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon64_school_info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btndeleteclass.png" />
+    <None Include="Resources\btnaddclass.png" />
+    <None Include="Resources\btndeleteteacher.png" />
+    <None Include="Resources\btnaddteacher.png" />
+    <None Include="Resources\btndeletecourse.png" />
+    <None Include="Resources\btnaddcourse.png" />
+    <None Include="Resources\btndeletestudent.image.png" />
+    <None Include="Resources\btnaddstudent.image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\People.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CourseIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\demographic_reload_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Export.Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\foreign_key_lock_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\graduated_write_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Import.Image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paste_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh_window_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StudentIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TeacherIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_write_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\world_upload_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calc_save_64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClassIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Research\A-Team\ReportHelper\ReportHelper.csproj">
+      <Project>{940285B7-47F3-49E8-A914-1CF8B73F133C}</Project>
+      <Name>ReportHelper</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Agent\Agent.csproj">
+      <Project>{9AEBD730-A5DB-4194-BC0C-2D0AC37F536F}</Project>
+      <Name>Agent</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\BrowserWrapper\BrowserWrapper.vbproj">
+      <Project>{D3F011FF-9EA6-4DFB-845F-49742EC0A623}</Project>
+      <Name>BrowserWrapper</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\CourseCalender\CourseCalendar.csproj">
+      <Project>{B8AAC571-9BAE-4499-9BE9-B32013315472}</Project>
+      <Name>CourseCalendar</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\EMBA.DocumentValidator\EMBA.DocumentValidator.csproj">
+      <Project>{A108F18E-D035-45F3-B9D4-F1B612C0DAD9}</Project>
+      <Name>EMBA.DocumentValidator</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\EMBA.Export\EMBA.Export.csproj">
+      <Project>{47631CAA-4F81-4458-99A0-31B342803ECB}</Project>
+      <Name>EMBA.Export</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\EMBA.Import\EMBA.Import.csproj">
+      <Project>{3BA76CDE-1BBD-46EA-ACF0-65B1D0344626}</Project>
+      <Name>EMBA.Import</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\EMBA.Validator\EMBA.Validator.csproj">
+      <Project>{FEA37838-0B12-483A-8091-4B1A9A2C9378}</Project>
+      <Name>EMBA.Validator</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Mandrill\src\Mandrill\Mandrill.csproj">
+      <Project>{0563EE3C-A65E-4D55-9302-7663C0FE77F7}</Project>
+      <Name>Mandrill</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Student_UserDefineData\Student_UserDefinedData.csproj">
+      <Project>{C5E32CFE-B208-4900-B55E-321FB8FCBB31}</Project>
+      <Name>Student_UserDefinedData</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Teacher_UserDefineData\Teacher_UserDefineData.csproj">
+      <Project>{30A419D5-800A-45DB-A888-04A5B88B9104}</Project>
+      <Name>Teacher_UserDefineData</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\UDTDetailContentBase\UDTDetailContentBase\UDTDetailContentBase.csproj">
+      <Project>{A03943B1-4E50-4709-8FE0-521FFF988AE2}</Project>
+      <Name>UDTDetailContentBase</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\UIOrder\UIOrder.csproj">
+      <Project>{2E32D3AC-C214-4584-BF20-B5112C5A28CD}</Project>
+      <Name>UIOrder</Name>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Import\Advisor.xml" />
+    <Content Include="Import\Course_Import.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Import\Student_Brief_Import.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Import\SCAttendExt_Import.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Import\Student_Paper_Import.xml" />
+    <Content Include="Import\Student_Payment_History_Import.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Import\SubjectSemesterScore_Import.xml" />
+    <Content Include="Import\Subject_Import.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Import\Teacher_Import.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Import\Student_Experience_Import.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Import\複製 - Student_Brief_Import.xml" />
+    <Content Include="Import\複製 - SubjectSemesterScore_Import.xml" />
+    <None Include="Resources\GradeScoreMappingTable.xml" />
+    <None Include="Resources\format.xsl" />
+    <None Include="Resources\forbidden.png" />
+    <None Include="Resources\searchHistory.png" />
+    <None Include="Resources\copy.jpg" />
+    <None Include="Resources\Crystal_Clear_action_lock-silver.png" />
+    <None Include="Resources\sandglass_unlock_64.png" />
+    <None Include="Resources\network_lock_64.png" />
+    <None Include="Resources\group_64.png" />
+    <None Include="Resources\folder_zoom_64.png" />
+    <None Include="Resources\admin_64.png" />
+    <None Include="Resources\選課名單樣版.xls" />
+    <None Include="Resources\重新整理.png" />
+    <None Include="Resources\warning.png" />
+    <None Include="Resources\importscoreimage.png" />
+    <None Include="Resources\exportscoreimage.png" />
+    <None Include="Resources\course_plan.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

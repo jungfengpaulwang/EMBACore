@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="format.xsl" ?>
+<ValidateRule Name="學生基本資料">
+    <DuplicateDetection>
+        <Detector Name="學號">
+            <Field Name="學號" />
+        </Detector>
+        <Detector Name="學生系統編號">
+            <Field Name="學生系統編號">
+                <Validate Description="若學生系統編號為鍵值，則必須存在於系統中。" ErrorType="Error" Validator="學生系統編號必須存在" />
+            </Field>
+        </Detector>
+    </DuplicateDetection>
+    <FieldList>
+        <Field Required="True" Name="學生狀態">
+            <Validate AutoCorrect="True" Description="空白被轉換為「在學」。" ErrorType="Warning" Validator="學生狀態列舉" When="" />
+            <Validate AutoCorrect="False" Description="允許值：「在學」、「休學」、「畢業」、「退學」、「刪除」。 " ErrorType="Error" Validator="學生狀態列舉" When="" />
+        </Field>
+        <Field Required="False" Name="教學分班" Description="教學分班">
+            <Validate Description="教學分班必須存在於系統中。" ErrorType="Error" Validator="教學分班必須存在" />            
+        </Field>
+        <Field Required="False" Name="學號" Description="學號" EmptyAlsoValidate="False" >
+            <Validate AutoCorrect="False" Description="學號不可重覆" ErrorType="Error" Validator="不可重覆" When="" /> 
+        </Field>
+        <Field Required="False" Name="身分證號" Description="身分證號" EmptyAlsoValidate="False" >
+            <Validate AutoCorrect="False" Description="身分證號不可重覆" ErrorType="Error" Validator="不可重覆" When="" /> 
+        </Field>
+        <Field Required="True" Name="姓名" Description="姓名">
+            <Validate AutoCorrect="False" Description="「姓名」不允許空白。" ErrorType="Error" Validator="不可空白" When="" />
+        </Field>
+        <Field Required="False" Name="英文姓名" Description="英文姓名" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="性別" Description="性別"  EmptyAlsoValidate="False">
+            <Validate AutoCorrect="False" Description="「性別」只允許「男」、「女」。 " ErrorType="Error" Validator="性別列舉" When="" />
+        </Field>
+        <Field Required="False" Name="生日" Description="生日" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="國籍" Description="國籍" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="出生地" Description="出生地" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="登入帳號" Description="登入帳號" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="帳號類型" Description="帳號類型" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="電子郵件一" Description="電子郵件一" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="電子郵件二" Description="電子郵件二" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="電子郵件三" Description="電子郵件三" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="電子郵件四" Description="電子郵件四" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="電子郵件五" Description="電子郵件五" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="住家電話" Description="住家電話" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="聯絡電話" Description="聯絡電話" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="行動電話1" Description="行動電話1" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="公司電話" Description="公司電話" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="行動電話2" Description="行動電話2" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="其它電話" Description="其它電話" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="戶籍地址:郵遞區號" Description="戶籍地址:郵遞區號" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="戶籍地址:縣市" Description="戶籍地址:縣市" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="戶籍地址:鄉鎮" Description="戶籍地址:鄉鎮" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="戶籍地址:村里" Description="戶籍地址:村里" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="戶籍地址:鄰" Description="戶籍地址:鄰" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="戶籍地址:其它" Description="戶籍地址:其它" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="通訊地址:郵遞區號" Description="通訊地址:郵遞區號" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="通訊地址:縣市" Description="通訊地址:縣市" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="通訊地址:鄉鎮" Description="通訊地址:鄉鎮" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="通訊地址:村里" Description="通訊地址:村里" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="通訊地址:鄰" Description="通訊地址:鄰" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="通訊地址:其它" Description="通訊地址:其它" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="其它地址:郵遞區號" Description="其它地址:郵遞區號" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="其它地址:縣市" Description="其它地址:縣市" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="其它地址:鄉鎮" Description="其它地址:鄉鎮" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="其它地址:村里" Description="其它地址:村里" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="其它地址:鄰" Description="其它地址:鄰" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="其它地址:其它" Description="其它地址:其它" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="入學年度" Description="入學年度" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="畢業學校" Description="畢業學校" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="任職公司" Description="任職公司" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="職稱" Description="職稱" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="系所組別" Description="系所組別" EmptyAlsoValidate="False">
+            <Validate Description="系所組別必須存在於系統中。" ErrorType="Error" Validator="系所組別必須存在" />
+        </Field>
+        <Field Required="False" Name="畢業學年期" Description="畢業學年期" EmptyAlsoValidate="False" >
+            <Validate AutoCorrect="False" Description="「畢業學年期」允許格式：3碼學年度(例：098)+1碼學期。" ErrorType="Error" Validator="字數僅能為4" When="" />
+        </Field>
+    </FieldList>
+    <ValidatorList>        
+        <FieldValidator Name="不可重覆" Type="UNIQUEKEY" />
+        <FieldValidator Name="不可空白" Type="STRINGLENGTH">
+            <MinLength>1</MinLength>
+        </FieldValidator>
+        <FieldValidator Name="字數僅能為4" Type="STRINGLENGTH">
+            <MinLength>4</MinLength>
+            <MaxLength>4</MaxLength>
+        </FieldValidator>
+        <FieldValidator Name="Integer極限" Type="Integer">
+		    <MinValue>0</MinValue>
+		    <MaxValue>2000000000</MaxValue>
+	    </FieldValidator>
+        <FieldValidator Name="性別列舉" Type="Enumeration">
+            <Item Value="男" />
+            <Item Value="女" />
+        </FieldValidator>
+        <FieldValidator Name="學生狀態列舉" Type="Enumeration">
+            <Item Value="在學">
+                <Variation></Variation>
+            </Item>
+            <Item Value="休學" />
+            <Item Value="退學" />
+            <Item Value="畢業" />
+            <Item Value="刪除" />
+        </FieldValidator>
+        <FieldValidator Name="學生系統編號必須存在" Type="ExitsValidator" DataSource="K12.Data.StudentRecord" />
+        <FieldValidator Name="教學分班必須存在" Type="ExitsValidator" DataSource="K12.Data.ClassRecord" />
+        <FieldValidator Name="系所組別必須存在" Type="ExitsValidator" DataSource="K12.Data.ClassRecord" />
+    </ValidatorList>
+    <ConditionList/>
+    <DataSourceList>
+        <DataSource Name="K12.Data.StudentRecord" Description="學生基本資料">
+            <![CDATA[
+                select student.name as 姓名, student.id as 學生系統編號, id_number as 身分證號, sa_login_name as 登入帳號, 
+                student_number as 學號, student.status as 學生狀態 from student;
+            ]]>        
+        </DataSource>
+        <DataSource Name="UDT.StudentBrief2" Description="學生延伸資料">
+            <![CDATA[
+                select uid, ref_student_id as 學生系統編號, ref_department_group_id from $ischool.emba.student_brief2;
+            ]]>
+        </DataSource>
+        <DataSource Name="K12.Data.ClassRecord" Description="班級基本資料">
+            <![CDATA[
+                select id, class_name as 教學分班 from class where status=1;
+            ]]>
+        </DataSource>
+        <DataSource Name="UDT.department_group" Description="學生學歷資料">
+            <![CDATA[
+                select uid, ref_student_id as 學生系統編號, school_name as 畢業學校 from $ischool.emba.education_background;
+            ]]>
+        </DataSource>
+        <DataSource Name="UDT.department_group" Description="學生經歷資料">
+            <![CDATA[
+                select uid, ref_student_id as 學生系統編號, company_name as 任職公司, position as 職稱 from $ischool.emba.experience;
+            ]]>
+        </DataSource>
+        <DataSource Name="UDT.department_group" Description="系所組別資料">
+            <![CDATA[
+                select uid, name as 系所組別, code from $ischool.emba.department_group;
+            ]]>
+        </DataSource>
+    </DataSourceList>
+    <MappingTableList>
+        <MappingTable Name="Student.Status.NumToString" Description="學生狀態數字轉文字">
+            <Mapping Key="1" Value="在學" />
+            <Mapping Key="4" Value="休學" />
+            <Mapping Key="16" Value="畢業" />
+            <Mapping Key="64" Value="退學" />
+            <Mapping Key="256" Value="刪除" />
+        </MappingTable>
+        <MappingTable Name="Student.Status.UniStringToLocalString" Description="學生狀態通用文字轉自訂文字">
+            <Mapping Key="一般" Value="在學" />
+            <Mapping Key="休學" Value="休學" />
+            <Mapping Key="畢業或離校" Value="畢業" />
+            <Mapping Key="退學" Value="退學" />
+            <Mapping Key="刪除" Value="刪除" />
+        </MappingTable>
+    </MappingTableList>
+</ValidateRule>

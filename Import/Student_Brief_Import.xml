@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="format.xsl" ?>
+<ValidateRule Name="學生基本資料">
+    <DuplicateDetection>
+        <Detector Name="學號">
+            <Field Name="學號" />
+        </Detector>
+    </DuplicateDetection>
+    <FieldList>
+        <!--&lt;BR /&gt;2、請選擇「學號」為「新增資料」的識別欄位。-->
+        <Field Required="False" Name="教學分班" Description="" EmptyAlsoValidate="False" />
+        <Field Required="True" Name="學號" Description="同步自「校務系統」，只做為識別欄位，不被匯入。" />
+        <Field Required="False" Name="身分證號" Description="" EmptyAlsoValidate="False" >
+            <Validate AutoCorrect="False" Description="身分證號不可重覆" ErrorType="Error" Validator="不可重覆" When="" /> 
+        </Field>
+        <Field Required="False" Name="出生地" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="登入帳號" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="電子郵件一" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="電子郵件二" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="電子郵件三" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="電子郵件四" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="電子郵件五" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="住家電話" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="聯絡電話" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="行動電話1" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="公司電話" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="行動電話2" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="秘書電話" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="住家地址:郵遞區號" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="住家地址:縣市" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="住家地址:鄉鎮" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="住家地址:村里" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="住家地址:鄰" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="住家地址:其它" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="聯絡地址:郵遞區號" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="聯絡地址:縣市" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="聯絡地址:鄉鎮" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="聯絡地址:村里" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="聯絡地址:鄰" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="聯絡地址:其它" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="公司地址:郵遞區號" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="公司地址:縣市" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="公司地址:鄉鎮" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="公司地址:村里" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="公司地址:鄰" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="公司地址:其它" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="入學年度" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="畢業學校" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="系所組別" Description="" EmptyAlsoValidate="False" />
+        <!--
+        <Field Required="False" Name="公司名稱" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="職稱" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="產業別" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="部門類別" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="層級別" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="工作地點" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="工作狀態" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="工作起日" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="工作迄日" Description="" EmptyAlsoValidate="False" />
+        -->
+    </FieldList>
+    <ValidatorList>        
+        <FieldValidator Name="不可重覆" Type="UNIQUEKEY" />
+        <FieldValidator Name="不可空白" Type="STRINGLENGTH">
+            <MinLength>1</MinLength>
+        </FieldValidator>
+        <FieldValidator Name="字數僅能為4" Type="STRINGLENGTH">
+            <MinLength>4</MinLength>
+            <MaxLength>4</MaxLength>
+        </FieldValidator>
+        <FieldValidator Name="Integer極限" Type="Integer">
+		    <MinValue>0</MinValue>
+		    <MaxValue>2000000000</MaxValue>
+	    </FieldValidator>
+        <FieldValidator Name="性別列舉" Type="Enumeration">
+            <Item Value="男" />
+            <Item Value="女" />
+        </FieldValidator>
+        <FieldValidator Name="學生狀態列舉" Type="Enumeration">
+            <Item Value="在學">
+                <Variation></Variation>
+            </Item>
+            <Item Value="休學" />
+            <Item Value="退學" />
+            <Item Value="畢業" />
+            <Item Value="刪除" />
+        </FieldValidator>
+    </ValidatorList>
+    <ConditionList/>
+</ValidateRule>

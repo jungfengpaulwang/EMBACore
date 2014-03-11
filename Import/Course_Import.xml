@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="format.xsl" ?>
+<ValidateRule Name="課程基本資料">
+    <DuplicateDetection>
+        <Detector Name="學年度+學期+開課">
+            <Field Name="學年度" />
+            <Field Name="學期" />
+            <Field Name="開課" />
+        </Detector>
+        <Detector Name="開課系統編號">
+            <Field Name="開課系統編號" />
+        </Detector>
+    </DuplicateDetection>
+    <FieldList>
+        <!--課程系統編號	開課,學年度,學期,開課班次,類別,課程識別碼,課號,學分數,必選修,流水號,人數上限-->
+        <Field Required="False" Name="開課" Description="開課" >
+            <Validate AutoCorrect="False" Description="「開課」不允許空白。" ErrorType="Error" Validator="不可空白" When="" />
+        </Field>
+        <Field Required="False" Name="學年度" Description="學年度" >
+            <Validate AutoCorrect="False" Description="「學年度」不允許空白，只允許半形阿拉伯數字。" ErrorType="Error" Validator="Integer極限" When="" />
+        </Field>
+        <Field Required="False" Name="學期" Description="學期" >
+            <Validate AutoCorrect="True" Description="「夏季學期」被轉換為「0」。" ErrorType="Warning" Validator="學期列舉" When="" />
+            <Validate AutoCorrect="True" Description="「第1學期」被轉換為「1」。" ErrorType="Warning" Validator="學期列舉" When="" />
+            <Validate AutoCorrect="True" Description="「第2學期」被轉換為「2」。" ErrorType="Warning" Validator="學期列舉" When="" />
+            <Validate AutoCorrect="False" Description="「學期」只允許：0(夏季學期)、1(第1學期)、2(第2學期)。 " ErrorType="Error" Validator="學期列舉" When="" />
+        </Field>
+        <Field Required="False" Name="開課班次" Description="開課班次" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="類別" Description="類別" EmptyAlsoValidate="False" >
+            <Validate AutoCorrect="False" Description="「類別」只允許：核心必修、核心選修、分組必修、選修。 " ErrorType="Error" Validator="課程類別列舉" When="" />
+        </Field>
+        <Field Required="False" Name="課程識別碼" Description="課程識別碼" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="課號" Description="課號" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="學分數" Description="學分數" EmptyAlsoValidate="False" >
+            <Validate AutoCorrect="False" Description="「學分數」只允許 0~10 半形阿拉伯數字。 " ErrorType="Error" Validator="學分數允許範圍" When="" />
+        </Field>
+        <Field Required="False" Name="必選修" Description="必選修" EmptyAlsoValidate="False" >
+            <Validate AutoCorrect="False" Description="「必選修」只允許：必修、選修。 " ErrorType="Error" Validator="必選修列舉" When="" />
+        </Field>
+        <Field Required="False" Name="流水號" Description="流水號" EmptyAlsoValidate="False" >
+            <Validate AutoCorrect="False" Description="「流水號」只允許半形阿拉伯數字。 " ErrorType="Error" Validator="Integer極限" When="" />
+        </Field>
+        <Field Required="False" Name="人數上限" Description="人數上限" EmptyAlsoValidate="False" >
+            <Validate AutoCorrect="False" Description="「人數上限」只允許半形阿拉伯數字。 " ErrorType="Error" Validator="Integer極限" When="" />
+        </Field>
+    </FieldList>
+    <ValidatorList>
+        <FieldValidator Name="不可空白" Type="STRINGLENGTH">
+            <MinLength>1</MinLength>
+        </FieldValidator>
+        <FieldValidator Name="Integer極限" Type="Integer">
+            <MinValue>0</MinValue>
+            <MaxValue>10000000</MaxValue>
+        </FieldValidator>
+        <FieldValidator Name="學期列舉" Type="Enumeration">
+            <Item Value="0">
+                <Variation>夏季學期</Variation>
+            </Item>
+            <Item Value="1">
+                <Variation>第1學期</Variation>
+            </Item>
+            <Item Value="2">
+                <Variation>第2學期</Variation>
+            </Item>
+        </FieldValidator>
+        <FieldValidator Name="學分數允許範圍" Type="Integer">
+            <MinValue>0</MinValue>
+            <MaxValue>10</MaxValue>
+        </FieldValidator>
+        <FieldValidator Name="必選修列舉" Type="Enumeration">
+            <Item Value="必修" />
+            <Item Value="選修" />
+        </FieldValidator>
+        <FieldValidator Name="課程類別列舉" Type="Enumeration">
+            <Item Value="核心必修" />
+            <Item Value="核心選修" />
+            <Item Value="分組必修" />
+            <Item Value="選修" />
+        </FieldValidator>
+        <FieldValidator Name="開課班次列舉" Type="Enumeration">
+            <Item Value="" />
+            <Item Value="01" />
+            <Item Value="02" />
+            <Item Value="03" />
+        </FieldValidator>
+    </ValidatorList>
+    <ConditionList/>
+</ValidateRule>

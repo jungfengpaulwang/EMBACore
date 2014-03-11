@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="format.xsl" ?>
+<ValidateRule Name="教師基本資料">
+    <DuplicateDetection>
+        <Detector Name="姓名+暱稱">
+            <Field Name="姓名" />
+            <Field Name="暱稱" />
+        </Detector>
+        <Detector Name="教師系統編號">
+            <Field Name="教師系統編號" />
+        </Detector>
+    </DuplicateDetection>
+    <FieldList>
+        <Field Required="False" Name="教師系統編號" Description="教師系統編號(teacher_id)" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="教師編號" Description="教師編號(tea_code)" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="人事編號" Description="人事編號(tea_seq)" EmptyAlsoValidate="False" />
+        <Field Required="True" Name="姓名" Description="姓名">
+            <Validate AutoCorrect="False" Description="「姓名」不允許空白。" ErrorType="Error" Validator="不可空白" When="" />
+        </Field>
+        <Field Required="False" Name="英文姓名" Description="英文姓名" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="暱稱" Description="暱稱" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="身分證號" Description="身分證號" EmptyAlsoValidate="False">
+            <Validate AutoCorrect="False" Description="「身分證號」不可重覆" ErrorType="Error" Validator="不可重覆" When="" />
+        </Field>
+        <Field Required="False" Name="性別" Description="性別" >
+            <Validate AutoCorrect="False" Description="「性別」只允許「男」、「女」。 " ErrorType="Error" Validator="性別列舉" When="" />
+        </Field>
+        <Field Required="False" Name="生日" Description="生日" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="登入帳號" Description="登入帳號" EmptyAlsoValidate="False">
+            <Validate AutoCorrect="False" Description="「登入帳號」不可重覆" ErrorType="Error" Validator="不可重覆" When="" />
+        </Field>
+        <Field Required="False" Name="電子信箱" Description="電子信箱" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="聯絡電話" Description="聯絡電話" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="手機" Description="手機" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="電話" Description="電話" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="研究室電話" Description="研究室電話" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="研究室" Description="研究室" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="戶籍地址" Description="戶籍地址" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="所屬單位" Description="所屬單位" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="個人網址" Description="個人網址" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="備註" Description="備註" EmptyAlsoValidate="False" />
+        <Field Required="True" Name="教師狀態">
+            <Validate AutoCorrect="True" Description="空白被轉換為「一般」。" ErrorType="Warning" Validator="教師狀態列舉" When="" />
+            <Validate AutoCorrect="False" Description="允許值：「一般」、「刪除」。 " ErrorType="Error" Validator="教師狀態列舉" When="" />
+        </Field>
+    </FieldList>
+    <ValidatorList>
+        <FieldValidator Name="不可重覆" Type="UNIQUEKEY" />
+        <FieldValidator Name="不可空白" Type="STRINGLENGTH">
+            <MinLength>1</MinLength>
+        </FieldValidator>
+        <FieldValidator Name="Integer極限" Type="Integer">
+            <MinValue>1</MinValue>
+            <MaxValue>999</MaxValue>
+        </FieldValidator>
+        <FieldValidator Name="性別列舉" Type="Enumeration">
+            <Item Value="男" />
+            <Item Value="女" />
+        </FieldValidator>
+        <FieldValidator Name="教師狀態列舉" Type="Enumeration">
+            <Item Value="一般">
+                <Variation></Variation>
+            </Item>
+            <Item Value="刪除" />
+        </FieldValidator>
+    </ValidatorList>
+    <ConditionList/>
+</ValidateRule>

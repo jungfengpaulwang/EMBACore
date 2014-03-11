@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="format.xsl" ?>
+<ValidateRule Name="繳費記錄">
+    <DuplicateDetection>
+        <Detector Name="學號">
+            <Field Name="學號" />
+        </Detector>
+    </DuplicateDetection>
+    <FieldList>
+        <Field Required="True" Name="學號" Description="學號" />
+        <Field Required="False" Name="學年期:900" Description="90學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:900」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:901" Description="90學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:901」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:902" Description="90學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:902」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:910" Description="91學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:910」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:911" Description="91學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:911」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:912" Description="91學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:912」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:920" Description="92學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:920」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:921" Description="92學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:921」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:922" Description="92學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:922」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:930" Description="93學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:930」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:931" Description="93學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:931」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:932" Description="93學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:932」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:940" Description="94學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:940」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:941" Description="94學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:941」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:942" Description="94學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:942」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:950" Description="95學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:950」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:951" Description="95學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:951」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:952" Description="95學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:952」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:960" Description="96學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:960」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:961" Description="96學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:961」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:962" Description="96學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:962」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:970" Description="97學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:970」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:971" Description="97學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:971」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:972" Description="97學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:972」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:980" Description="98學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:980」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:981" Description="98學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:981」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:982" Description="98學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:982」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:990" Description="99學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:990」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:991" Description="99學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:991」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:992" Description="99學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:992」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1000" Description="100學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1000」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1001" Description="100學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1001」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1002" Description="100學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1002」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1010" Description="101學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1010」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1011" Description="101學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1011」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1012" Description="101學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1012」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1020" Description="102學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1020」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1021" Description="102學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1021」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1022" Description="102學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1022」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1030" Description="103學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1030」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1031" Description="103學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1031」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1032" Description="103學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1032」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1040" Description="104學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1040」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1041" Description="104學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1041」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1042" Description="104學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1042」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1050" Description="105學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1050」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1051" Description="105學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1051」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1052" Description="105學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1052」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1060" Description="106學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1060」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1061" Description="106學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1061」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1062" Description="106學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1062」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1070" Description="107學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1070」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1071" Description="107學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1071」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1072" Description="107學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1072」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1080" Description="108學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1080」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1081" Description="108學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1081」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1082" Description="108學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1082」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1090" Description="109學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1090」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1091" Description="109學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1091」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1092" Description="109學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1092」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1100" Description="110學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1100」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1101" Description="110學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1101」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1102" Description="110學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1102」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1110" Description="111學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1110」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1111" Description="111學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1111」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1112" Description="111學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1112」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1120" Description="112學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1120」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1121" Description="112學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1121」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1122" Description="112學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1122」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1130" Description="113學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1130」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1131" Description="113學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1131」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1132" Description="113學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1132」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1140" Description="114學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1140」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1141" Description="114學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1141」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1142" Description="114學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1142」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1150" Description="115學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1150」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1151" Description="115學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1151」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1152" Description="115學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1152」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1160" Description="116學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1160」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1161" Description="116學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1161」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1162" Description="116學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1162」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1170" Description="117學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1170」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1171" Description="117學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1171」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1172" Description="117學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1172」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1180" Description="118學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1180」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1181" Description="118學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1181」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1182" Description="118學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1182」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1190" Description="119學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1190」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1191" Description="119學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1191」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1192" Description="119學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1192」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1200" Description="120學年度夏季學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1200」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1201" Description="120學年度第1學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1201」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+        <Field Required="False" Name="學年期:1202" Description="120學年度第2學期繳費標記" >
+            <Validate AutoCorrect="False" Description="「學年期:1202」不可空白，允許值：0(未繳)、1(已繳)。" ErrorType="Error" Validator="繳費標記列舉" When="" />
+        </Field>
+    </FieldList>
+    <ValidatorList>
+        <FieldValidator Name="不可空白" Type="STRINGLENGTH">
+            <MinLength>1</MinLength>
+        </FieldValidator>	
+	    <FieldValidator Name="Integer極限" Type="Integer">
+		    <MinValue>900</MinValue>
+		    <MaxValue>1202</MaxValue>
+	    </FieldValidator>
+        <FieldValidator Name="學期列舉" Type="Enumeration">
+            <Item Value="0" />
+            <Item Value="1" />
+            <Item Value="2" />
+        </FieldValidator>
+        <FieldValidator Name="繳費標記列舉" Type="Enumeration">
+            <Item Value="0" />
+            <Item Value="1" />
+        </FieldValidator>
+    </ValidatorList>
+    <ConditionList/>
+</ValidateRule>

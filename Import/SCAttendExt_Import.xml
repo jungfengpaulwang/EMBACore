@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="format.xsl" ?>
+<ValidateRule Name="修課學生">
+    <DuplicateDetection>
+        <Detector Name="學年度+學期+開課+學號">
+            <Field Name="學年度" />
+            <Field Name="學期" />
+            <Field Name="開課" />   <!-- 即「課程名稱：course_name」 -->
+            <Field Name="學號" />
+        </Detector>
+    </DuplicateDetection>
+    <FieldList>
+        <!--課號、課程識別碼、學年度、學期、學號、報告小組-->
+        <Field Required="True" Name="開課" Description="開課" >
+            <Validate AutoCorrect="False" Description="「開課」不允許空白。" ErrorType="Error" Validator="不可空白" When="" />
+        </Field>
+        <Field Required="True" Name="學號" Description="學號" >
+            <Validate AutoCorrect="False" Description="「學號」不允許空白。" ErrorType="Error" Validator="不可空白" When="" />
+        </Field>
+        <Field Required="True" Name="學年度" Description="學年度" >
+            <Validate AutoCorrect="False" Description="「學年度」只允許數字。" ErrorType="Error" Validator="Integer極限" When="" />
+        </Field>
+        <Field Required="True" Name="學期" Description="學期" >
+            <Validate AutoCorrect="True" Description="「夏季學期」被轉換為「0」。" ErrorType="Warning" Validator="學期列舉" When="" />
+            <Validate AutoCorrect="True" Description="「第1學期」被轉換為「1」。" ErrorType="Warning" Validator="學期列舉" When="" />
+            <Validate AutoCorrect="True" Description="「第2學期」被轉換為「2」。" ErrorType="Warning" Validator="學期列舉" When="" />
+            <Validate AutoCorrect="False" Description="「學期」只允許：0(夏季學期)、1(第1學期)、2(第2學期)。 " ErrorType="Error" Validator="學期列舉" When="" />
+        </Field>
+        <Field Required="False" Name="報告小組" Description="報告小組" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="停修" Description="停修" >
+            <Validate AutoCorrect="True" Description="空白被轉換為「否」。" ErrorType="Warning" Validator="停修列舉" When="" />
+            <Validate AutoCorrect="True" Description="「S」被轉換為「是」。" ErrorType="Warning" Validator="停修列舉" When="" />
+            <Validate AutoCorrect="True" Description="「s」被轉換為「是」。" ErrorType="Warning" Validator="停修列舉" When="" />
+            <Validate AutoCorrect="False" Description="允許值：「S」、「s」、「是」、「否」。 " ErrorType="Error" Validator="停修列舉" When="" />
+        </Field>
+    </FieldList>
+    <ValidatorList>
+        <FieldValidator Name="不可空白" Type="STRINGLENGTH">
+            <MinLength>1</MinLength>
+        </FieldValidator>	
+	<FieldValidator Name="Integer極限" Type="Integer">
+		<MinValue>1</MinValue>
+		<MaxValue>999</MaxValue>
+	</FieldValidator>
+        <FieldValidator Name="停修列舉" Type="Enumeration">
+            <Item Value="是">
+                <Variation>S</Variation>
+                <Variation>s</Variation>
+            </Item>
+            <Item Value="否">
+                <Variation></Variation>
+            </Item>
+        </FieldValidator>
+        <FieldValidator Name="學期列舉" Type="Enumeration">
+            <Item Value="0">
+                <Variation>夏季學期</Variation>
+            </Item>
+            <Item Value="1">
+                <Variation>第1學期</Variation>
+            </Item>
+            <Item Value="2">
+                <Variation>第2學期</Variation>
+            </Item>
+        </FieldValidator>
+    </ValidatorList>
+    <ConditionList/>
+</ValidateRule>

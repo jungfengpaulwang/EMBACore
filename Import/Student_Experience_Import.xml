@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="format.xsl" ?>
+<ValidateRule Name="學生經歷資料">
+    <DuplicateDetection>
+        <Detector Name="學號+公司名稱">
+            <Field Name="學號" />
+            <Field Name="公司名稱" />
+        </Detector>
+    </DuplicateDetection>
+    <FieldList>
+        <!--「學號」為識別欄位。-->
+        <Field Required="True" Name="學號" Description="識別學生項目。" >
+            <Validate AutoCorrect="False" Description="「學號」不允許空白。" ErrorType="Error" Validator="不可空白" When="" />
+        </Field>
+        <Field Required="True" Name="公司名稱" Description="識別公關室項目" >
+            <Validate AutoCorrect="False" Description="「公司名稱」不允許空白。" ErrorType="Error" Validator="不可空白" When="" />
+        </Field>
+        <Field Required="False" Name="職稱" Description="職稱" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="產業別" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="部門類別" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="層級別" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="工作地點" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="工作狀態" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="工作起日" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="工作迄日" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="公關連絡人" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="公關室電話" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="公關室傳真" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="公關Email" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="公司網址" Description="" EmptyAlsoValidate="False" />
+    </FieldList>
+    <ValidatorList>        
+        <FieldValidator Name="不可空白" Type="STRINGLENGTH">
+            <MinLength>1</MinLength>
+        </FieldValidator>
+    </ValidatorList>
+    <ConditionList/>
+</ValidateRule>

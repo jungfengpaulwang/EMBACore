@@ -1,0 +1,13 @@
+﻿<GradeScoreMappingTable>
+    <Grade GP="4.3" Score="95">A+</Grade>
+    <Grade GP="4.0" Score="87">A</Grade>
+    <Grade GP="3.7" Score="82">A-</Grade>
+    <Grade GP="3.3" Score="78">B+</Grade>
+    <Grade GP="3.0" Score="75">B</Grade>
+    <Grade GP="2.7" Score="70">B-</Grade>
+    <Grade GP="2.3" Score="68">C+</Grade>
+    <Grade GP="2.0" Score="65">C</Grade>
+    <Grade GP="1.7" Score="60">C-</Grade>
+    <Grade GP="0" Score="50">F</Grade>
+    <Grade GP="0" Score="0">X</Grade>
+</GradeScoreMappingTable>

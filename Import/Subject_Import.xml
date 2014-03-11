@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="format.xsl" ?>
+<ValidateRule Name="課程總檔">
+    <DuplicateDetection>
+        <Detector Name="課程識別碼">
+            <Field Name="課程識別碼" />
+        </Detector>
+        <Detector Name="課號">
+            <Field Name="課號" />
+        </Detector>
+        <Detector Name="課程系統編號">
+            <Field Name="課程系統編號" />
+        </Detector>
+    </DuplicateDetection>
+    <FieldList>
+        <!--課程系統編號	課程中文名稱	課程英文名稱	課程識別碼	開課系所	系所代碼	學分數	內容簡介	網頁連結	必修	備註	課號-->
+        <Field Required="False" Name="課程中文名稱" Description="課程中文名稱" >
+            <Validate AutoCorrect="False" Description="課程中文名稱不可空白" ErrorType="Error" Validator="不可空白" When="" /> 
+        </Field>
+        <Field Required="False" Name="課程英文名稱" Description="課程英文名稱" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="課程識別碼" Description="課程識別碼" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="開課系所" Description="開課系所" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="系所代碼" Description="系所代碼" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="學分數" Description="學分數" >            
+            <Validate AutoCorrect="False" Description="「學分數」不允許空白，只允許 0~10 的阿拉伯數字。" ErrorType="Error" Validator="學分數允許範圍" When="" />
+        </Field>
+        <Field Required="False" Name="必選修" Description="必選修" >
+            <Validate AutoCorrect="False" Description="「必選修」不允許空白，只允許：必修、選修。 " ErrorType="Error" Validator="必選修列舉" When="" />
+        </Field>
+        <Field Required="False" Name="內容簡介" Description="內容簡介" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="網頁連結" Description="網頁連結" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="備註" Description="備註" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="課號" Description="課號" EmptyAlsoValidate="False" /> 
+    </FieldList>
+    <ValidatorList>
+        <FieldValidator Name="不可重覆" Type="UNIQUEKEY" />
+        <FieldValidator Name="不可空白" Type="STRINGLENGTH">
+            <MinLength>1</MinLength>
+        </FieldValidator>
+        <FieldValidator Name="Integer極限" Type="Integer">
+            <MinValue>1</MinValue>
+            <MaxValue>999</MaxValue>
+        </FieldValidator>
+        <FieldValidator Name="學期列舉" Type="Enumeration">
+            <Item Value="0" />
+            <Item Value="1" />
+            <Item Value="2" />
+        </FieldValidator>
+        <FieldValidator Name="學分數允許範圍" Type="Integer">
+            <MinValue>0</MinValue>
+            <MaxValue>10</MaxValue>
+        </FieldValidator>
+        <FieldValidator Name="必選修列舉" Type="Enumeration">
+            <Item Value="必修" />
+            <Item Value="選修" />
+        </FieldValidator>
+    </ValidatorList>
+    <ConditionList/>
+</ValidateRule>

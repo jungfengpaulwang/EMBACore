@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Advisor>
+    <Advisor1 TeacherID="">
+        <Name>馬先生</Name>
+    </Advisor1>
+    <Advisor2 TeacherID="">
+        <Name>林小姐</Name>
+    </Advisor2>
+    ……
+</Advisor>
