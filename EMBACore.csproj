@@ -1119,7 +1119,7 @@
     <None Include="Resources\ClassIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Research\A-Team\ReportHelper\ReportHelper.csproj">
+    <ProjectReference Include="..\ReportHelper\ReportHelper.csproj">
       <Project>{940285B7-47F3-49E8-A914-1CF8B73F133C}</Project>
       <Name>ReportHelper</Name>
       <Private>False</Private>
