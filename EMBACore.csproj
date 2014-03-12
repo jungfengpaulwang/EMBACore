@@ -21,7 +21,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\FiscaRuntime\addmodules\MOD_EMBACore\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -51,81 +51,84 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Aspose.Cells">
-      <HintPath>..\FiscaRuntime\modules\LIB_ASPOSE\Aspose.Cells.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\modules\LIB_ASPOSE\Aspose.Cells.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Aspose.Words">
-      <HintPath>..\FiscaRuntime\modules\LIB_ASPOSE\Aspose.Words.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\modules\LIB_ASPOSE\Aspose.Words.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Campus">
-      <HintPath>..\FiscaRuntime\modules\LIB_Campus\Campus.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\modules\LIB_Campus\Campus.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Campus.Report">
-      <HintPath>..\FiscaRuntime\modules\LIB_Campus\Campus.Report.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\modules\LIB_Campus\Campus.Report.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Campus.Windows">
-      <HintPath>..\FiscaRuntime\modules\LIB_Campus\Campus.Windows.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\modules\LIB_Campus\Campus.Windows.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Customization.Tagging">
-      <HintPath>..\FiscaRuntime\modules\MOD_Tagging\Customization.Tagging.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\modules\MOD_Tagging\Customization.Tagging.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DevComponents.DotNetBar2, Version=9.5.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.DotNetBar2">
+      <HintPath>..\..\..\ischool source\EMBARuntime\components\DevComponents.DotNetBar2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="FISCA">
-      <HintPath>..\FiscaRuntime\kernel\FISCA.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\kernel\FISCA.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.Authentication">
-      <HintPath>..\FiscaRuntime\kernel\FISCA.Authentication.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\kernel\FISCA.Authentication.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.Core">
-      <HintPath>..\FiscaRuntime\kernel\FISCA.Core.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\kernel\FISCA.Core.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.Data">
-      <HintPath>..\FiscaRuntime\kernel\FISCA.Data.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\kernel\FISCA.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.DSAClient">
-      <HintPath>..\FiscaRuntime\kernel\FISCA.DSAClient.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\kernel\FISCA.DSAClient.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.DSAUtil">
-      <HintPath>..\FiscaRuntime\kernel\FISCA.DSAUtil.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\kernel\FISCA.DSAUtil.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.LogAgent">
-      <HintPath>..\FiscaRuntime\kernel\FISCA.LogAgent.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\kernel\FISCA.LogAgent.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.Permission">
-      <HintPath>..\FiscaRuntime\kernel\FISCA.Permission.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\kernel\FISCA.Permission.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.Presentation, Version=1.1.0.17, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\FiscaRuntime\kernel\FISCA.Presentation.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\kernel\FISCA.Presentation.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="FISCA.UDT">
-      <HintPath>..\FiscaRuntime\kernel\FISCA.UDT.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\kernel\FISCA.UDT.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="JHSchool.Data">
-      <HintPath>..\FiscaRuntime\modules\LIB_K12DAL\JHSchool.Data.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\modules\LIB_K12DAL\JHSchool.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="K12.Data">
-      <HintPath>..\FiscaRuntime\modules\LIB_K12DAL\K12.Data.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\modules\LIB_K12DAL\K12.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="K12.Presentation">
-      <HintPath>..\FiscaRuntime\modules\LIB_Campus\K12.Presentation.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\modules\LIB_Campus\K12.Presentation.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -133,7 +136,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="SHSchool.Data">
-      <HintPath>..\FiscaRuntime\modules\LIB_K12DAL\SHSchool.Data.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\modules\LIB_K12DAL\SHSchool.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -147,7 +150,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Tagging">
-      <HintPath>..\FiscaRuntime\modules\MOD_Tagging\Tagging.dll</HintPath>
+      <HintPath>..\..\..\ischool source\EMBARuntime\modules\MOD_Tagging\Tagging.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
@@ -273,15 +276,11 @@
     <Compile Include="DetailItems\Student_EducationBackground.Designer.cs">
       <DependentUpon>Student_EducationBackground.cs</DependentUpon>
     </Compile>
-    <Compile Include="DetailItems\Student_EducationBackground_SingleForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="DetailItems\Student_EducationBackground_SingleForm.cs" />
     <Compile Include="DetailItems\Student_EducationBackground_SingleForm.Designer.cs">
       <DependentUpon>Student_EducationBackground_SingleForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DetailItems\Student_Experience_SingleForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="DetailItems\Student_Experience_SingleForm.cs" />
     <Compile Include="DetailItems\Student_Experience_SingleForm.Designer.cs">
       <DependentUpon>Student_Experience_SingleForm.cs</DependentUpon>
     </Compile>
@@ -327,9 +326,7 @@
     <Compile Include="DetailItems\Student_Experience_Ext.Designer.cs">
       <DependentUpon>Student_Experience_Ext.cs</DependentUpon>
     </Compile>
-    <Compile Include="DetailItems\Student_Experience_SingleForm_Ext.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="DetailItems\Student_Experience_SingleForm_Ext.cs" />
     <Compile Include="DetailItems\Student_Experience_SingleForm_Ext.Designer.cs">
       <DependentUpon>Student_Experience_SingleForm_Ext.cs</DependentUpon>
     </Compile>
@@ -337,23 +334,17 @@
     <Compile Include="Event\DeliverActiveRecordEvent.cs" />
     <Compile Include="Export\Course_Brief_Export_DBF.cs" />
     <Compile Include="Export\Course_Brief_Export_Excel.cs" />
-    <Compile Include="Export\Course_Score_Export_Excel.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Export\Course_Score_Export_Excel.cs" />
     <Compile Include="Export\Course_Score_Export_Excel.Designer.cs">
       <DependentUpon>Course_Score_Export_Excel.cs</DependentUpon>
     </Compile>
     <Compile Include="Export\Paper_Export_Excel.cs" />
     <Compile Include="Export\Payment_History_Export_Excel.cs" />
-    <Compile Include="Export\SCAttend_Export_DBF.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Export\SCAttend_Export_DBF.cs" />
     <Compile Include="Export\SCAttend_Export_DBF.Designer.cs">
       <DependentUpon>SCAttend_Export_DBF.cs</DependentUpon>
     </Compile>
-    <Compile Include="Export\SCAttend_Export_Excel.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Export\SCAttend_Export_Excel.cs" />
     <Compile Include="Export\SCAttend_Export_Excel.Designer.cs">
       <DependentUpon>SCAttend_Export_Excel.cs</DependentUpon>
     </Compile>
@@ -366,23 +357,17 @@
     <Compile Include="Export\Student_Brief_Export_Excel.cs" />
     <Compile Include="Export\Student_Education_Export_Excel.cs" />
     <Compile Include="Export\Student_Experience_Export_Excel.cs" />
-    <Compile Include="Export\Student_Photo_Export_Excel.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Export\Student_Photo_Export_Excel.cs" />
     <Compile Include="Export\Student_Photo_Export_Excel.Designer.cs">
       <DependentUpon>Student_Photo_Export_Excel.cs</DependentUpon>
     </Compile>
     <Compile Include="Export\Student_UpdateRecord_Export_Excel.cs" />
     <Compile Include="Export\Subject_Export_Excel.cs" />
-    <Compile Include="Export\Subject_Score_Export_DBF.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Export\Subject_Score_Export_DBF.cs" />
     <Compile Include="Export\Subject_Score_Export_DBF.Designer.cs">
       <DependentUpon>Subject_Score_Export_DBF.cs</DependentUpon>
     </Compile>
-    <Compile Include="Export\Subject_Score_Export_Excel.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Export\Subject_Score_Export_Excel.cs" />
     <Compile Include="Export\Subject_Score_Export_Excel.Designer.cs">
       <DependentUpon>Subject_Score_Export_Excel.cs</DependentUpon>
     </Compile>
@@ -419,9 +404,7 @@
     <Compile Include="Forms\DepartmentGroupForm.designer.cs">
       <DependentUpon>DepartmentGroupForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DepartmentGroup_SingleForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\DepartmentGroup_SingleForm.cs" />
     <Compile Include="Forms\DepartmentGroup_SingleForm.Designer.cs">
       <DependentUpon>DepartmentGroup_SingleForm.cs</DependentUpon>
     </Compile>
@@ -598,9 +581,7 @@
     <Compile Include="Forms\SubjectScoreLockForm.Designer.cs">
       <DependentUpon>SubjectScoreLockForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Subject_SingleForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\Subject_SingleForm.cs" />
     <Compile Include="Forms\Subject_SingleForm.Designer.cs">
       <DependentUpon>Subject_SingleForm.cs</DependentUpon>
     </Compile>
