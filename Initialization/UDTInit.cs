@@ -30,6 +30,7 @@ namespace EMBACore.Initialization
             Manager.SyncSchema(new EMBACore.UDT.StudentRemark());
             Manager.SyncSchema(new EMBACore.UDT.Subject());
             Manager.SyncSchema(new EMBACore.UDT.SubjectSemesterScore());
+            Manager.SyncSchema(new EMBACore.UDT.SubjectScoreLock());
             Manager.SyncSchema(new EMBACore.UDT.TeacherExtVO());
             Manager.SyncSchema(new EMBACore.UDT.Paper());
             Manager.SyncSchema(new EMBACore.UDT.PaymentHistory());
