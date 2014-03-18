@@ -6,6 +6,7 @@ using EMBACore.DataItems;
 using FISCA.Permission;
 using FISCA.UDT;
 using SHSchool.Data;
+using FISCA.Presentation;
 
 namespace EMBACore.DetailItems
 {

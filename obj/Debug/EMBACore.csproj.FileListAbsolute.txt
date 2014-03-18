@@ -130,7 +130,6 @@ E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.DetailItems.Student_SubjectScore.
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.DetailItems.Student_UpdateRecord.resources
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.DetailItems.Teacher_Brief.resources
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.DetailItems.Course_Instructor.resources
-E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.DetailItems.Course_TimeSection.resources
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.DetailItems.Student_Address.resources
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.DetailItems.Student_Brief.resources
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.DetailItems.Student_Brief2.resources
@@ -206,3 +205,7 @@ E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.TreeNavViewBase.resources
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.csproj.GenerateResource.Cache
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.dll
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.pdb
+E:\github\NTU_EMBA\EMBACore\bin\Debug\Google.GData.Calendar.dll
+E:\github\NTU_EMBA\EMBACore\bin\Debug\Google.GData.Client.dll
+E:\github\NTU_EMBA\EMBACore\bin\Debug\Google.GData.AccessControl.dll
+E:\github\NTU_EMBA\EMBACore\bin\Debug\Google.GData.Extensions.dll

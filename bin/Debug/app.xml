@@ -1,0 +1,15 @@
+﻿<App Title="台大EMBA專案">
+  <Description><![CDATA[包含下列模組：
+1、Google 行事曆
+2、匯入機制
+3、驗證規則
+4、匯出機制
+5、自訂欄位
+6、電子郵件
+7、資料項目排序
+8、資料項目父表單
+9、核心功能]]></Description>
+  <AlphaReleaseDigest>5215F4FF69C32296D4B393C64F1419916ECF45D7</AlphaReleaseDigest>
+  <BetaReleaseDigest>5215F4FF69C32296D4B393C64F1419916ECF45D7</BetaReleaseDigest>
+  <StableReleaseDigest>5215F4FF69C32296D4B393C64F1419916ECF45D7</StableReleaseDigest>
+</App>

@@ -266,6 +266,9 @@ namespace EMBACore.DetailItems
 
             if (scattendExts.Count > 0)
             {
+                if (MsgBox.Show("確定移除學生修課記錄？", MessageBoxButtons.OKCancel) == DialogResult.Cancel)
+                    return false;
+
                 scattendExts.ForEach(x => x.Deleted = true);
                 List<string> deletedRecordUIDs = scattendExts.SaveAll();
 

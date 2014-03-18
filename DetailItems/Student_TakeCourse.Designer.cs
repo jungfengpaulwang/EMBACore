@@ -29,112 +29,37 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.btnAddNew = new DevComponents.DotNetBar.ButtonX();
-            this.btnDelete = new DevComponents.DotNetBar.ButtonX();
-            this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.cboSemester = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.nudSchoolYear = new System.Windows.Forms.NumericUpDown();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.CourseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubjectCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Credit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TeacherName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.cboSemester = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.lblMessage = new System.Windows.Forms.Label();
+            this.CourseInstructor = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.IsCancel = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.ReportGroup = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.Credit = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.IsRequired = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.CourseType = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.NewSubjectCode = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.CourseName = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.dgvData = new DevComponents.DotNetBar.Controls.DataGridViewX();
             ((System.ComponentModel.ISupportInitialize)(this.nudSchoolYear)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnAddNew
-            // 
-            this.btnAddNew.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnAddNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddNew.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnAddNew.Location = new System.Drawing.Point(369, 204);
-            this.btnAddNew.Name = "btnAddNew";
-            this.btnAddNew.Size = new System.Drawing.Size(75, 23);
-            this.btnAddNew.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnAddNew.TabIndex = 5;
-            this.btnAddNew.Text = "新增";
-            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.btnDelete.Location = new System.Drawing.Point(462, 204);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.btnDelete.TabIndex = 4;
-            this.btnDelete.Text = "刪除";
-            // 
-            // dataGridViewX1
-            // 
-            this.dataGridViewX1.AllowUserToAddRows = false;
-            this.dataGridViewX1.AllowUserToDeleteRows = false;
-            this.dataGridViewX1.AllowUserToOrderColumns = true;
-            this.dataGridViewX1.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridViewX1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewX1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CourseName,
-            this.SubjectCode,
-            this.Credit,
-            this.Column2,
-            this.TeacherName});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dataGridViewX1.Location = new System.Drawing.Point(6, 41);
-            this.dataGridViewX1.Name = "dataGridViewX1";
-            this.dataGridViewX1.ReadOnly = true;
-            this.dataGridViewX1.RowHeadersWidth = 25;
-            this.dataGridViewX1.RowTemplate.Height = 24;
-            this.dataGridViewX1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewX1.Size = new System.Drawing.Size(537, 150);
-            this.dataGridViewX1.TabIndex = 6;
-            // 
-            // cboSemester
-            // 
-            this.cboSemester.DisplayMember = "Text";
-            this.cboSemester.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cboSemester.FormattingEnabled = true;
-            this.cboSemester.ItemHeight = 19;
-            this.cboSemester.Location = new System.Drawing.Point(212, 8);
-            this.cboSemester.Name = "cboSemester";
-            this.cboSemester.Size = new System.Drawing.Size(66, 25);
-            this.cboSemester.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.cboSemester.TabIndex = 8;
-            // 
-            // labelX2
-            // 
-            this.labelX2.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX2.BackgroundStyle.Class = "";
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(160, 6);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(44, 23);
-            this.labelX2.TabIndex = 7;
-            this.labelX2.Text = "學期";
             // 
             // nudSchoolYear
             // 
             this.nudSchoolYear.Location = new System.Drawing.Point(62, 8);
+            this.nudSchoolYear.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
             this.nudSchoolYear.Name = "nudSchoolYear";
             this.nudSchoolYear.Size = new System.Drawing.Size(66, 25);
             this.nudSchoolYear.TabIndex = 10;
-            this.nudSchoolYear.Maximum = 500;
             this.nudSchoolYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudSchoolYear.ValueChanged += new System.EventHandler(this.nudSchoolYear_ValueChanged);
             // 
             // labelX1
             // 
@@ -150,79 +75,185 @@
             this.labelX1.TabIndex = 9;
             this.labelX1.Text = "學年度";
             // 
+            // labelX2
+            // 
+            this.labelX2.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.Class = "";
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Location = new System.Drawing.Point(160, 6);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(44, 23);
+            this.labelX2.TabIndex = 7;
+            this.labelX2.Text = "學期";
+            // 
+            // cboSemester
+            // 
+            this.cboSemester.DisplayMember = "Text";
+            this.cboSemester.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboSemester.FormattingEnabled = true;
+            this.cboSemester.ItemHeight = 19;
+            this.cboSemester.Location = new System.Drawing.Point(212, 8);
+            this.cboSemester.Name = "cboSemester";
+            this.cboSemester.Size = new System.Drawing.Size(66, 25);
+            this.cboSemester.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cboSemester.TabIndex = 8;
+            this.cboSemester.SelectedIndexChanged += new System.EventHandler(this.cboSemester_SelectedIndexChanged);
+            // 
+            // lblMessage
+            // 
+            this.lblMessage.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lblMessage.ForeColor = System.Drawing.Color.Red;
+            this.lblMessage.Location = new System.Drawing.Point(315, 6);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(228, 27);
+            this.lblMessage.TabIndex = 11;
+            this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // CourseInstructor
+            // 
+            this.CourseInstructor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CourseInstructor.HeaderText = "授課教師";
+            this.CourseInstructor.Name = "CourseInstructor";
+            this.CourseInstructor.ReadOnly = true;
+            this.CourseInstructor.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.CourseInstructor.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.CourseInstructor.Width = 85;
+            // 
+            // IsCancel
+            // 
+            this.IsCancel.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.IsCancel.HeaderText = "停修";
+            this.IsCancel.Name = "IsCancel";
+            this.IsCancel.ReadOnly = true;
+            this.IsCancel.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.IsCancel.Width = 59;
+            // 
+            // ReportGroup
+            // 
+            this.ReportGroup.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ReportGroup.HeaderText = "報告小組";
+            this.ReportGroup.Name = "ReportGroup";
+            this.ReportGroup.ReadOnly = true;
+            this.ReportGroup.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ReportGroup.Width = 85;
+            // 
+            // Credit
+            // 
+            this.Credit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Credit.HeaderText = "學分數";
+            this.Credit.Name = "Credit";
+            this.Credit.ReadOnly = true;
+            this.Credit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Credit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Credit.Width = 72;
+            // 
+            // IsRequired
+            // 
+            this.IsRequired.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.IsRequired.HeaderText = "必選修";
+            this.IsRequired.Name = "IsRequired";
+            this.IsRequired.ReadOnly = true;
+            this.IsRequired.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.IsRequired.Width = 72;
+            // 
+            // CourseType
+            // 
+            this.CourseType.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.CourseType.HeaderText = "類別";
+            this.CourseType.Name = "CourseType";
+            this.CourseType.ReadOnly = true;
+            this.CourseType.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.CourseType.Width = 59;
+            // 
+            // NewSubjectCode
+            // 
+            this.NewSubjectCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.NewSubjectCode.HeaderText = "課號";
+            this.NewSubjectCode.Name = "NewSubjectCode";
+            this.NewSubjectCode.ReadOnly = true;
+            this.NewSubjectCode.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NewSubjectCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.NewSubjectCode.Width = 59;
+            // 
             // CourseName
             // 
             this.CourseName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.CourseName.HeaderText = "課程名稱";
             this.CourseName.Name = "CourseName";
             this.CourseName.ReadOnly = true;
+            this.CourseName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.CourseName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.CourseName.Width = 85;
             // 
-            // SubjectCode
+            // dgvData
             // 
-            this.SubjectCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.SubjectCode.HeaderText = "課號";
-            this.SubjectCode.Name = "SubjectCode";
-            this.SubjectCode.ReadOnly = true;
-            this.SubjectCode.Width = 59;
-            // 
-            // Credit
-            // 
-            this.Credit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Credit.HeaderText = "學分數";
-            this.Credit.Name = "Credit";
-            this.Credit.ReadOnly = true;
-            this.Credit.Width = 72;
-            // 
-            // Column2
-            // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Column2.HeaderText = "類別";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 59;
-            // 
-            // TeacherName
-            // 
-            this.TeacherName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.TeacherName.HeaderText = "授課教師";
-            this.TeacherName.Name = "TeacherName";
-            this.TeacherName.ReadOnly = true;
-            this.TeacherName.Width = 85;
+            this.dgvData.AllowUserToAddRows = false;
+            this.dgvData.AllowUserToOrderColumns = true;
+            this.dgvData.BackgroundColor = System.Drawing.Color.White;
+            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CourseName,
+            this.NewSubjectCode,
+            this.CourseType,
+            this.IsRequired,
+            this.Credit,
+            this.ReportGroup,
+            this.IsCancel,
+            this.CourseInstructor});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvData.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgvData.Location = new System.Drawing.Point(30, 42);
+            this.dgvData.Name = "dgvData";
+            this.dgvData.ReadOnly = true;
+            this.dgvData.RowHeadersWidth = 25;
+            this.dgvData.RowTemplate.Height = 24;
+            this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvData.Size = new System.Drawing.Size(490, 234);
+            this.dgvData.TabIndex = 6;
             // 
             // Student_TakeCourse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblMessage);
             this.Controls.Add(this.nudSchoolYear);
             this.Controls.Add(this.labelX1);
             this.Controls.Add(this.cboSemester);
             this.Controls.Add(this.labelX2);
-            this.Controls.Add(this.dataGridViewX1);
-            this.Controls.Add(this.btnAddNew);
-            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.dgvData);
             this.Name = "Student_TakeCourse";
-            this.Size = new System.Drawing.Size(550, 235);
-            this.Load += new System.EventHandler(this.Student_TakeCourse_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).EndInit();
+            this.Size = new System.Drawing.Size(550, 290);
             ((System.ComponentModel.ISupportInitialize)(this.nudSchoolYear)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevComponents.DotNetBar.ButtonX btnAddNew;
-        private DevComponents.DotNetBar.ButtonX btnDelete;
-        private DevComponents.DotNetBar.Controls.DataGridViewX dataGridViewX1;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx cboSemester;
-        private DevComponents.DotNetBar.LabelX labelX2;
         private System.Windows.Forms.NumericUpDown nudSchoolYear;
         private DevComponents.DotNetBar.LabelX labelX1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CourseName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SubjectCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Credit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TeacherName;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cboSemester;
+        private System.Windows.Forms.Label lblMessage;
+        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn CourseInstructor;
+        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn IsCancel;
+        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn ReportGroup;
+        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn Credit;
+        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn IsRequired;
+        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn CourseType;
+        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn NewSubjectCode;
+        private DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn CourseName;
+        private DevComponents.DotNetBar.Controls.DataGridViewX dgvData;
     }
 }

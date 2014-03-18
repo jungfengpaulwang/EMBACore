@@ -58,6 +58,7 @@ namespace EMBACore.Initialization
             detail.Add(new DetailItemFeature(typeof(Student_Phone)));
             detail.Add(new DetailItemFeature(typeof(Student_PaymentHistory)));
             detail.Add(new DetailItemFeature(typeof(Student_Paper)));
+            detail.Add(new DetailItemFeature(typeof(Student_TakeCourse)));
 
             if (UserAcl.Current[typeof(Student_Brief)].Viewable)
                 NLDPanels.Student.AddDetailBulider<Student_Brief>();
@@ -71,6 +72,8 @@ namespace EMBACore.Initialization
                 NLDPanels.Student.AddDetailBulider<Student_PaymentHistory>();
             if (UserAcl.Current[typeof(Student_Paper)].Viewable)
                 NLDPanels.Student.AddDetailBulider<Student_Paper>();
+            if (UserAcl.Current[typeof(Student_TakeCourse)].Viewable)
+                NLDPanels.Student.AddDetailBulider<Student_TakeCourse>();
 
             #endregion
         }

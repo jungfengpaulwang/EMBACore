@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Campus.Windows;
 using FISCA.Permission;
+using FISCA.Presentation;
 
 namespace EMBACore.DetailItems
 {

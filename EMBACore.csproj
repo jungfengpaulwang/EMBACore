@@ -240,12 +240,6 @@
     <Compile Include="DetailItems\Course_Instructor.Designer.cs">
       <DependentUpon>Course_Instructor.cs</DependentUpon>
     </Compile>
-    <Compile Include="DetailItems\Course_TimeSection.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DetailItems\Course_TimeSection.Designer.cs">
-      <DependentUpon>Course_TimeSection.cs</DependentUpon>
-    </Compile>
     <Compile Include="DetailItems\Student_Address.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -807,9 +801,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DetailItems\Course_Instructor.resx">
       <DependentUpon>Course_Instructor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DetailItems\Course_TimeSection.resx">
-      <DependentUpon>Course_TimeSection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DetailItems\Student_Address.resx">
       <DependentUpon>Student_Address.cs</DependentUpon>
