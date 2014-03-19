@@ -99,6 +99,7 @@ E:\github\NTU_EMBA\EMBACore\bin\Debug\EMBA.Export.dll
 E:\github\NTU_EMBA\EMBACore\bin\Debug\EMBA.Import.dll
 E:\github\NTU_EMBA\EMBACore\bin\Debug\EMBA.UserDefinedData.dll
 E:\github\NTU_EMBA\EMBACore\bin\Debug\EMBA.Validator.dll
+E:\github\NTU_EMBA\EMBACore\bin\Debug\FISCA.UDT.dll
 E:\github\NTU_EMBA\EMBACore\bin\Debug\Teacher_UserDefineData.dll
 E:\github\NTU_EMBA\EMBACore\bin\Debug\UDTDetailContentBase.dll
 E:\github\NTU_EMBA\EMBACore\bin\Debug\UIOrder.dll
@@ -114,6 +115,8 @@ E:\github\NTU_EMBA\EMBACore\bin\Debug\Teacher_UserDefineData.pdb
 E:\github\NTU_EMBA\EMBACore\bin\Debug\UDTDetailContentBase.pdb
 E:\github\NTU_EMBA\EMBACore\bin\Debug\CourseCalender.pdb
 E:\github\NTU_EMBA\EMBACore\bin\Debug\UIOrder.pdb
+E:\github\NTU_EMBA\EMBACore\bin\Debug\FISCA.UDT.pdb
+E:\github\NTU_EMBA\EMBACore\bin\Debug\FISCA.UDT.xml
 E:\github\NTU_EMBA\EMBACore\bin\Debug\FISCA.Deployment.pdb
 E:\github\NTU_EMBA\EMBACore\bin\Debug\FISCA.Deployment.xml
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.csprojResolveAssemblyReference.cache
@@ -205,7 +208,3 @@ E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.TreeNavViewBase.resources
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.csproj.GenerateResource.Cache
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.dll
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.pdb
-E:\github\NTU_EMBA\EMBACore\bin\Debug\Google.GData.Calendar.dll
-E:\github\NTU_EMBA\EMBACore\bin\Debug\Google.GData.Client.dll
-E:\github\NTU_EMBA\EMBACore\bin\Debug\Google.GData.AccessControl.dll
-E:\github\NTU_EMBA\EMBACore\bin\Debug\Google.GData.Extensions.dll

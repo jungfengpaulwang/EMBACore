@@ -117,7 +117,6 @@
     </Reference>
     <Reference Include="FISCA.UDT">
       <HintPath>..\..\..\ischool source\EMBARuntime\kernel\FISCA.UDT.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="JHSchool.Data">
       <HintPath>..\..\..\ischool source\EMBARuntime\modules\LIB_K12DAL\JHSchool.Data.dll</HintPath>
@@ -270,11 +269,15 @@
     <Compile Include="DetailItems\Student_EducationBackground.Designer.cs">
       <DependentUpon>Student_EducationBackground.cs</DependentUpon>
     </Compile>
-    <Compile Include="DetailItems\Student_EducationBackground_SingleForm.cs" />
+    <Compile Include="DetailItems\Student_EducationBackground_SingleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DetailItems\Student_EducationBackground_SingleForm.Designer.cs">
       <DependentUpon>Student_EducationBackground_SingleForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DetailItems\Student_Experience_SingleForm.cs" />
+    <Compile Include="DetailItems\Student_Experience_SingleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DetailItems\Student_Experience_SingleForm.Designer.cs">
       <DependentUpon>Student_Experience_SingleForm.cs</DependentUpon>
     </Compile>
@@ -320,7 +323,9 @@
     <Compile Include="DetailItems\Student_Experience_Ext.Designer.cs">
       <DependentUpon>Student_Experience_Ext.cs</DependentUpon>
     </Compile>
-    <Compile Include="DetailItems\Student_Experience_SingleForm_Ext.cs" />
+    <Compile Include="DetailItems\Student_Experience_SingleForm_Ext.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DetailItems\Student_Experience_SingleForm_Ext.Designer.cs">
       <DependentUpon>Student_Experience_SingleForm_Ext.cs</DependentUpon>
     </Compile>
@@ -328,17 +333,23 @@
     <Compile Include="Event\DeliverActiveRecordEvent.cs" />
     <Compile Include="Export\Course_Brief_Export_DBF.cs" />
     <Compile Include="Export\Course_Brief_Export_Excel.cs" />
-    <Compile Include="Export\Course_Score_Export_Excel.cs" />
+    <Compile Include="Export\Course_Score_Export_Excel.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Export\Course_Score_Export_Excel.Designer.cs">
       <DependentUpon>Course_Score_Export_Excel.cs</DependentUpon>
     </Compile>
     <Compile Include="Export\Paper_Export_Excel.cs" />
     <Compile Include="Export\Payment_History_Export_Excel.cs" />
-    <Compile Include="Export\SCAttend_Export_DBF.cs" />
+    <Compile Include="Export\SCAttend_Export_DBF.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Export\SCAttend_Export_DBF.Designer.cs">
       <DependentUpon>SCAttend_Export_DBF.cs</DependentUpon>
     </Compile>
-    <Compile Include="Export\SCAttend_Export_Excel.cs" />
+    <Compile Include="Export\SCAttend_Export_Excel.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Export\SCAttend_Export_Excel.Designer.cs">
       <DependentUpon>SCAttend_Export_Excel.cs</DependentUpon>
     </Compile>
@@ -351,17 +362,23 @@
     <Compile Include="Export\Student_Brief_Export_Excel.cs" />
     <Compile Include="Export\Student_Education_Export_Excel.cs" />
     <Compile Include="Export\Student_Experience_Export_Excel.cs" />
-    <Compile Include="Export\Student_Photo_Export_Excel.cs" />
+    <Compile Include="Export\Student_Photo_Export_Excel.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Export\Student_Photo_Export_Excel.Designer.cs">
       <DependentUpon>Student_Photo_Export_Excel.cs</DependentUpon>
     </Compile>
     <Compile Include="Export\Student_UpdateRecord_Export_Excel.cs" />
     <Compile Include="Export\Subject_Export_Excel.cs" />
-    <Compile Include="Export\Subject_Score_Export_DBF.cs" />
+    <Compile Include="Export\Subject_Score_Export_DBF.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Export\Subject_Score_Export_DBF.Designer.cs">
       <DependentUpon>Subject_Score_Export_DBF.cs</DependentUpon>
     </Compile>
-    <Compile Include="Export\Subject_Score_Export_Excel.cs" />
+    <Compile Include="Export\Subject_Score_Export_Excel.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Export\Subject_Score_Export_Excel.Designer.cs">
       <DependentUpon>Subject_Score_Export_Excel.cs</DependentUpon>
     </Compile>
@@ -398,7 +415,9 @@
     <Compile Include="Forms\DepartmentGroupForm.designer.cs">
       <DependentUpon>DepartmentGroupForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DepartmentGroup_SingleForm.cs" />
+    <Compile Include="Forms\DepartmentGroup_SingleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\DepartmentGroup_SingleForm.Designer.cs">
       <DependentUpon>DepartmentGroup_SingleForm.cs</DependentUpon>
     </Compile>
@@ -575,7 +594,9 @@
     <Compile Include="Forms\SubjectScoreLockForm.Designer.cs">
       <DependentUpon>SubjectScoreLockForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Subject_SingleForm.cs" />
+    <Compile Include="Forms\Subject_SingleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Subject_SingleForm.Designer.cs">
       <DependentUpon>Subject_SingleForm.cs</DependentUpon>
     </Compile>

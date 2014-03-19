@@ -1,6 +1,5 @@
 ﻿using Campus.Windows;
 using EMBACore.DataItems;
-using EMBACore.Extension.UDT;
 using EMBACore.UDT;
 using FISCA.Data;
 using FISCA.Permission;
@@ -9,12 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Dynamic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Xml;
-using System.Xml.Linq;
 
 namespace EMBACore.DetailItems
 {
@@ -59,7 +55,7 @@ namespace EMBACore.DetailItems
             //_Listener.Add(new ComboBoxSource(this.cboSemester, ComboBoxSource.ListenAttribute.Text));
             //this.IsPublic.ValueChanged += new EventHandler(IsPublic_ValueChanged);
             //_Listener.Add(new CheckBoxSource(this.IsPublic));
-            _Listener.StatusChanged += new EventHandler<ChangeEventArgs>(Listener_StatusChanged);
+            //_Listener.StatusChanged += new EventHandler<ChangeEventArgs>(Listener_StatusChanged);
 
             _BGWLoadData = new BackgroundWorker();
             _BGWLoadData.DoWork += new DoWorkEventHandler(_BGWLoadData_DoWork);
@@ -225,15 +221,15 @@ order by new_subject_code", this._CurrentSchoolYear, this._CurrentSemester, this
 
         protected override void OnSaveButtonClick(EventArgs e)
         {
-            this.Loading = true;
+            //this.Loading = true;
 
-            if (ShouldWeGo())
-                this._BGWSaveData.RunWorkerAsync();
+            //if (ShouldWeGo())
+            //    this._BGWSaveData.RunWorkerAsync();
         }
 
         private void _BGWSaveData_DoWork(object sender, DoWorkEventArgs e)
         {
-            SaveUDT(e.Argument.ToString());
+            SaveUDT();
         }
 
         private void _BGWSaveData_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -241,11 +237,14 @@ order by new_subject_code", this._CurrentSchoolYear, this._CurrentSemester, this
             this._BGWLoadData.RunWorkerAsync();
         }
 
-        private void SaveUDT(string semester)
+        private void SaveUDT()
         {
             List<string> attendRecordIDs = new List<string>();
-            Condition condition = new Condition(new Dictionary<string, List<string>>() { { this._RunningKey, this.dicCourses.Keys.ToList() } });
-            List<SCAttendExt> scattendExts = Access.Select<SCAttendExt>(condition);
+            Dictionary<string, List<string>> dicConditions = new Dictionary<string, List<string>>();
+            dicConditions.Add("ref_student_id", new List<string> { this._RunningKey });
+            dicConditions.Add("ref_course_id", this.dicCourses.Keys.ToList());
+            //Condition condition = new Condition(dicConditions);
+            List<SCAttendExt> scattendExts = Access.Select<SCAttendExt>(string.Format("ref_student_id={0} and ref_course_id in ({1})", this._RunningKey, string.Join(",", this.dicCourses.Keys)));
 
             if (scattendExts.Count > 0)
             {
@@ -279,7 +278,7 @@ order by new_subject_code", this._CurrentSchoolYear, this._CurrentSemester, this
 
         private bool ShouldWeGo()
         {
-            this.dgvData.Rows.Cast<DataGridViewRow>().ToList().ForEach(x =>
+            this.dgvData.SelectedRows.Cast<DataGridViewRow>().ToList().ForEach(x =>
             {
                 string course_id = x.Tag + "";
 
@@ -372,8 +371,21 @@ order by new_subject_code", this._CurrentSchoolYear, this._CurrentSemester, this
                 this._BGWLoadData.RunWorkerAsync();
             }
         }
+
+        private void dgvData_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            if (ShouldWeGo())
+            {
+                this.Loading = true;
+                this._BGWSaveData.RunWorkerAsync();
+            }
+
+        }
     }
 
+    /// <summary>
+    /// Condition 下僅能有乙個 RootElement，所以：僅能有乙個欄位條件。故多欄位條件請使用：QueryString
+    /// </summary>
     public class Condition : FISCA.UDT.Condition.ICondition
     {
         //<Condition>
@@ -396,29 +408,22 @@ order by new_subject_code", this._CurrentSchoolYear, this._CurrentSemester, this
             if (this.dicFields.Count == 0)
                 return null;
 
-            StringBuilder sb = new StringBuilder();
+            XmlDocument xmlDocument = new XmlDocument();
+            XmlElement rootElement = xmlDocument.CreateElement("Condition");
             foreach(KeyValuePair<string, List<string>> kv in this.dicFields)
             {
-                sb.Append(string.Format("<In FieldName='{0}'>", kv.Key));
+                XmlElement firstElement = xmlDocument.CreateElement("In");
+                firstElement.SetAttribute("FieldName", kv.Key); 
                 foreach(string value in kv.Value)
                 {
-                    sb.Append(string.Format("<Value>{0}</Value>", value));
-                }   
-                sb.Append("</In>");
+                    XmlElement secondElement = xmlDocument.CreateElement("Value");
+                    secondElement.InnerText = value + "";
+                    firstElement.AppendChild(secondElement);
+                }
+                rootElement.AppendChild(firstElement);
             }
-            XDocument xDocument = XDocument.Parse("<Condition>" + sb.ToString() + "</Condition>");
-
-            XmlDocument xmlDocument = ToXmlDocument(xDocument);
+            xmlDocument.AppendChild(rootElement);
             return xmlDocument.DocumentElement;
-        }
-        public static XmlDocument ToXmlDocument(XDocument xDocument)
-        {
-            var xmlDocument = new XmlDocument();
-            using (var xmlReader = xDocument.CreateReader())
-            {
-                xmlDocument.Load(xmlReader);
-            }
-            return xmlDocument;
         }
     }
 }

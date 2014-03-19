@@ -35,7 +35,7 @@ namespace EMBACore.DetailItems
         public Student_AddDropCourse()
         {
             InitializeComponent();
-            this.Group = "加退選 / 修課紀錄";
+            this.Group = "加退選";
         }
 
         private void Course_AddDrop_Load(object sender, EventArgs e)

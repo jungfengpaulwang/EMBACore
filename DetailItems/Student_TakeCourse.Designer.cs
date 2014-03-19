@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.nudSchoolYear = new System.Windows.Forms.NumericUpDown();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
@@ -49,14 +49,14 @@
             // 
             // nudSchoolYear
             // 
-            this.nudSchoolYear.Location = new System.Drawing.Point(62, 8);
+            this.nudSchoolYear.Location = new System.Drawing.Point(86, 8);
             this.nudSchoolYear.Maximum = new decimal(new int[] {
             500,
             0,
             0,
             0});
             this.nudSchoolYear.Name = "nudSchoolYear";
-            this.nudSchoolYear.Size = new System.Drawing.Size(66, 25);
+            this.nudSchoolYear.Size = new System.Drawing.Size(89, 25);
             this.nudSchoolYear.TabIndex = 10;
             this.nudSchoolYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudSchoolYear.ValueChanged += new System.EventHandler(this.nudSchoolYear_ValueChanged);
@@ -69,11 +69,12 @@
             // 
             this.labelX1.BackgroundStyle.Class = "";
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.Location = new System.Drawing.Point(10, 8);
+            this.labelX1.Location = new System.Drawing.Point(34, 9);
             this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(57, 23);
+            this.labelX1.Size = new System.Drawing.Size(46, 23);
             this.labelX1.TabIndex = 9;
             this.labelX1.Text = "學年度";
+            this.labelX1.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
             // labelX2
             // 
@@ -83,11 +84,12 @@
             // 
             this.labelX2.BackgroundStyle.Class = "";
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.Location = new System.Drawing.Point(160, 6);
+            this.labelX2.Location = new System.Drawing.Point(184, 9);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(44, 23);
             this.labelX2.TabIndex = 7;
             this.labelX2.Text = "學期";
+            this.labelX2.TextAlignment = System.Drawing.StringAlignment.Center;
             // 
             // cboSemester
             // 
@@ -95,9 +97,9 @@
             this.cboSemester.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cboSemester.FormattingEnabled = true;
             this.cboSemester.ItemHeight = 19;
-            this.cboSemester.Location = new System.Drawing.Point(212, 8);
+            this.cboSemester.Location = new System.Drawing.Point(236, 8);
             this.cboSemester.Name = "cboSemester";
-            this.cboSemester.Size = new System.Drawing.Size(66, 25);
+            this.cboSemester.Size = new System.Drawing.Size(89, 25);
             this.cboSemester.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cboSemester.TabIndex = 8;
             this.cboSemester.SelectedIndexChanged += new System.EventHandler(this.cboSemester_SelectedIndexChanged);
@@ -106,9 +108,9 @@
             // 
             this.lblMessage.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lblMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblMessage.Location = new System.Drawing.Point(315, 6);
+            this.lblMessage.Location = new System.Drawing.Point(331, 6);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(228, 27);
+            this.lblMessage.Size = new System.Drawing.Size(189, 27);
             this.lblMessage.TabIndex = 11;
             this.lblMessage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -191,6 +193,7 @@
             // dgvData
             // 
             this.dgvData.AllowUserToAddRows = false;
+            this.dgvData.AllowUserToDeleteRows = false;
             this.dgvData.AllowUserToOrderColumns = true;
             this.dgvData.BackgroundColor = System.Drawing.Color.White;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -203,14 +206,14 @@
             this.ReportGroup,
             this.IsCancel,
             this.CourseInstructor});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvData.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvData.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgvData.Location = new System.Drawing.Point(30, 42);
             this.dgvData.Name = "dgvData";
@@ -220,6 +223,7 @@
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvData.Size = new System.Drawing.Size(490, 234);
             this.dgvData.TabIndex = 6;
+            this.dgvData.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dgvData_UserDeletingRow);
             // 
             // Student_TakeCourse
             // 
