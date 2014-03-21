@@ -2,7 +2,11 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Program</StartAction>
+<<<<<<< HEAD
     <StartProgram>E:\ischool source\EMBARuntime\ischooldiag.exe</StartProgram>
+=======
+    <StartProgram>E:\TFServer2013\ischoolteam\ischool_EMBA\FiscaRuntime\ischooldiag.exe</StartProgram>
+>>>>>>> 9cca85bf744c7934da1a86128344f2fb344393d1
   </PropertyGroup>
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
