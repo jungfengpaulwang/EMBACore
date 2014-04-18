@@ -165,7 +165,10 @@ namespace EMBACore.Forms
                 List<UDT.SubjectSemesterScore> scores = ah.Select<UDT.SubjectSemesterScore>("ref_course_id=" + courseID);
                 this.dicScores.Clear();
                 foreach (UDT.SubjectSemesterScore score in scores)
-                    dicScores.Add(score.StudentID.ToString(), score);
+                {
+                    if (!dicScores.ContainsKey(score.StudentID.ToString()))
+                        dicScores.Add(score.StudentID.ToString(), score);
+                }
 
                 // Get SC_Attend Records
                 QueryHelper q = new QueryHelper();
