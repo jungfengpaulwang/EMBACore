@@ -63,6 +63,7 @@
             this.labelX16 = new DevComponents.DotNetBar.LabelX();
             this.txtCourseTimeInfo = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.btnCourseType = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.nudSchoolYear)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -129,7 +130,7 @@
             this.txtCourseName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtCourseName.Location = new System.Drawing.Point(67, 19);
             this.txtCourseName.Name = "txtCourseName";
-            this.txtCourseName.Size = new System.Drawing.Size(458, 25);
+            this.txtCourseName.Size = new System.Drawing.Size(460, 25);
             this.txtCourseName.TabIndex = 8;
             // 
             // labelX3
@@ -152,23 +153,24 @@
             this.cboCategory.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.cboCategory.FormattingEnabled = true;
             this.cboCategory.ItemHeight = 19;
-            this.cboCategory.Location = new System.Drawing.Point(446, 56);
+            this.cboCategory.Location = new System.Drawing.Point(414, 56);
             this.cboCategory.Name = "cboCategory";
-            this.cboCategory.Size = new System.Drawing.Size(81, 25);
+            this.cboCategory.Size = new System.Drawing.Size(80, 25);
             this.cboCategory.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cboCategory.TabIndex = 12;
             // 
             // labelX4
             // 
+            this.labelX4.AutoSize = true;
             this.labelX4.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
             this.labelX4.BackgroundStyle.Class = "";
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Location = new System.Drawing.Point(409, 57);
+            this.labelX4.Location = new System.Drawing.Point(379, 57);
             this.labelX4.Name = "labelX4";
-            this.labelX4.Size = new System.Drawing.Size(44, 23);
+            this.labelX4.Size = new System.Drawing.Size(34, 21);
             this.labelX4.TabIndex = 11;
             this.labelX4.Text = "類別";
             // 
@@ -224,7 +226,7 @@
             this.txtSubjectCode.Location = new System.Drawing.Point(326, 93);
             this.txtSubjectCode.Name = "txtSubjectCode";
             this.txtSubjectCode.ReadOnly = true;
-            this.txtSubjectCode.Size = new System.Drawing.Size(202, 25);
+            this.txtSubjectCode.Size = new System.Drawing.Size(199, 25);
             this.txtSubjectCode.TabIndex = 16;
             // 
             // labelX7
@@ -239,7 +241,7 @@
             this.labelX7.Name = "labelX7";
             this.labelX7.Size = new System.Drawing.Size(69, 23);
             this.labelX7.TabIndex = 17;
-            this.labelX7.Text = "開課課程";
+            this.labelX7.Text = "課程名稱";
             // 
             // labelX8
             // 
@@ -296,7 +298,7 @@
             this.cboClass.ItemHeight = 19;
             this.cboClass.Location = new System.Drawing.Point(327, 56);
             this.cboClass.Name = "cboClass";
-            this.cboClass.Size = new System.Drawing.Size(66, 25);
+            this.cboClass.Size = new System.Drawing.Size(50, 25);
             this.cboClass.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cboClass.TabIndex = 10;
             // 
@@ -524,10 +526,24 @@
             this.linkLabel1.Text = "開啟";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // btnCourseType
+            // 
+            this.btnCourseType.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnCourseType.BackColor = System.Drawing.Color.Transparent;
+            this.btnCourseType.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnCourseType.Location = new System.Drawing.Point(501, 56);
+            this.btnCourseType.Name = "btnCourseType";
+            this.btnCourseType.Size = new System.Drawing.Size(25, 25);
+            this.btnCourseType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnCourseType.TabIndex = 44;
+            this.btnCourseType.Text = "…";
+            this.btnCourseType.Click += new System.EventHandler(this.btnCourseType_Click);
+            // 
             // Course_BasicInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnCourseType);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.txtCourseTimeInfo);
             this.Controls.Add(this.nudCountLimit);
@@ -607,5 +623,6 @@
         private DevComponents.DotNetBar.LabelX labelX16;
         private DevComponents.DotNetBar.Controls.TextBoxX txtCourseTimeInfo;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private DevComponents.DotNetBar.ButtonX btnCourseType;
     }
 }

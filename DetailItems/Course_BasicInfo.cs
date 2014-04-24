@@ -7,6 +7,7 @@ using FISCA.Permission;
 using FISCA.UDT;
 using SHSchool.Data;
 using FISCA.Presentation;
+using System.Linq;
 
 namespace EMBACore.DetailItems
 {
@@ -15,6 +16,8 @@ namespace EMBACore.DetailItems
     {
         private SHCourseRecord Record = null;
         private UDT.CourseExt Course2 = null;
+        private string _CourseType = string.Empty;
+        private AccessHelper Access = new AccessHelper();
 
         private List<ClassItem> ClassRowSource = new List<ClassItem>();
         private List<UDT.Subject> subjects = new List<UDT.Subject>();
@@ -28,6 +31,11 @@ namespace EMBACore.DetailItems
 
         private bool isTriggerByCboSubject = false;     //由 cboSubject 所觸發
         private bool isTriggerByCboNewSubjectCode = false;   //由 cboNewSubjectCode 所觸發
+        
+        private void PreserveComboBoxText()
+        {
+            this._CourseType = this.cboCategory.Text.Trim();
+        }
 
         public Course_BasicInfo()
         {
@@ -36,7 +44,7 @@ namespace EMBACore.DetailItems
         }
 
         private void Course_BasicInfo_Load(object sender, EventArgs e)
-        {            
+        {
             WatchChange(new ComboBoxSource(this.cboCategory, ComboBoxSource.ListenAttribute.Text));
             WatchChange(new ComboBoxSource(this.cboClass, ComboBoxSource.ListenAttribute.Text));
             WatchChange(new ComboBoxSource(this.cboSemester, ComboBoxSource.ListenAttribute.Text));
@@ -57,11 +65,26 @@ namespace EMBACore.DetailItems
 
             SHClass.AfterChange += (x, y) => ReInitialize();
             UDT.Subject.AfterUpdate += (x, y) => ReInitialize();
+            UDT.CourseTypeDataSource.AfterUpdate += (x, y) => this.InitCourseType();
             //K12.Data.Course.AfterChange += (x, y) => ReInitialize();
             //UDT.CourseExt.AfterUpdate += new EventHandler<UDT.ParameterEventArgs>(CourseExt_AfterUpdate);
 
             this.swb.ValueChanged += new EventHandler(swb_ValueChanged);
 
+        }
+        private void InitCourseType()
+        {
+            List<UDT.CourseTypeDataSource> CourseTypeDataSources = Access.Select<UDT.CourseTypeDataSource>();
+            List<string> dataSource;
+
+            //  資料繫結「課程類別」
+            dataSource = new List<string>();
+            dataSource.Add(string.Empty);
+            CourseTypeDataSources.Where(x => !x.NotDisplay).Select(x => x.CourseType).ToList().ForEach(x => dataSource.Add(x));
+            dataSource.Add((this.Course2 == null) ? "" : this.Course2.CourseType);
+            dataSource = dataSource.Distinct().ToList();
+            this.cboCategory.DataSource = dataSource;
+            this.cboCategory.SelectedItem = this._CourseType;
         }
 
         private void CourseExt_AfterUpdate(object sender, UDT.ParameterEventArgs e)
@@ -151,11 +174,11 @@ namespace EMBACore.DetailItems
             this.cboSemester.DisplayMember = "Name";
 
             //Assign Course Category
-            this.cboCategory.Items.Clear();
-            this.cboCategory.Items.Add("核心必修");
-            this.cboCategory.Items.Add("核心選修");
-            this.cboCategory.Items.Add("分組必修");
-            this.cboCategory.Items.Add("選修");
+            //this.cboCategory.Items.Clear();
+            //this.cboCategory.Items.Add("核心必修");
+            //this.cboCategory.Items.Add("核心選修");
+            //this.cboCategory.Items.Add("分組必修");
+            //this.cboCategory.Items.Add("選修");
 
             //Assign NewSubjectCode 
             List<string> subjCodes = new List<string>(this.dicSubjectsByNewSubjectCode.Keys);
@@ -274,7 +297,7 @@ namespace EMBACore.DetailItems
             //this.swb.Value = this.Record.Required;
 
             //this.txtNewSubjectCode.Text = (this.Course2 == null) ? "" : this.Course2.NewSubjectCode;
-            this.cboCategory.SelectedItem = (this.Course2 == null) ? "" : this.Course2.CourseType;
+            //this.cboCategory.SelectedItem = (this.Course2 == null) ? "" : this.Course2.CourseType;
             this.swb.Value = (this.Course2 == null) ? false : this.Course2.IsRequired ;
             this.nudCountLimit.Text = (this.Course2 == null) ? "" : this.Course2.Capacity.ToString() ;
             this.nudSerialNo.Text = (this.Course2 == null) ? "" : this.Course2.SerialNo.ToString() ;
@@ -283,6 +306,8 @@ namespace EMBACore.DetailItems
             this.txtCourseTimeInfo.Text = (this.Course2 == null) ? "" : this.Course2.CourseTimeInfo;
             this.txtOutline.Text = (this.Course2 == null) ? "" : this.Course2.Syllabus;
             this.txtMemo.Text = (this.Course2 == null) ? "" : this.Course2.Memo;
+            this._CourseType = (this.Course2 == null) ? "" : this.Course2.CourseType;
+            this.InitCourseType();
 
             ResetDirtyStatus();
 
@@ -463,6 +488,12 @@ namespace EMBACore.DetailItems
         {
             if (!string.IsNullOrWhiteSpace(this.txtOutline.Text))
                 System.Diagnostics.Process.Start(this.txtOutline.Text);
+        }
+
+        private void btnCourseType_Click(object sender, EventArgs e)
+        {
+            PreserveComboBoxText();
+            (new EMBACore.Forms.CourseTypeDataSourceManagement(true)).ShowDialog();
         }
     }
 }

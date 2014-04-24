@@ -26,9 +26,12 @@
             <Validate AutoCorrect="False" Description="「學期」只允許：0(夏季學期)、1(第1學期)、2(第2學期)。 " ErrorType="Error" Validator="學期列舉" When="" />
         </Field>
         <Field Required="False" Name="開課班次" Description="開課班次" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="類別" Description="" EmptyAlsoValidate="False" />
+        <!--
         <Field Required="False" Name="類別" Description="類別" EmptyAlsoValidate="False" >
             <Validate AutoCorrect="False" Description="「類別」只允許：核心必修、核心選修、分組必修、選修。 " ErrorType="Error" Validator="課程類別列舉" When="" />
         </Field>
+        -->
         <Field Required="False" Name="課程識別碼" Description="課程識別碼" EmptyAlsoValidate="False" />
         <Field Required="False" Name="課號" Description="課號" EmptyAlsoValidate="False" />
         <Field Required="False" Name="學分數" Description="學分數" EmptyAlsoValidate="False" >

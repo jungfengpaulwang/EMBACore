@@ -98,6 +98,22 @@ namespace EMBACore.Initialization
 
             #endregion
 
+            #region 課程類別管理
+
+            Catalog button_CourseTypeDataSourceMangagement = RoleAclSource.Instance["教務作業"]["功能按鈕"];
+            button_CourseTypeDataSourceMangagement.Add(new RibbonFeature("Button_DataTypeDataSourceMangagement", "課程類別管理"));
+
+            var vCourseTypeDataSourceMangagement = MotherForm.RibbonBarItems["教務作業", "基本設定"]["管理"];
+            //vExperienceDataSourceMangagement.Size = RibbonBarButton.MenuButtonSize.Large;
+            //vExperienceDataSourceMangagement.Image = Properties.Resources.network_lock_64;
+            vCourseTypeDataSourceMangagement["課程類別管理"].Enable = UserAcl.Current["Button_DataTypeDataSourceMangagement"].Executable;
+            vCourseTypeDataSourceMangagement["課程類別管理"].Click += delegate
+            {
+                (new EMBACore.Forms.CourseTypeDataSourceManagement()).ShowDialog();
+            };
+
+            #endregion
+
             #endregion
         }
 

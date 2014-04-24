@@ -42,6 +42,13 @@ namespace EMBACore.Import
         public void CustomValidator(List<IRowStream> Rows, RowMessages Messages)
         {
             #  region 驗證流程
+            List<UDT.CourseTypeDataSource> CourseTypeDataSources = Access.Select<UDT.CourseTypeDataSource>();
+            List<string> CourseTypes = new List<string>();
+            foreach (UDT.CourseTypeDataSource CourseTypeDataSource in CourseTypeDataSources)
+            {
+                CourseTypes.Add(CourseTypeDataSource.CourseType);
+            }
+            CourseTypes = CourseTypes.Distinct().ToList();
             if (this.SelectedKeyFields.Contains("開課系統編號"))
                 keyField = "開課系統編號";
             else
@@ -73,6 +80,13 @@ namespace EMBACore.Import
                 //if (filterSubjects.Count() > 0)
                 //    if (subject_name != (filterSubjects.ElementAt(0)["name"] + "").Trim())
                 //        Messages[x.Position].MessageItems.Add(new MessageItem(EMBA.Validator.ErrorType.Error, EMBA.Validator.ValidatorType.Row, "由「課程識別碼」或「課號」反查「開課課程」錯誤。"));
+
+                //  「課程類別」必須存在
+                if (this.SelectedFields.Contains("類別") && !string.IsNullOrWhiteSpace(x.GetValue("類別")))
+                {
+                    if (!CourseTypes.Contains(x.GetValue("類別").Trim()))
+                        Messages[x.Position].MessageItems.Add(new MessageItem(EMBA.Validator.ErrorType.Error, EMBA.Validator.ValidatorType.Row, "「類別」不存在，請先至「課程類別管理」建立「課程類別」內容。"));
+                }
 
                 if (string.IsNullOrEmpty(subject_code) && string.IsNullOrEmpty(new_subject_code))
                     Messages[x.Position].MessageItems.Add(new MessageItem(EMBA.Validator.ErrorType.Error, EMBA.Validator.ValidatorType.Row, "「課程識別碼」與「課號」至少有一個不得為空白。"));
@@ -283,7 +297,7 @@ namespace EMBACore.Import
             {
                 allAffectedCourseRecords.ToList().ForEach((x) =>
                 {
-                    if (keyField != "開課系統編號")
+                    if (keyField == "開課系統編號")
                         dicCourseRecords.Add(x.ID, x);
                     else
                         dicCourseRecords.Add(x.Name.Trim().ToUpper() + "_" + (x.SchoolYear + "") + "_" + (x.Semester + ""), x);

@@ -461,6 +461,12 @@
     <Compile Include="Forms\Email_Sender.Designer.cs">
       <DependentUpon>Email_Sender.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CourseTypeDataSourceManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CourseTypeDataSourceManagement.Designer.cs">
+      <DependentUpon>CourseTypeDataSourceManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ExperienceDataSourceManagement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -718,6 +724,7 @@
     <Compile Include="UDT\AddDropCourse.cs" />
     <Compile Include="UDT\CSConfiguration.cs" />
     <Compile Include="UDT\CSOpeningInfo.cs" />
+    <Compile Include="UDT\CourseTypeDataSource.cs" />
     <Compile Include="UDT\FieldAttribute.cs" />
     <Compile Include="UDT\CourseInstructor.cs" />
     <Compile Include="UDT\CourseExtVO.cs" />
@@ -925,6 +932,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Email_Sender.resx">
       <DependentUpon>Email_Sender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CourseTypeDataSourceManagement.resx">
+      <DependentUpon>CourseTypeDataSourceManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ExperienceDataSourceManagement.resx">
       <DependentUpon>ExperienceDataSourceManagement.cs</DependentUpon>

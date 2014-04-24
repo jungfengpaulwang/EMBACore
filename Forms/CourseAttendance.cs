@@ -79,6 +79,9 @@ namespace EMBACore.Forms
             Access = new AccessHelper();
             Query = new QueryHelper();
 
+            this.form_loaded = false;
+            this.InitSchoolYearAndSemester();
+
             this.buttonX1.Popup(-1000, -1000);
             this.Load += new System.EventHandler(this.CourseAttendance_Load);
             this.FormClosing += new FormClosingEventHandler(Form_Closing);
@@ -86,6 +89,12 @@ namespace EMBACore.Forms
 
             Task task = Task.Factory.StartNew(() =>
             {
+                List<UDT.MandrillAPIKey> MandrillAPIKeys = Access.Select<UDT.MandrillAPIKey>();
+                if (MandrillAPIKeys.Count > 0)
+                    this.MandrillAPIKey = MandrillAPIKeys.ElementAt(0).APIKey;
+                else
+                    this.MandrillAPIKey = "";
+
                 DataTable dataTable = Query.Select(string.Format(@"Select student.id as 學生系統編號, student.student_number as 學號, student.name as 學生姓名, student.sa_login_name as 登入帳號, (xpath_string('<root>' || sb2.email_list || '</root>','email1')) as 電子郵件一, (xpath_string('<root>' || sb2.email_list || '</root>','email2')) as 電子郵件二, (xpath_string('<root>' || sb2.email_list || '</root>','email3')) as 電子郵件三, (xpath_string('<root>' || sb2.email_list || '</root>','email4')) as 電子郵件四, (xpath_string('<root>' || sb2.email_list || '</root>','email5')) as 電子郵件五 From student Left join $ischool.emba.student_brief2 as sb2 on sb2.ref_student_id = student.id"));
 
                 foreach (DataRow row in dataTable.Rows)
@@ -149,6 +158,25 @@ namespace EMBACore.Forms
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
+        private void InitSchoolYearAndSemester()
+        {
+            this.cboSemester.DataSource = EMBACore.DataItems.SemesterItem.GetSemesterList();
+            this.cboSemester.ValueMember = "Value";
+            this.cboSemester.DisplayMember = "Name";
+
+            int DefaultSchoolYear;
+            if (int.TryParse(K12.Data.School.DefaultSchoolYear, out DefaultSchoolYear))
+            {
+                this.nudSchoolYear.Value = decimal.Parse(DefaultSchoolYear.ToString());
+            }
+            else
+            {
+                this.nudSchoolYear.Value = decimal.Parse((DateTime.Today.Year - 1911).ToString());
+            }
+
+            this.cboSemester.SelectedValue = K12.Data.School.DefaultSemester;
+        }
+
         private void Form_Closing(object sender, EventArgs e)
         {
             this.form_loaded = false;
@@ -177,67 +205,91 @@ namespace EMBACore.Forms
 
             this.SetConf();
 
-            Access = new AccessHelper();
-            Query = new QueryHelper();
+            this.InitSemesterCourses();
+        }
 
-            List<UDT.MandrillAPIKey> MandrillAPIKeys = Access.Select<UDT.MandrillAPIKey>();
-            if (MandrillAPIKeys.Count > 0)
-                this.MandrillAPIKey = MandrillAPIKeys.ElementAt(0).APIKey;
-            else
-                this.MandrillAPIKey = "";
-
-            if (this.cboCourse.Items.Count > 0)
-                this.cboCourse.SelectedIndex = 0;
-
+        private void InitSemesterCourses()
+        {
             circularProgress.Visible = true;
             circularProgress.IsRunning = true;
-            string schoolYear = "";
-            string semester = "";
-            DataTable dt = new DataTable();
-            Task task = Task.Factory.StartNew(() =>
+            this.nudSchoolYear.Enabled = false;
+            this.cboSemester.Enabled = false;
+            this.cboCourse.Enabled = false;
+            decimal school_year = this.nudSchoolYear.Value;
+            string semester = this.cboSemester.SelectedValue.ToString();
+            Task<DataTable> task = Task<DataTable>.Factory.StartNew(() =>
             {
-                int DefaultSchoolYear;
-                if (int.TryParse(K12.Data.School.DefaultSchoolYear, out DefaultSchoolYear))
-                {
-                    schoolYear = DefaultSchoolYear.ToString();
-                }
-                else
-                {
-                    schoolYear = (DateTime.Today.Year - 1911).ToString();
-                }
-
-                semester = K12.Data.School.DefaultSemester;
-
-                //1, 取得本學期所有課程，並填入 Combobox
                 string strSQL = "select c.id, c.course_name, ce.subject_code from course c left outer join $ischool.emba.course_ext ce on c.id = ce.ref_course_id where c.school_year={0} and c.semester = {1} order by ce.subject_code, c.course_name";
-                strSQL = string.Format(strSQL, schoolYear, semester);
-                dt = (new QueryHelper()).Select(strSQL);
+                strSQL = string.Format(strSQL, school_year, semester);
+                DataTable dt = this.Query.Select(strSQL);
+
+                return dt;
             });
-            task.ContinueWith((x)=>
+            task.ContinueWith((x) =>
             {
+                this.circularProgress.Visible = false;
+                this.circularProgress.IsRunning = false;
+                this.nudSchoolYear.Enabled = true;
+                this.cboSemester.Enabled = true;
+                this.cboCourse.Enabled = true;
+                form_loaded = true;
                 if (x.Exception != null)
                 {
                     MessageBox.Show(x.Exception.InnerException.Message);
-                    this.circularProgress.Visible = false;
-                    this.circularProgress.IsRunning = false;
                     return;
                 }
                 this.cboCourse.Items.Clear();
                 this.dicCourses.Clear();
-                foreach (DataRow dr in dt.Rows)
+                foreach (DataRow dr in x.Result.Rows)
                 {
-                    string key = (dr["subject_code"] == null ? "" : dr["subject_code"].ToString()) + "  " + dr["course_name"].ToString() ;
+                    string key = (dr["subject_code"] == null ? "" : dr["subject_code"].ToString()) + "  " + dr["course_name"].ToString();
                     ComboItem item = new ComboItem(key);
-                    item.Tag = new { CourseName = dr["course_name"] + "", SchoolYear = schoolYear, Semester = semester, CourseID = dr["id"] + "" };
+                    item.Tag = new { CourseName = dr["course_name"] + "", SchoolYear = school_year, Semester = semester, CourseID = dr["id"] + "" };
                     this.cboCourse.Items.Add(item);
-                
+
                     this.dicCourses.Add(key, dr["id"].ToString());
                 }
-                this.circularProgress.Visible = false;
-                this.circularProgress.IsRunning = false;
-                form_loaded = true;
+                if (this.cboCourse.Items.Count > 0)
+                    this.cboCourse.SelectedIndex = 0;
+                else
+                    this.dg.Rows.Clear();
+
             }, System.Threading.CancellationToken.None, TaskContinuationOptions.None, TaskScheduler.FromCurrentSynchronizationContext());
         }
+
+        private void SendMailButtionClick(ButtonItem button, int template_no)
+        {
+            if (this.cboCourse.SelectedIndex < 0)
+            {
+                MessageBox.Show("請先選擇課程。");
+                return;
+            }
+            if (this.updatedRecs.Count > 0)
+            {
+                MessageBox.Show("請先儲存。");
+                return;
+            }
+            this.btnSend.Enabled = false;
+            this.circularProgress.Visible = true;
+            this.circularProgress.IsRunning = true;
+
+            try
+            {
+                object[] args = button.Tag as object[];
+                MailLogBase MailLogBase = this.InitMailLog(args[1] as UDT.CSConfiguration, args[0] as UDT.CSConfiguration, args[2] as string);
+
+                this.SendEMail(MailLogBase, template_no);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+                this.btnSend.Enabled = true;
+                this.circularProgress.Visible = false;
+                this.circularProgress.IsRunning = false;
+            }
+        }
+        
 
         private void SetConf()
         {
@@ -257,29 +309,7 @@ namespace EMBACore.Forms
             button3.Tag = new object[] { conf_3, conf_subject_3, button3.Text };
             button3.Click += (x, y) =>
             {
-                this.btnSend.Enabled = false;
-                this.circularProgress.Visible = true;
-                this.circularProgress.IsRunning = true;
-
-                try
-                { 
-                    if (this.updatedRecs.Count > 0)
-                    {
-                        throw new Exception("請先儲存。");
-                    }
-                    object[] args = button3.Tag as object[];
-                    MailLogBase MailLogBase = this.InitMailLog(args[1] as UDT.CSConfiguration, args[0] as UDT.CSConfiguration, args[2] as string);
-                
-                    this.SendEMail(MailLogBase, 3);
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-
-                    this.btnSend.Enabled = true;
-                    this.circularProgress.Visible = false;
-                    this.circularProgress.IsRunning = false;
-                }
+                this.SendMailButtionClick(button3, 3);
             };
             this.btnSend.SubItems.Add(button3);
 
@@ -288,29 +318,7 @@ namespace EMBACore.Forms
             button.Tag = new object[] { conf, conf_subject, button.Text };
             button.Click += (x, y) =>
             {
-                this.btnSend.Enabled = false;
-                this.circularProgress.Visible = true;
-                this.circularProgress.IsRunning = true;
-
-                try
-                {
-                    if (this.updatedRecs.Count > 0)
-                    {
-                        throw new Exception("請先儲存。");
-                    }
-                    object[] args = button.Tag as object[];
-                    MailLogBase MailLogBase = this.InitMailLog(args[1] as UDT.CSConfiguration, args[0] as UDT.CSConfiguration, args[2] as string);
-
-                    this.SendEMail(MailLogBase, 4);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-
-                    this.btnSend.Enabled = true;
-                    this.circularProgress.Visible = false;
-                    this.circularProgress.IsRunning = false;
-                }
+                this.SendMailButtionClick(button, 4);
             };
             this.btnSend.SubItems.Add(button);
 
@@ -319,29 +327,7 @@ namespace EMBACore.Forms
             button2.Tag = new object[] { conf_2, conf_subject_2, button2.Text };
             button2.Click += (x, y) =>
             {
-                this.btnSend.Enabled = false;
-                this.circularProgress.Visible = true;
-                this.circularProgress.IsRunning = true;
-
-                try
-                {
-                    if (this.updatedRecs.Count > 0)
-                    {
-                        throw new Exception("請先儲存。");
-                    }
-                    object[] args = button2.Tag as object[];
-                    MailLogBase MailLogBase = this.InitMailLog(args[1] as UDT.CSConfiguration, args[0] as UDT.CSConfiguration, args[2] as string);
-
-                    this.SendEMail(MailLogBase, 5);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-
-                    this.btnSend.Enabled = true;
-                    this.circularProgress.Visible = false;
-                    this.circularProgress.IsRunning = false;
-                }
+                this.SendMailButtionClick(button2, 5);
             };
             this.btnSend.SubItems.Add(button2);
         }
@@ -360,11 +346,6 @@ namespace EMBACore.Forms
 
         private void SendEMail(MailLogBase MailLogBase, int AttendNo)
         {
-            if (this.cboCourse.SelectedIndex < 0)
-            {
-                throw new Exception("請先選擇課程。");
-            }
-
             dynamic course = (this.cboCourse.Items[this.cboCourse.SelectedIndex] as ComboItem).Tag;
 
             List<string> StudentIDs = new List<string>();
@@ -1313,7 +1294,10 @@ namespace EMBACore.Forms
                 return;
             }
             if (this.cboCourse.SelectedIndex < 0)
+            {
+                MessageBox.Show("請先選擇課程。");
                 return;
+            }
             dynamic course = (this.cboCourse.Items[this.cboCourse.SelectedIndex] as ComboItem).Tag;
 
             DataTable dataTable = new DataTable();
@@ -1462,6 +1446,18 @@ namespace EMBACore.Forms
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void nudSchoolYear_ValueChanged(object sender, EventArgs e)
+        {
+            if (this.form_loaded)
+                this.InitSemesterCourses();
+        }
+
+        private void cboSemester_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.form_loaded)
+                this.InitSemesterCourses();
         }
     }
 
