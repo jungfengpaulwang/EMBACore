@@ -10,9 +10,15 @@
         <!--&lt;BR /&gt;2、請選擇「學號」為「新增資料」的識別欄位。-->
         <Field Required="False" Name="教學分班" Description="" EmptyAlsoValidate="False" />
         <Field Required="True" Name="學號" Description="同步自「校務系統」，只做為識別欄位，不被匯入。" />
+        <Field Required="False" Name="姓名" Description="" EmptyAlsoValidate="False" />
         <Field Required="False" Name="身分證號" Description="" EmptyAlsoValidate="False" >
             <Validate AutoCorrect="False" Description="身分證號不可重覆" ErrorType="Error" Validator="不可重覆" When="" /> 
         </Field>
+        <!--
+        <Field Required="False" Name="生日" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="性別" Description="" EmptyAlsoValidate="False" />
+        <Field Required="False" Name="年級" Description="" EmptyAlsoValidate="False" />
+        -->
         <Field Required="False" Name="出生地" Description="" EmptyAlsoValidate="False" />
         <Field Required="False" Name="登入帳號" Description="" EmptyAlsoValidate="False" />
         <Field Required="False" Name="電子郵件一" Description="" EmptyAlsoValidate="False" />

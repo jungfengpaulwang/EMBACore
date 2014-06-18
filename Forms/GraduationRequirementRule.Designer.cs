@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.expandablePanel1 = new DevComponents.DotNetBar.ExpandablePanel();
             this.panelEx1 = new DevComponents.DotNetBar.PanelEx();
             this.panelEx2 = new DevComponents.DotNetBar.PanelEx();
@@ -55,20 +55,10 @@
             this.panel1 = new DevComponents.DotNetBar.PanelEx();
             this.panelEx7 = new DevComponents.DotNetBar.PanelEx();
             this.dgvChildData = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.SubjectGroup_Enactment = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Subject_Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Credits = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubjectChineseName_Enactment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelX6 = new DevComponents.DotNetBar.LabelX();
             this.panelEx6 = new DevComponents.DotNetBar.PanelEx();
             this.panelEx4 = new DevComponents.DotNetBar.PanelEx();
             this.dgvMotherData = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.SubjectCode = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.SubjectChineseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubjectEnglishName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Credit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SubjectGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Prerequisites = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelEx5 = new DevComponents.DotNetBar.PanelEx();
             this.RequiredCredit = new System.Windows.Forms.TextBox();
             this.labelX5 = new DevComponents.DotNetBar.LabelX();
@@ -88,6 +78,17 @@
             this.StudentName = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
             this.Gender = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
             this.tabItem2 = new DevComponents.DotNetBar.TabItem(this.components);
+            this.SubjectGroup_Enactment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Subject_Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Credits = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubjectChineseName_Enactment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubjectCode = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.SubjectChineseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubjectEnglishName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Credit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SubjectGroup = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsDeptRequired = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Prerequisites = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expandablePanel1.SuspendLayout();
             this.panelEx1.SuspendLayout();
             this.panelEx2.SuspendLayout();
@@ -118,7 +119,7 @@
             this.expandablePanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.expandablePanel1.Location = new System.Drawing.Point(0, 0);
             this.expandablePanel1.Name = "expandablePanel1";
-            this.expandablePanel1.Size = new System.Drawing.Size(200, 555);
+            this.expandablePanel1.Size = new System.Drawing.Size(200, 729);
             this.expandablePanel1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.expandablePanel1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.expandablePanel1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -145,7 +146,7 @@
             this.panelEx1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelEx1.Location = new System.Drawing.Point(0, 26);
             this.panelEx1.Name = "panelEx1";
-            this.panelEx1.Size = new System.Drawing.Size(200, 424);
+            this.panelEx1.Size = new System.Drawing.Size(200, 598);
             this.panelEx1.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx1.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx1.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -211,7 +212,7 @@
             this.lstGraduationRequirementRule.ItemHeight = 17;
             this.lstGraduationRequirementRule.Location = new System.Drawing.Point(0, 29);
             this.lstGraduationRequirementRule.Name = "lstGraduationRequirementRule";
-            this.lstGraduationRequirementRule.Size = new System.Drawing.Size(200, 395);
+            this.lstGraduationRequirementRule.Size = new System.Drawing.Size(200, 565);
             this.lstGraduationRequirementRule.TabIndex = 4;
             this.lstGraduationRequirementRule.SelectedIndexChanged += new System.EventHandler(this.lstGraduationRequirementRule_SelectedIndexChanged);
             // 
@@ -220,7 +221,7 @@
             this.Add.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.Add.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.Add.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Add.Location = new System.Drawing.Point(0, 450);
+            this.Add.Location = new System.Drawing.Point(0, 624);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(200, 35);
             this.Add.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -233,7 +234,7 @@
             this.Save.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.Save.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.Save.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Save.Location = new System.Drawing.Point(0, 485);
+            this.Save.Location = new System.Drawing.Point(0, 659);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(200, 35);
             this.Save.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -246,7 +247,7 @@
             this.Delete.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.Delete.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.Delete.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Delete.Location = new System.Drawing.Point(0, 520);
+            this.Delete.Location = new System.Drawing.Point(0, 694);
             this.Delete.Name = "Delete";
             this.Delete.Size = new System.Drawing.Size(200, 35);
             this.Delete.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -258,7 +259,7 @@
             // 
             this.splitter1.Location = new System.Drawing.Point(200, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(3, 555);
+            this.splitter1.Size = new System.Drawing.Size(3, 729);
             this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
@@ -273,7 +274,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedTabFont = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold);
             this.tabControl1.SelectedTabIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(729, 555);
+            this.tabControl1.Size = new System.Drawing.Size(805, 729);
             this.tabControl1.TabIndex = 4;
             this.tabControl1.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.FixedWithNavigationBox;
             this.tabControl1.Tabs.Add(this.tabItem1);
@@ -287,7 +288,7 @@
             this.tabControlPanel1.Location = new System.Drawing.Point(0, 29);
             this.tabControlPanel1.Name = "tabControlPanel1";
             this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(729, 526);
+            this.tabControlPanel1.Size = new System.Drawing.Size(805, 700);
             this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(179)))), ((int)(((byte)(231)))));
             this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
             this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -306,7 +307,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(727, 524);
+            this.panel1.Size = new System.Drawing.Size(803, 698);
             this.panel1.TabIndex = 5;
             // 
             // panelEx7
@@ -316,9 +317,9 @@
             this.panelEx7.Controls.Add(this.dgvChildData);
             this.panelEx7.Controls.Add(this.labelX6);
             this.panelEx7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelEx7.Location = new System.Drawing.Point(0, 389);
+            this.panelEx7.Location = new System.Drawing.Point(0, 563);
             this.panelEx7.Name = "panelEx7";
-            this.panelEx7.Size = new System.Drawing.Size(727, 135);
+            this.panelEx7.Size = new System.Drawing.Size(803, 135);
             this.panelEx7.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx7.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx7.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -333,75 +334,37 @@
             this.dgvChildData.AllowUserToAddRows = false;
             this.dgvChildData.BackgroundColor = System.Drawing.Color.White;
             this.dgvChildData.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvChildData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvChildData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvChildData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvChildData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SubjectGroup_Enactment,
             this.Subject_Count,
             this.Credits,
             this.SubjectChineseName_Enactment});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvChildData.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvChildData.DefaultCellStyle = dataGridViewCellStyle14;
             this.dgvChildData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvChildData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgvChildData.Location = new System.Drawing.Point(0, 23);
             this.dgvChildData.Name = "dgvChildData";
             this.dgvChildData.RowHeadersWidth = 25;
             this.dgvChildData.RowTemplate.Height = 27;
-            this.dgvChildData.Size = new System.Drawing.Size(727, 112);
+            this.dgvChildData.Size = new System.Drawing.Size(803, 112);
             this.dgvChildData.TabIndex = 8;
             this.dgvChildData.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvChildData_RowsRemoved);
-            // 
-            // SubjectGroup_Enactment
-            // 
-            this.SubjectGroup_Enactment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SubjectGroup_Enactment.DefaultCellStyle = dataGridViewCellStyle2;
-            this.SubjectGroup_Enactment.HeaderText = "科目群組";
-            this.SubjectGroup_Enactment.Name = "SubjectGroup_Enactment";
-            this.SubjectGroup_Enactment.ReadOnly = true;
-            this.SubjectGroup_Enactment.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.SubjectGroup_Enactment.Width = 85;
-            // 
-            // Subject_Count
-            // 
-            this.Subject_Count.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Subject_Count.HeaderText = "必修科目數";
-            this.Subject_Count.MaxInputLength = 2;
-            this.Subject_Count.Name = "Subject_Count";
-            this.Subject_Count.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Subject_Count.Width = 79;
-            // 
-            // Credits
-            // 
-            this.Credits.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Credits.HeaderText = "必修學分數";
-            this.Credits.MaxInputLength = 2;
-            this.Credits.Name = "Credits";
-            this.Credits.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Credits.Width = 79;
-            // 
-            // SubjectChineseName_Enactment
-            // 
-            this.SubjectChineseName_Enactment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.SubjectChineseName_Enactment.HeaderText = "課程中文名稱";
-            this.SubjectChineseName_Enactment.Name = "SubjectChineseName_Enactment";
-            this.SubjectChineseName_Enactment.ReadOnly = true;
-            this.SubjectChineseName_Enactment.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // labelX6
             // 
@@ -413,7 +376,7 @@
             this.labelX6.Dock = System.Windows.Forms.DockStyle.Top;
             this.labelX6.Location = new System.Drawing.Point(0, 0);
             this.labelX6.Name = "labelX6";
-            this.labelX6.Size = new System.Drawing.Size(727, 23);
+            this.labelX6.Size = new System.Drawing.Size(803, 23);
             this.labelX6.TabIndex = 0;
             this.labelX6.Text = "必修科目群組";
             // 
@@ -426,7 +389,7 @@
             this.panelEx6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelEx6.Location = new System.Drawing.Point(0, 39);
             this.panelEx6.Name = "panelEx6";
-            this.panelEx6.Size = new System.Drawing.Size(727, 485);
+            this.panelEx6.Size = new System.Drawing.Size(803, 659);
             this.panelEx6.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx6.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx6.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -446,7 +409,7 @@
             this.panelEx4.Controls.Add(this.dgvMotherData);
             this.panelEx4.Location = new System.Drawing.Point(0, 42);
             this.panelEx4.Name = "panelEx4";
-            this.panelEx4.Size = new System.Drawing.Size(727, 308);
+            this.panelEx4.Size = new System.Drawing.Size(803, 482);
             this.panelEx4.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx4.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx4.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -460,14 +423,14 @@
             // 
             this.dgvMotherData.BackgroundColor = System.Drawing.Color.White;
             this.dgvMotherData.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMotherData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMotherData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dgvMotherData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMotherData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SubjectCode,
@@ -475,78 +438,25 @@
             this.SubjectEnglishName,
             this.Credit,
             this.SubjectGroup,
+            this.IsDeptRequired,
             this.Prerequisites});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMotherData.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMotherData.DefaultCellStyle = dataGridViewCellStyle19;
             this.dgvMotherData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMotherData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgvMotherData.Location = new System.Drawing.Point(0, 0);
             this.dgvMotherData.Name = "dgvMotherData";
             this.dgvMotherData.RowHeadersWidth = 25;
             this.dgvMotherData.RowTemplate.Height = 27;
-            this.dgvMotherData.Size = new System.Drawing.Size(727, 308);
+            this.dgvMotherData.Size = new System.Drawing.Size(803, 482);
             this.dgvMotherData.TabIndex = 6;
             this.dgvMotherData.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvMotherData_RowsRemoved);
-            // 
-            // SubjectCode
-            // 
-            this.SubjectCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.SubjectCode.DefaultCellStyle = dataGridViewCellStyle5;
-            this.SubjectCode.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.SubjectCode.HeaderText = "課程識別碼";
-            this.SubjectCode.Name = "SubjectCode";
-            this.SubjectCode.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.SubjectCode.Width = 140;
-            // 
-            // SubjectChineseName
-            // 
-            this.SubjectChineseName.HeaderText = "課程中文名稱";
-            this.SubjectChineseName.Name = "SubjectChineseName";
-            this.SubjectChineseName.ReadOnly = true;
-            this.SubjectChineseName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.SubjectChineseName.Width = 140;
-            // 
-            // SubjectEnglishName
-            // 
-            this.SubjectEnglishName.HeaderText = "課程英文名稱";
-            this.SubjectEnglishName.Name = "SubjectEnglishName";
-            this.SubjectEnglishName.ReadOnly = true;
-            this.SubjectEnglishName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.SubjectEnglishName.Width = 140;
-            // 
-            // Credit
-            // 
-            this.Credit.HeaderText = "學分數";
-            this.Credit.MaxInputLength = 2;
-            this.Credit.Name = "Credit";
-            this.Credit.ReadOnly = true;
-            this.Credit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Credit.Width = 75;
-            // 
-            // SubjectGroup
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.SubjectGroup.DefaultCellStyle = dataGridViewCellStyle6;
-            this.SubjectGroup.HeaderText = "科目群組";
-            this.SubjectGroup.Name = "SubjectGroup";
-            this.SubjectGroup.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.SubjectGroup.Width = 85;
-            // 
-            // Prerequisites
-            // 
-            this.Prerequisites.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Prerequisites.DefaultCellStyle = dataGridViewCellStyle7;
-            this.Prerequisites.HeaderText = "必修認可範圍";
-            this.Prerequisites.Name = "Prerequisites";
-            this.Prerequisites.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // panelEx5
             // 
@@ -561,7 +471,7 @@
             this.panelEx5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelEx5.Location = new System.Drawing.Point(0, 0);
             this.panelEx5.Name = "panelEx5";
-            this.panelEx5.Size = new System.Drawing.Size(727, 42);
+            this.panelEx5.Size = new System.Drawing.Size(803, 42);
             this.panelEx5.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx5.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx5.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -646,7 +556,7 @@
             this.panelEx3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelEx3.Location = new System.Drawing.Point(0, 0);
             this.panelEx3.Name = "panelEx3";
-            this.panelEx3.Size = new System.Drawing.Size(727, 39);
+            this.panelEx3.Size = new System.Drawing.Size(803, 39);
             this.panelEx3.Style.Alignment = System.Drawing.StringAlignment.Center;
             this.panelEx3.Style.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
             this.panelEx3.Style.BackColor2.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground2;
@@ -677,7 +587,7 @@
             this.GraduationRequirementRuleName.Location = new System.Drawing.Point(89, 7);
             this.GraduationRequirementRuleName.Multiline = true;
             this.GraduationRequirementRuleName.Name = "GraduationRequirementRuleName";
-            this.GraduationRequirementRuleName.Size = new System.Drawing.Size(635, 25);
+            this.GraduationRequirementRuleName.Size = new System.Drawing.Size(711, 25);
             this.GraduationRequirementRuleName.TabIndex = 5;
             // 
             // tabItem1
@@ -708,14 +618,14 @@
             // 
             this.dgvData.AllowUserToAddRows = false;
             this.dgvData.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.StudentID,
@@ -723,14 +633,14 @@
             this.StudentNumber,
             this.StudentName,
             this.Gender});
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvData.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvData.DefaultCellStyle = dataGridViewCellStyle22;
             this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgvData.Location = new System.Drawing.Point(1, 1);
@@ -745,9 +655,9 @@
             // StudentID
             // 
             this.StudentID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.StudentID.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.StudentID.DefaultCellStyle = dataGridViewCellStyle21;
             this.StudentID.HeaderText = "學生系統編號";
             this.StudentID.Name = "StudentID";
             this.StudentID.ReadOnly = true;
@@ -792,17 +702,116 @@
             this.tabItem2.Name = "tabItem2";
             this.tabItem2.Text = "已指定學生";
             // 
-            // GraduationRequirementRule
+            // SubjectGroup_Enactment
+            // 
+            this.SubjectGroup_Enactment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SubjectGroup_Enactment.DefaultCellStyle = dataGridViewCellStyle13;
+            this.SubjectGroup_Enactment.HeaderText = "科目群組";
+            this.SubjectGroup_Enactment.Name = "SubjectGroup_Enactment";
+            this.SubjectGroup_Enactment.ReadOnly = true;
+            this.SubjectGroup_Enactment.Width = 85;
+            // 
+            // Subject_Count
+            // 
+            this.Subject_Count.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Subject_Count.HeaderText = "必修科目數";
+            this.Subject_Count.MaxInputLength = 2;
+            this.Subject_Count.Name = "Subject_Count";
+            this.Subject_Count.Width = 98;
+            // 
+            // Credits
+            // 
+            this.Credits.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Credits.HeaderText = "必修學分數";
+            this.Credits.MaxInputLength = 2;
+            this.Credits.Name = "Credits";
+            this.Credits.Width = 98;
+            // 
+            // SubjectChineseName_Enactment
+            // 
+            this.SubjectChineseName_Enactment.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SubjectChineseName_Enactment.HeaderText = "課程中文名稱";
+            this.SubjectChineseName_Enactment.Name = "SubjectChineseName_Enactment";
+            this.SubjectChineseName_Enactment.ReadOnly = true;
+            // 
+            // SubjectCode
+            // 
+            this.SubjectCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.SubjectCode.DefaultCellStyle = dataGridViewCellStyle16;
+            this.SubjectCode.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.SubjectCode.HeaderText = "課程識別碼";
+            this.SubjectCode.Name = "SubjectCode";
+            this.SubjectCode.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.SubjectCode.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.SubjectCode.Width = 98;
+            // 
+            // SubjectChineseName
+            // 
+            this.SubjectChineseName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.SubjectChineseName.HeaderText = "課程中文名稱";
+            this.SubjectChineseName.Name = "SubjectChineseName";
+            this.SubjectChineseName.ReadOnly = true;
+            this.SubjectChineseName.Width = 111;
+            // 
+            // SubjectEnglishName
+            // 
+            this.SubjectEnglishName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.SubjectEnglishName.HeaderText = "課程英文名稱";
+            this.SubjectEnglishName.Name = "SubjectEnglishName";
+            this.SubjectEnglishName.ReadOnly = true;
+            this.SubjectEnglishName.Width = 111;
+            // 
+            // Credit
+            // 
+            this.Credit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Credit.HeaderText = "學分數";
+            this.Credit.MaxInputLength = 2;
+            this.Credit.Name = "Credit";
+            this.Credit.ReadOnly = true;
+            this.Credit.Width = 72;
+            // 
+            // SubjectGroup
+            // 
+            this.SubjectGroup.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.SubjectGroup.DefaultCellStyle = dataGridViewCellStyle17;
+            this.SubjectGroup.HeaderText = "科目群組";
+            this.SubjectGroup.Name = "SubjectGroup";
+            this.SubjectGroup.Width = 85;
+            // 
+            // IsDeptRequired
+            // 
+            this.IsDeptRequired.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.IsDeptRequired.HeaderText = "組畢業必修";
+            this.IsDeptRequired.Name = "IsDeptRequired";
+            this.IsDeptRequired.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.IsDeptRequired.Width = 98;
+            // 
+            // Prerequisites
+            // 
+            this.Prerequisites.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Prerequisites.DefaultCellStyle = dataGridViewCellStyle18;
+            this.Prerequisites.HeaderText = "必修認可範圍";
+            this.Prerequisites.Name = "Prerequisites";
+            this.Prerequisites.Width = 111;
+            // 
+            // SetCSIdentity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(932, 555);
+            this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.expandablePanel1);
             this.DoubleBuffered = true;
-            this.Name = "GraduationRequirementRule";
+            this.MaximizeBox = true;
+            this.Name = "SetCSIdentity";
             this.Text = "畢業條件管理";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.expandablePanel1.ResumeLayout(false);
             this.panelEx1.ResumeLayout(false);
             this.panelEx2.ResumeLayout(false);
@@ -875,6 +884,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SubjectEnglishName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Credit;
         private System.Windows.Forms.DataGridViewTextBoxColumn SubjectGroup;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsDeptRequired;
         private System.Windows.Forms.DataGridViewTextBoxColumn Prerequisites;
     }
 }

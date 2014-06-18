@@ -20,6 +20,7 @@ using Mandrill;
 
 namespace EMBACore.Forms
 {
+    public delegate void CheckBoxClickedHandler(bool check);
     public partial class CourseAttendance : BaseForm
     {
         //  每個學生的電子郵件
@@ -71,6 +72,8 @@ namespace EMBACore.Forms
 
         private Dictionary<string, bool> dicChecks = new Dictionary<string, bool>();
         private Dictionary<string, List<UDT.MailLog>> dicMailLogs = new Dictionary<string, List<UDT.MailLog>>();
+
+        private bool ColumnCellCheckBoxChecked;
 
         public CourseAttendance()
         {
@@ -981,16 +984,46 @@ namespace EMBACore.Forms
             this.dicCourseSections = new Dictionary<string, DataRow>();
             foreach(DataRow dr in this.dtCourseSections.Rows)
             {
-                string text = DateTime.Parse(dr["starttime"].ToString()).ToString("MM/dd HH:mm");
+                string start_date = DateTime.Parse(dr["starttime"].ToString()).ToString("MM/dd");
+                string start_time = DateTime.Parse(dr["starttime"].ToString()).ToString("HH:mm");
+
+                string text = start_date + "\r\n" + start_time;
                 int column_index = this.dg.Columns.Add(this.makeColumn(text));
+
+                DatagridViewCheckBoxHeaderCell cbHeader = new DatagridViewCheckBoxHeaderCell(this.Font); 
+                cbHeader.OnCheckBoxClicked += new CheckBoxClickedHandler(cbHeader_OnCheckBoxClicked);
+                //this.dg.Columns[column_index].Width = 120;
+                this.dg.Columns[column_index].HeaderCell = cbHeader;
+                //this.dg.Columns[column_index].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+                this.dg.Columns[column_index].HeaderText = text;
+                this.dg.Columns[column_index].HeaderCell.Style.Alignment = DataGridViewContentAlignment.TopCenter;
+                this.dg.Columns[column_index].SortMode = DataGridViewColumnSortMode.Programmatic;
+
                 this.dg.Columns[column_index].Tag = new object[] { DateTime.Parse(dr["starttime"] + ""), DateTime.Parse(dr["endtime"] + "") };
                 this.SectionIDs.Add(int.Parse(dr["uid"].ToString()));
                 this.dicCourseSections.Add(dr["uid"].ToString(), dr);
             }
         }
 
+        private void cbHeader_OnCheckBoxClicked(bool check)
+        {
+            this.ColumnCellCheckBoxChecked = true;
+        }
+
         private DataGridViewColumn makeColumn(string text)
         {
+            //DataGridViewCheckBoxColumn col = new DataGridViewCheckBoxColumn();
+            //DatagridViewCheckBoxHeaderCell cbHeader = new DatagridViewCheckBoxHeaderCell();
+            //col.HeaderCell = cbHeader;
+            //col.HeaderText = text;
+            //col.Width = 60;
+            //col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //col.ReadOnly = true;
+            //col.SortMode = DataGridViewColumnSortMode.Automatic;
+            //return col;
+
+
+
             DataGridViewColumn col = new DataGridViewTextBoxColumn();
             col.HeaderText = text;
             //col.Name = colName;
@@ -999,6 +1032,7 @@ namespace EMBACore.Forms
             col.ReadOnly = true;
             col.SortMode = DataGridViewColumnSortMode.Automatic;
             return col;
+
         }
 
         private void dg_KeyUp(object sender, KeyEventArgs e)
@@ -1459,6 +1493,39 @@ namespace EMBACore.Forms
             if (this.form_loaded)
                 this.InitSemesterCourses();
         }
+
+        private void dg_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (this.dg.Columns[e.ColumnIndex].HeaderCell.GetType().Name != "DatagridViewCheckBoxHeaderCell")
+                return;
+
+            if (!this.ColumnCellCheckBoxChecked)
+            {
+                string direction = this.dg.Columns[e.ColumnIndex].HeaderCell.Tag + "";
+                if (string.IsNullOrEmpty(direction))
+                {
+                    this.dg.Sort(this.dg.Columns[e.ColumnIndex], System.ComponentModel.ListSortDirection.Descending);
+                    this.dg.Columns[e.ColumnIndex].HeaderCell.Tag = System.ComponentModel.ListSortDirection.Descending;
+                }
+                else
+                {
+                    if (direction.ToLower() == "ascending")
+                    {
+                        this.dg.Sort(this.dg.Columns[e.ColumnIndex], System.ComponentModel.ListSortDirection.Descending);
+                        this.dg.Columns[e.ColumnIndex].HeaderCell.Tag = "descending";
+                    }
+                    else
+                    {
+                        this.dg.Sort(this.dg.Columns[e.ColumnIndex], System.ComponentModel.ListSortDirection.Ascending);
+                        this.dg.Columns[e.ColumnIndex].HeaderCell.Tag = "ascending";
+                    }
+                }
+            }
+            else
+            {
+                this.ColumnCellCheckBoxChecked = false;
+            }
+        }
     }
 
     public class MailLogBase
@@ -1599,6 +1666,97 @@ namespace EMBACore.Forms
         public void AddSectionID(string SectionID)
         {
             this.SectionIDs.Add(SectionID);
+        }
+    }
+    public class DataGridViewCheckBoxHeaderCellEventArgs : EventArgs
+    {
+        bool _bChecked;
+        public DataGridViewCheckBoxHeaderCellEventArgs(bool bChecked)
+        {
+            _bChecked = bChecked;
+        }
+        public bool Checked
+        {
+            get { return _bChecked; }
+        }
+    }
+    public class DatagridViewCheckBoxHeaderCell : DataGridViewColumnHeaderCell
+    {
+        Point checkBoxLocation;
+        Size checkBoxSize;
+        bool _checked = false;
+        Point _cellLocation = new Point();
+        System.Windows.Forms.VisualStyles.CheckBoxState _cbState =
+            System.Windows.Forms.VisualStyles.CheckBoxState.UncheckedNormal;
+        public event CheckBoxClickedHandler OnCheckBoxClicked;
+        private System.Drawing.Font CellFont;
+
+        public DatagridViewCheckBoxHeaderCell(System.Drawing.Font CellFont)
+        {
+            this.CellFont = CellFont;
+        }
+
+        protected override void Paint(System.Drawing.Graphics graphics,
+            System.Drawing.Rectangle clipBounds,
+            System.Drawing.Rectangle cellBounds,
+            int rowIndex,
+            DataGridViewElementStates dataGridViewElementState,
+            object value,
+            object formattedValue,
+            string errorText,
+            DataGridViewCellStyle cellStyle,
+            DataGridViewAdvancedBorderStyle advancedBorderStyle,
+            DataGridViewPaintParts paintParts)
+        {
+            base.Paint(graphics, clipBounds, cellBounds, rowIndex,
+                dataGridViewElementState, value,
+                formattedValue, errorText, cellStyle,
+                advancedBorderStyle, paintParts);
+
+            Point p = new Point();
+            Size s = CheckBoxRenderer.GetGlyphSize(graphics,
+            System.Windows.Forms.VisualStyles.CheckBoxState.UncheckedNormal);
+            p.X = cellBounds.Location.X +
+                (cellBounds.Width / 2) - (s.Width / 2);
+            p.Y = cellBounds.Location.Y +
+                (cellBounds.Height / 2) - (s.Height / 2) + 20;
+            _cellLocation = cellBounds.Location;
+            checkBoxLocation = p;
+            checkBoxSize = new Size(s.Width, s.Height);
+            if (_checked)
+                _cbState = System.Windows.Forms.VisualStyles.
+                    CheckBoxState.CheckedNormal;
+            else
+                _cbState = System.Windows.Forms.VisualStyles.
+                    CheckBoxState.UncheckedNormal;
+            System.Drawing.Rectangle CellTextBounds = new Rectangle();
+            CellTextBounds.X = p.X;
+            CellTextBounds.Y = p.Y;
+            CellTextBounds.Width = int.MaxValue;
+            CellTextBounds.Height = int.MaxValue;
+
+            CheckBoxRenderer.DrawCheckBox
+            (graphics, checkBoxLocation, CellTextBounds, string.Empty, this.CellFont, false, _cbState);
+        }
+
+        protected override void OnMouseClick(DataGridViewCellMouseEventArgs e)
+        {
+            Point p = new Point(e.X + _cellLocation.X, e.Y + _cellLocation.Y);
+            //Point p = new Point(e.X, e.Y);
+            if (p.X >= checkBoxLocation.X && p.X <=
+                checkBoxLocation.X + checkBoxSize.Width
+            && p.Y >= checkBoxLocation.Y && p.Y <=
+                checkBoxLocation.Y + checkBoxSize.Height)
+            {
+                _checked = !_checked;
+                if (OnCheckBoxClicked != null)
+                {
+                    OnCheckBoxClicked(_checked);
+                    this.DataGridView.InvalidateCell(this);
+                }
+                //base.OnMouseClick(e);
+                //MessageBox.Show("CheckBoxMouseClick");
+            }
         }
     }
 }

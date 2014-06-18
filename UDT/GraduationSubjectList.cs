@@ -39,6 +39,12 @@ namespace EMBACore.UDT
         public string SubjectGroup { get; set; }
 
         /// <summary>
+        /// 組畢業必修
+        /// </summary>
+        [EMBACore.UDT.Field(Field = "is_dept_required", Indexed = false, Caption = "組畢業必修")]
+        public bool IsDeptRequired { get; set; }
+
+        /// <summary>
         /// 必修認可範圍
         /// </summary>
         [EMBACore.UDT.Field(Field = "prerequisites", Indexed = false, Caption = "必修認可範圍")]
