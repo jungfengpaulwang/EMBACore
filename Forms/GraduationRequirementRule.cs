@@ -178,6 +178,7 @@ namespace EMBACore
                     oo.EnglishName = subject.EnglishName;
                     oo.Name = subject.Name;
                     oo.SubjectGroup = "";
+                    oo.IsDeptRequired = false;
                     oo.Prerequisites = "";
 
                     dicSubjects.Add(subject.SubjectCode, oo);
@@ -186,12 +187,20 @@ namespace EMBACore
 
             queryHelper = new QueryHelper();
 
-            string strSQL = string.Format("select $ischool.emba.graduation_subject_list.uid subjectlistid, $ischool.emba.subject.uid as subjectid, $ischool.emba.subject.subject_code, $ischool.emba.subject.name, $ischool.emba.subject.eng_name, $ischool.emba.subject.credit, $ischool.emba.graduation_subject_list.subject_group, $ischool.emba.graduation_subject_list.prerequisites from $ischool.emba.subject join $ischool.emba.graduation_subject_list on $ischool.emba.graduation_subject_list.ref_subject_id=$ischool.emba.subject.uid where $ischool.emba.graduation_subject_list.ref_graduation_requirement_id={0} order by $ischool.emba.subject.subject_code;", graduationRequirementRuleID);
+            string strSQL = string.Format("select $ischool.emba.graduation_subject_list.uid subjectlistid, $ischool.emba.subject.uid as subjectid, $ischool.emba.subject.subject_code, $ischool.emba.subject.name, $ischool.emba.subject.eng_name, $ischool.emba.subject.credit, $ischool.emba.graduation_subject_list.subject_group, $ischool.emba.graduation_subject_list.prerequisites, $ischool.emba.graduation_subject_list.is_dept_required from $ischool.emba.subject join $ischool.emba.graduation_subject_list on $ischool.emba.graduation_subject_list.ref_subject_id=$ischool.emba.subject.uid where $ischool.emba.graduation_subject_list.ref_graduation_requirement_id={0} order by $ischool.emba.subject.subject_code;", graduationRequirementRuleID);
 
             DataTable dataTable = queryHelper.Select(strSQL);
             SubjectCode.DataSource = new BindingList<string>(new List<string>(subjects.Select(x=>x.SubjectCode)));
             foreach (DataRow row in dataTable.Rows)
             {
+                dynamic oo = dicSubjects[row["subject_code"].ToString()];
+                oo.SubjectGroup = row["subject_group"].ToString();
+                oo.Prerequisites = row["prerequisites"].ToString();
+
+                bool IsDeptRequired = false;
+                bool.TryParse(row["is_dept_required"] + "", out IsDeptRequired);
+                oo.IsDeptRequired = IsDeptRequired;
+
                 List<object> list = new List<object>();
 
                 list.Add(row["subject_code"].ToString());
@@ -199,11 +208,9 @@ namespace EMBACore
                 list.Add(row["eng_name"].ToString());
                 list.Add(row["credit"].ToString());
                 list.Add(row["subject_group"].ToString());
+                list.Add((bool)oo.IsDeptRequired);
                 list.Add(row["prerequisites"].ToString());
 
-                dynamic oo = dicSubjects[row["subject_code"].ToString()];
-                oo.SubjectGroup = row["subject_group"].ToString();
-                oo.Prerequisites = row["prerequisites"].ToString();
 
                 int idx = this.dgvMotherData.Rows.Add(list.ToArray());
             }
@@ -523,11 +530,22 @@ namespace EMBACore
                 graduationSubjectList.GraduationRequirementID = int.Parse(graduationRequirement.UID);
                 graduationSubjectList.SubjectID = int.Parse(dicSubjects[dataGridViewRow.Cells["SubjectCode"].Value.ToString()].UID);
                 graduationSubjectList.SubjectGroup = (dataGridViewRow.Cells["SubjectGroup"].Value == null ? "" : dataGridViewRow.Cells["SubjectGroup"].Value.ToString());
+                bool IsDeptRequired = false;
+                bool.TryParse(dataGridViewRow.Cells["IsDeptRequired"].Value + "", out IsDeptRequired);
+                graduationSubjectList.IsDeptRequired = IsDeptRequired;
                 graduationSubjectList.Prerequisites = (dataGridViewRow.Cells["Prerequisites"].Value == null ? "" : dataGridViewRow.Cells["Prerequisites"].Value.ToString());
 
                 newGraduationSubjectLists.Add(graduationSubjectList);
             }
-            newGraduationSubjectLists.SaveAll();
+            try
+            {
+                newGraduationSubjectLists.SaveAll();
+                MessageBox.Show("儲存成功。");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void SaveGraduationSubjectGroupRequirement(GraduationRequirement graduationRequirement)

@@ -1215,6 +1215,8 @@
     </Content>
     <Content Include="Import\複製 - Student_Brief_Import.xml" />
     <Content Include="Import\複製 - SubjectSemesterScore_Import.xml" />
+    <None Include="Resources\Import.Image1.png" />
+    <None Include="Resources\Export.Image1.png" />
     <None Include="Resources\GradeScoreMappingTable.xml" />
     <None Include="Resources\format.xsl" />
     <None Include="Resources\forbidden.png" />

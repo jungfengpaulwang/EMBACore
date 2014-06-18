@@ -199,9 +199,16 @@ namespace EMBACore.Import
                     string name = row.GetValue("開課").Trim().ToUpper();
 
                     key = name + "_" + school_year + "_" + semester;
+
+                    mOption.SelectedFields.Add("學年度");
+                    mOption.SelectedFields.Add("學期");
+                    mOption.SelectedFields.Add("開課");
                 }
                 else
+                {
                     key = row.GetValue("開課系統編號").Trim();
+                    mOption.SelectedFields.Add("開課系統編號");
+                }
 
                 if (dicExistingCourseRecords.ContainsKey(key))
                     courseRecord = dicExistingCourseRecords[key];

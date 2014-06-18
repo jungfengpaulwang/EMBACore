@@ -12,6 +12,7 @@ using FISCA.Presentation.Controls;
 using FISCA.UDT;
 using K12.Data;
 using ReportHelper;
+using System.Dynamic;
 
 namespace EMBACore.Report
 {
@@ -169,8 +170,51 @@ namespace EMBACore.Report
 
         private void MailMerge_MergeField(object sender, Aspose.Words.Reporting.MergeFieldEventArgs e)
         {
-            #region 科目成績
-             
+            #region 本學期應修及格方可畢業之科目及學分
+            //13字數12號，14字數11號，15字數10號
+            if (e.FieldName.IndexOf("本學期必修科目") >= 0)
+            {
+                DocumentBuilder builder = new DocumentBuilder(e.Document);
+                builder.MoveToField(e.Field, true);
+                string dn = e.FieldValue + "";
+                e.Field.Remove();
+
+                //builder.Font.Size = (dn.Length <= 10) ? 12 : (12 - (dn.Length - 10));
+                Aspose.Words.Cell SCell = (Aspose.Words.Cell)builder.CurrentParagraph.ParentNode;
+                Paragraph p = SCell.FirstParagraph;
+                var par = SCell.FirstParagraph;
+                var run = new Run(e.Document);
+                run.Text = dn;
+                run.Font.Name = "標楷體";                
+                if (dn.Length > 10)
+                {
+                    par.ParagraphFormat.Alignment = ParagraphAlignment.Distributed;
+                    run.Font.Size = (dn.Length <= 13) ? 12 : (12 - (dn.Length - 13));
+                }
+                par.Runs.Add(run);
+
+                //  以下的寫法皆為無效
+                //SCell.CellFormat.ClearFormatting();
+                //Aspose.Words.Style style = null;
+                //if (e.Document.Styles["MyStyle1"] == null)
+                //    style = e.Document.Styles.Add(StyleType.Paragraph, "MyStyle1");
+                //else
+                //    style = e.Document.Styles["MyStyle1"];
+                //style.ParagraphFormat.Alignment = ParagraphAlignment.Distributed;
+                //style.ParagraphFormat.KeepTogether = true;
+
+                //p.ParagraphFormat.Style = style;
+                //builder.Write(e.FieldValue + "");
+                
+              
+                //string dn = e.FieldValue as string;
+                //builder.Write(dn);
+                //SCell.FirstParagraph.ParagraphFormat.Alignment = ParagraphAlignment.Distributed | ParagraphAlignment.Left;
+                //SCell.CellFormat.WrapText = false;
+                //builder.CellFormat.FitText = true;
+                //builder.CellFormat.WrapText = false;
+                //SCell.CellFormat.Shading.BackgroundPatternColor = System.Drawing.Color.FromArgb(198, 217, 241);
+            }
             #endregion
         }
 
@@ -203,6 +247,8 @@ namespace EMBACore.Report
 
         private void btnSubjectSemesterScoreStatistics_Click(object sender, EventArgs e)
         {
+            this.circularProgress.Visible = true;
+            this.circularProgress.IsRunning = true;
             this.btnPrint.Enabled = false;
             int SchoolYear = int.Parse(this.nudSchoolYear.Value + "");
             int Semester = int.Parse((this.cboSemester.SelectedItem as EMBACore.DataItems.SemesterItem).Value);
@@ -213,20 +259,49 @@ namespace EMBACore.Report
                 Document doc = new Document();
                 doc.Sections.Clear();
                 IEnumerable<StudentRecord> Students = this.dicStudents.Values.OrderBy(x => x.StudentNumber.ToLower());
-                foreach (StudentRecord eachStudent in Students)
+                foreach (StudentRecord Student in Students)
                 {
+                    UDT.StudentBrief2 StudentBrief2 = new UDT.StudentBrief2();
+                    if (this.dicStudentBrief2.ContainsKey(Student.ID))
+                        StudentBrief2 = this.dicStudentBrief2[Student.ID];
+
+                    Dictionary<int, UDT.GraduationSubjectList> dicGraduationSubjectLists = new Dictionary<int, UDT.GraduationSubjectList>();
+                    if (this.dicStudentBrief2.ContainsKey(Student.ID))
+                    {
+                        if (this.dicGraduationSubjectLists.ContainsKey(StudentBrief2.GraduationRequirementID))
+                            dicGraduationSubjectLists = this.dicGraduationSubjectLists[StudentBrief2.GraduationRequirementID];
+                    }
+                    //  非停修生修課記錄：學年度	學期	課號	課程識別碼		課程名稱
+                    string SQL = string.Format(@"Select subject.uid as subject_id, course.school_year, course.semester, subject.name as subject_name From $ischool.emba.scattend_ext as se join course on course.id=se.ref_course_id
+join student on student.id=se.ref_student_id
+join $ischool.emba.course_ext as ce on ce.ref_course_id=course.id
+join $ischool.emba.subject as subject on subject.uid=ce.ref_subject_id where student.id={0} and course.school_year={1} and course.semester={2} order by ce.serial_no", Student.ID, SchoolYear, Semester);
+                    DataTable dataTable = Query.Select(SQL);
+                    Dictionary<string, dynamic> dicSCAttends = new Dictionary<string, dynamic>();
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        dynamic o = new ExpandoObject();
+
+                        o.SchoolYear = SchoolYear;
+                        o.Semester = Semester;
+                        o.SubjectName = row["subject_name"] + "";
+                        o.SubjectID = row["subject_id"] + "";
+
+                        dicSCAttends.Add(SchoolYear + "-" + Semester + "-" + row["subject_id"] + "", o);
+                    }
+
                     Document eachStudentDoc = new Document(template, "", LoadFormat.Doc, "");
                     Dictionary<string, object> mergeKeyValue = new Dictionary<string, object>();
 
                     #region 學生基本資料
-                    mergeKeyValue.Add("學號", eachStudent.StudentNumber);
-                    mergeKeyValue.Add("姓名", eachStudent.Name);
+                    mergeKeyValue.Add("學號", Student.StudentNumber);
+                    mergeKeyValue.Add("姓名", Student.Name);
 
                     UDT.DepartmentGroup DepartmentGroup = new UDT.DepartmentGroup();
-                    if (this.dicStudentBrief2.ContainsKey(eachStudent.ID))
+                    if (this.dicStudentBrief2.ContainsKey(Student.ID))
                     {
-                        if (this.dicDepartmentGroups.ContainsKey(this.dicStudentBrief2[eachStudent.ID].DepartmentGroupID.ToString()))
-                            DepartmentGroup = this.dicDepartmentGroups[this.dicStudentBrief2[eachStudent.ID].DepartmentGroupID.ToString()];
+                        if (this.dicDepartmentGroups.ContainsKey(this.dicStudentBrief2[Student.ID].DepartmentGroupID.ToString()))
+                            DepartmentGroup = this.dicDepartmentGroups[this.dicStudentBrief2[Student.ID].DepartmentGroupID.ToString()];
                     }
                     mergeKeyValue.Add("系所組別代碼", DepartmentGroup.Code);
                     mergeKeyValue.Add("組別", DepartmentGroup.Name);
@@ -236,8 +311,18 @@ namespace EMBACore.Report
                     mergeKeyValue.Add("學期", Semester);
 
                     List<UDT.SubjectSemesterScore> SubjectSemesterScores = new List<UDT.SubjectSemesterScore>();
-                    if (this.dicSubjectSemesterScores.ContainsKey(eachStudent.ID))
-                        SubjectSemesterScores = this.dicSubjectSemesterScores[eachStudent.ID];
+                    if (this.dicSubjectSemesterScores.ContainsKey(Student.ID))
+                        SubjectSemesterScores = this.dicSubjectSemesterScores[Student.ID];
+
+                    //  重覆修課                    
+                    Dictionary<int, List<UDT.SubjectSemesterScore>> dicDuplicateSubjectSemesterScores = new Dictionary<int, List<UDT.SubjectSemesterScore>>();
+                    foreach (UDT.SubjectSemesterScore SubjectSemesterScore in SubjectSemesterScores)
+                    {
+                        //  是否重覆修課
+                        if (!dicDuplicateSubjectSemesterScores.ContainsKey(SubjectSemesterScore.SubjectID))
+                            dicDuplicateSubjectSemesterScores.Add(SubjectSemesterScore.SubjectID, new List<UDT.SubjectSemesterScore>());
+                        dicDuplicateSubjectSemesterScores[SubjectSemesterScore.SubjectID].Add(SubjectSemesterScore);
+                    }
 
                     //mergeKeyValue.Add("抵免紀錄_上學期", SubjectSemesterScores.Where(x => !string.IsNullOrWhiteSpace(x.OffsetCourse)).Where(x => x.Semester == 1).Sum(x => x.Credit));
                     //mergeKeyValue.Add("抵免紀錄_下學期", SubjectSemesterScores.Where(x => !string.IsNullOrWhiteSpace(x.OffsetCourse)).Where(x => x.Semester == 2).Sum(x => x.Credit));
@@ -253,24 +338,108 @@ namespace EMBACore.Report
                         mergeKeyValue.Add("本學期必修學分_" + i, string.Empty);
                     }
                     mergeKeyValue.Add("本學期選修總學分", string.Empty);
-
-                    int credit_is_not_requred_total = 0;
-                    int index = 0;
-                    foreach (UDT.SubjectSemesterScore SubjectSemesterScore in SubjectSemesterScores_Current_Semester)
+                    List<dynamic> present_subject_lists = new List<dynamic>();
+                    foreach (string key in dicSCAttends.Keys)
                     {
-                        if (!SubjectSemesterScore.IsRequired)
-                            credit_is_not_requred_total += SubjectSemesterScore.Credit;
+                        dynamic o = dicSCAttends[key];
+                        string SubjectName = o.SubjectName + "";
+
+                        int SubjectID = int.Parse(o.SubjectID + "");
+
+                        dynamic oo = new ExpandoObject();
+
+                        oo.IsDeptRequired = false;
+                        oo.SubjectName = SubjectName;
+                        oo.SubjectID = SubjectID;
+                        oo.SubjectGroup = string.Empty;
+
+                        if (dicGraduationSubjectLists.ContainsKey(SubjectID))
+                        {
+                            UDT.GraduationSubjectList GraduationSubjectList = dicGraduationSubjectLists[SubjectID];
+                            oo.SubjectGroup = GraduationSubjectList.SubjectGroup;
+                            if (string.IsNullOrEmpty(GraduationSubjectList.SubjectGroup))
+                                oo.IsRequired = false;
+                            else
+                                oo.IsRequired = true;
+                            if (GraduationSubjectList.IsDeptRequired)
+                            {
+                                oo.IsDeptRequired = true;
+                            }
+                        }
                         else
                         {
-                            index += 1;
-                            if (mergeKeyValue.ContainsKey("本學期必修科目_" + index))
-                                mergeKeyValue["本學期必修科目_" + index] = SubjectSemesterScore.SubjectName;
+                            oo.IsRequired = false;
+                        }
+                        present_subject_lists.Add(oo);
+                    }
 
-                            if (mergeKeyValue.ContainsKey("本學期必修學分_" + index))
-                                mergeKeyValue["本學期必修學分_" + index] = SubjectSemesterScore.Credit;
+                    int credit_is_not_requred_total = 0;
+                    int credit_current = 0;
+                    int index = 0;
+                    foreach (dynamic o in present_subject_lists.Where(x => x.IsRequired == false))
+                    {
+                        string SubjectID = o.SubjectID + "";
+                        if (this.dicSubjects.ContainsKey(SubjectID))
+                        {
+                            credit_is_not_requred_total += this.dicSubjects[SubjectID].Credit;
                         }
                     }
-                    mergeKeyValue["本學期選修總學分"] = credit_is_not_requred_total;
+                    foreach(dynamic o in present_subject_lists.Where(x=>x.IsDeptRequired == true))
+                    {
+                        index += 1;
+                        if (mergeKeyValue.ContainsKey("本學期必修科目_" + index))
+                            mergeKeyValue["本學期必修科目_" + index] = o.SubjectName + "";
+
+                        string SubjectID = o.SubjectID + "";
+                        if (this.dicSubjects.ContainsKey(SubjectID))
+                        {
+                            if (mergeKeyValue.ContainsKey("本學期必修學分_" + index))
+                                mergeKeyValue["本學期必修學分_" + index] = this.dicSubjects[SubjectID].Credit;
+
+                            credit_current += this.dicSubjects[SubjectID].Credit;
+                        }
+                    }
+                    var group_subjects = present_subject_lists.Where(x => x.IsDeptRequired == false).Where(x => !string.IsNullOrEmpty(x.SubjectGroup + "")).GroupBy(x=>x.SubjectGroup);
+                    foreach (var groupOfStudents in group_subjects)
+                    {
+                        index += 1;
+                        if (mergeKeyValue.ContainsKey("本學期必修科目_" + index))
+                            mergeKeyValue["本學期必修科目_" + index] = string.Join("或", groupOfStudents.Select(x=>x.SubjectName + ""));
+
+                        List<int> Credits = new List<int>();
+                        foreach(var g in groupOfStudents)
+                        {
+                            string SubjectID = g.SubjectID + "";
+
+                            if (this.dicSubjects.ContainsKey(SubjectID))
+                            {
+                                if (!Credits.Contains(this.dicSubjects[SubjectID].Credit))
+                                {
+                                    Credits.Add(this.dicSubjects[SubjectID].Credit); 
+                                    credit_current += this.dicSubjects[SubjectID].Credit;
+                                }
+                            }
+                        } 
+                        if (mergeKeyValue.ContainsKey("本學期必修學分_" + index))
+                            mergeKeyValue["本學期必修學分_" + index] = string.Join("或", Credits);
+                    }
+
+
+                   
+                    //foreach (UDT.SubjectSemesterScore SubjectSemesterScore in SubjectSemesterScores_Current_Semester)
+                    //{
+                    //    if (!SubjectSemesterScore.IsRequired)
+                    //        credit_is_not_requred_total += SubjectSemesterScore.Credit;
+                    //    else
+                    //    {
+                    //        index += 1;
+                    //        if (mergeKeyValue.ContainsKey("本學期必修科目_" + index))
+                    //            mergeKeyValue["本學期必修科目_" + index] = SubjectSemesterScore.SubjectName;
+
+                    //        if (mergeKeyValue.ContainsKey("本學期必修學分_" + index))
+                    //            mergeKeyValue["本學期必修學分_" + index] = SubjectSemesterScore.Credit;
+                    //    }
+                    //}
 
                     List<UDT.SubjectSemesterScore> SubjectSemesterScores_Not_Current_Semester = new List<UDT.SubjectSemesterScore>();
                     if (SubjectSemesterScores.Count > 0)
@@ -287,10 +456,19 @@ namespace EMBACore.Report
                         mergeKeyValue.Add("修業歷程之實得學分_" + i + "_" + 0, 0);
                         mergeKeyValue.Add("修業歷程之實得學分_" + i + "_" + 1, 0);
                         mergeKeyValue.Add("修業歷程之實得學分_" + i + "_" + 2, 0);
+
+                        mergeKeyValue.Add("畢業修業歷程之實得學分_" + i + "_" + 0, 0);
+                        mergeKeyValue.Add("畢業修業歷程之實得學分_" + i + "_" + 1, 0);
+                        mergeKeyValue.Add("畢業修業歷程之實得學分_" + i + "_" + 2, 0);
+
+                        mergeKeyValue.Add("不計入畢業學分_" + i + "_" + 0, 0);
+                        mergeKeyValue.Add("不計入畢業學分_" + i + "_" + 1, 0);
+                        mergeKeyValue.Add("不計入畢業學分_" + i + "_" + 2, 0);
                     }
                     int idx = 0;
                     int school_year = 0;
                     int credit_total = 0;
+                    Dictionary<int, int> dicSchoolYearMappings = new Dictionary<int, int>();
                     foreach (UDT.SubjectSemesterScore SubjectSemesterScore in SubjectSemesterScores_Not_Current_Semester)
                     {
                         if (school_year != SubjectSemesterScore.SchoolYear.Value)
@@ -310,16 +488,23 @@ namespace EMBACore.Report
                         if (mergeKeyValue.ContainsKey("修業歷程之實得學分_" + idx + "_" + SubjectSemesterScore.Semester))
                             mergeKeyValue["修業歷程之實得學分_" + idx + "_" + SubjectSemesterScore.Semester] = int.Parse(mergeKeyValue["修業歷程之實得學分_" + idx + "_" + SubjectSemesterScore.Semester] + "") + SubjectSemesterScore.Credit;
 
+                        if (mergeKeyValue.ContainsKey("畢業修業歷程之實得學分_" + idx + "_" + SubjectSemesterScore.Semester))
+                            mergeKeyValue["畢業修業歷程之實得學分_" + idx + "_" + SubjectSemesterScore.Semester] = int.Parse(mergeKeyValue["畢業修業歷程之實得學分_" + idx + "_" + SubjectSemesterScore.Semester] + "") + SubjectSemesterScore.Credit;
+
                         credit_total += SubjectSemesterScore.Credit;
+
+                        if (!dicSchoolYearMappings.ContainsKey(school_year))
+                            dicSchoolYearMappings.Add(school_year, idx);
                     }
 
                     mergeKeyValue.Add("實得總學分", credit_total + SubjectSemesterScores.Where(x => !string.IsNullOrWhiteSpace(x.OffsetCourse)).Sum(x => x.Credit));
+                    mergeKeyValue.Add("畢業實得總學分", credit_total + SubjectSemesterScores.Where(x => !string.IsNullOrWhiteSpace(x.OffsetCourse)).Sum(x => x.Credit));
                     mergeKeyValue.Add("應修最低畢業學分數", string.Empty);
 
-                    if (this.dicStudentBrief2.ContainsKey(eachStudent.ID))
+                    if (this.dicStudentBrief2.ContainsKey(Student.ID))
                     {
-                        if (this.dicGraduationRequirements.ContainsKey(this.dicStudentBrief2[eachStudent.ID].GraduationRequirementID + ""))
-                            mergeKeyValue["應修最低畢業學分數"] = this.dicGraduationRequirements[this.dicStudentBrief2[eachStudent.ID].GraduationRequirementID + ""].RequiredCredit;
+                        if (this.dicGraduationRequirements.ContainsKey(this.dicStudentBrief2[Student.ID].GraduationRequirementID + ""))
+                            mergeKeyValue["應修最低畢業學分數"] = this.dicGraduationRequirements[this.dicStudentBrief2[Student.ID].GraduationRequirementID + ""].RequiredCredit;
                     }
 
                     DateTime print_date;
@@ -329,7 +514,42 @@ namespace EMBACore.Report
                     mergeKeyValue.Add("列印日期_年", print_date.Year - 1911);
                     mergeKeyValue.Add("列印日期_月", print_date.Month.ToString("00"));
                     mergeKeyValue.Add("列印日期_日", print_date.Day.ToString("00"));
+                    
+                    //  重覆修課
+                    int total_credit_reduce = 0;
+                    foreach (int SubjectID in dicDuplicateSubjectSemesterScores.Keys)
+                    {
+                        if (dicDuplicateSubjectSemesterScores[SubjectID].Count < 2)
+                            continue;
 
+                        List<UDT.SubjectSemesterScore> DuplicateSubjectSemesterScores = dicDuplicateSubjectSemesterScores[SubjectID];
+                        bool init = false;
+                        foreach (UDT.SubjectSemesterScore SubjectSemesterScore in DuplicateSubjectSemesterScores.OrderBy(x=>(x.SchoolYear.HasValue ? x.SchoolYear.Value : 0)).ThenBy(x=>(x.Semester.HasValue ? x.Semester.Value : 0)))
+                        {
+                            if (init)
+                            {
+                                if (dicSchoolYearMappings.ContainsKey((SubjectSemesterScore.SchoolYear.HasValue ? SubjectSemesterScore.SchoolYear.Value : 0)))
+                                {
+                                    mergeKeyValue["不計入畢業學分_" + dicSchoolYearMappings[(SubjectSemesterScore.SchoolYear.HasValue ? SubjectSemesterScore.SchoolYear.Value : 0)] + "_" + (SubjectSemesterScore.Semester.HasValue ? SubjectSemesterScore.Semester.Value : 0)] = SubjectSemesterScore.Credit;
+                                    total_credit_reduce += SubjectSemesterScore.Credit;
+                                    int oCredit = int.Parse(mergeKeyValue["畢業修業歷程之實得學分_" + dicSchoolYearMappings[(SubjectSemesterScore.SchoolYear.HasValue ? SubjectSemesterScore.SchoolYear.Value : 0)] + "_" + (SubjectSemesterScore.Semester.HasValue ? SubjectSemesterScore.Semester.Value : 0)] + "");
+                                    mergeKeyValue["畢業修業歷程之實得學分_" + dicSchoolYearMappings[(SubjectSemesterScore.SchoolYear.HasValue ? SubjectSemesterScore.SchoolYear.Value : 0)] + "_" + (SubjectSemesterScore.Semester.HasValue ? SubjectSemesterScore.Semester.Value : 0)] = oCredit - SubjectSemesterScore.Credit;
+                                }
+                            }
+
+                            init = true;
+                        }
+                    }
+                    mergeKeyValue.Add("不計入畢業總學分", total_credit_reduce);
+                    mergeKeyValue["畢業實得總學分"] = int.Parse(mergeKeyValue["畢業實得總學分"] + "") - total_credit_reduce;
+
+                    int lowest_credit = 0;
+                    int.TryParse(mergeKeyValue["應修最低畢業學分數"] + "", out lowest_credit);
+                    int credit_differ = lowest_credit - int.Parse(mergeKeyValue["畢業實得總學分"] + "");
+                    if (credit_differ > 0)
+                        mergeKeyValue["本學期選修總學分"] = credit_differ - credit_current; // credit_is_not_requred_total;
+                    else
+                        mergeKeyValue["本學期選修總學分"] = 0;
 
                     eachStudentDoc.MailMerge.MergeField += new Aspose.Words.Reporting.MergeFieldEventHandler(MailMerge_MergeField);
                     eachStudentDoc.MailMerge.RemoveEmptyParagraphs = true;
@@ -350,6 +570,8 @@ namespace EMBACore.Report
             });
             task.ContinueWith((x) =>
             {
+                this.circularProgress.Visible = false;
+                this.circularProgress.IsRunning = false;
                 this.btnPrint.Enabled = true;
 
                 if (x.Exception != null)
@@ -359,8 +581,29 @@ namespace EMBACore.Report
             }, System.Threading.CancellationToken.None, TaskContinuationOptions.None, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
-        private List<DataBindedSheet> GetDataBindedSheets(StudentRecord Student)
+        private List<DataBindedSheet> GetDataBindedSheets(StudentRecord Student, int SchoolYear, int Semester)
         {
+            //  非停修生修課記錄：學年度	學期	課號	課程識別碼		課程名稱
+            string SQL = string.Format(@"Select subject.uid as subject_id, course.school_year, course.semester, subject.new_subject_code, subject.subject_code, subject.name as subject_name From $ischool.emba.scattend_ext as se join course on course.id=se.ref_course_id
+join student on student.id=se.ref_student_id
+join $ischool.emba.course_ext as ce on ce.ref_course_id=course.id
+join $ischool.emba.subject as subject on subject.uid=ce.ref_subject_id where student.id={0} and course.school_year={1} and course.semester={2} order by ce.serial_no", Student.ID, SchoolYear, Semester);
+            DataTable dataTable = Query.Select(SQL);
+            Dictionary<string, dynamic> dicSCAttends = new Dictionary<string, dynamic>();
+            foreach(DataRow row in dataTable.Rows)
+            {
+                dynamic o = new ExpandoObject();
+
+                o.SchoolYear = SchoolYear;
+                o.Semester = Semester;
+                o.NewSubjectCode = row["new_subject_code"] + "";
+                o.SubjectCode = row["subject_code"] + "";
+                o.SubjectName = row["subject_name"] + "";
+                o.SubjectID = row["subject_id"] + "";
+
+                dicSCAttends.Add(SchoolYear + "-" + Semester + "-" + row["subject_id"] + "", o);
+            }
+
             UDT.StudentBrief2 StudentBrief2 = new UDT.StudentBrief2();
             if (this.dicStudentBrief2.ContainsKey(Student.ID))
                 StudentBrief2 = this.dicStudentBrief2[Student.ID];
@@ -385,7 +628,7 @@ namespace EMBACore.Report
                 if (this.dicGraduationSubjectGroupRequirements.ContainsKey(StudentBrief2.GraduationRequirementID))
                     dicGraduationSubjectGroups = this.dicGraduationSubjectGroupRequirements[StudentBrief2.GraduationRequirementID];
             }
-
+            
             //GraduationSubjectList
 
             Workbook wb = new Workbook();
@@ -433,8 +676,15 @@ namespace EMBACore.Report
                 SubjectSemesterScores = SubjectSemesterScores.OrderBy(x => x.SchoolYear.HasValue ? x.SchoolYear.Value : 0).ThenBy(x => x.Semester.HasValue ? x.Semester.Value : 0).ThenBy(x => x.NewSubjectCode).ToList();
 
                 int credit_total = 0;
+                Dictionary<int, List<UDT.SubjectSemesterScore>> dicDuplicateSubjectSemesterScores = new Dictionary<int, List<UDT.SubjectSemesterScore>>();
+                List<string> present_subject_ids = new List<string>();
                 foreach (UDT.SubjectSemesterScore SubjectSemesterScore in SubjectSemesterScores)
                 {
+                    //  是否重覆修課
+                    if (!dicDuplicateSubjectSemesterScores.ContainsKey(SubjectSemesterScore.SubjectID))
+                        dicDuplicateSubjectSemesterScores.Add(SubjectSemesterScore.SubjectID, new List<UDT.SubjectSemesterScore>());
+                    dicDuplicateSubjectSemesterScores[SubjectSemesterScore.SubjectID].Add(SubjectSemesterScore);
+
                     DataBindedSheet = new DataBindedSheet();
                     DataBindedSheet.Worksheet = wb.Worksheets["DataSection"];
                     DataBindedSheet.DataTables = new List<DataTable>();
@@ -445,7 +695,6 @@ namespace EMBACore.Report
                     DataBindedSheet.DataTables.Add(SubjectSemesterScore.SubjectCode.ToDataTable("課程識別碼", "課程識別碼"));
                     DataBindedSheet.DataTables.Add(SubjectSemesterScore.SubjectName.ToDataTable("課程名稱", "課程名稱"));
                     DataBindedSheet.DataTables.Add(SubjectSemesterScore.Score.ToDataTable("成績", "成績"));
-                    DataBindedSheet.DataTables.Add(SubjectSemesterScore.Credit.ToDataTable("學分數", "學分數"));
 
                     if (dicGraduationSubjectLists.ContainsKey(SubjectSemesterScore.SubjectID))
                     {
@@ -463,9 +712,16 @@ namespace EMBACore.Report
                             else
                                 dicSubjectGroupGredits[SubjectGroup].Value += SubjectSemesterScore.Credit;
                         }
+                        if (this.dicSubjects.ContainsKey(SubjectSemesterScore.SubjectID.ToString()))
+                            DataBindedSheet.DataTables.Add(this.dicSubjects[SubjectSemesterScore.SubjectID.ToString()].Credit.ToDataTable("學分數", "學分數"));
+                        else
+                            DataBindedSheet.DataTables.Add(SubjectSemesterScore.Credit.ToDataTable("學分數", "學分數"));
                     }
                     else
+                    {
                         DataBindedSheet.DataTables.Add("".ToDataTable("群組別", "群組別"));
+                        DataBindedSheet.DataTables.Add(SubjectSemesterScore.Credit.ToDataTable("學分數", "學分數"));
+                    }
 
                     if (!string.IsNullOrEmpty(SubjectSemesterScore.OffsetCourse) || SubjectSemesterScore.IsPass)
                     {
@@ -478,8 +734,55 @@ namespace EMBACore.Report
                         credit_total += SubjectSemesterScore.Credit;
 
                     DataBindedSheets.Add(DataBindedSheet);
+                    present_subject_ids.Add(string.Format("{0}-{1}-{2}", (SubjectSemesterScore.SchoolYear.HasValue ? SubjectSemesterScore.SchoolYear.Value + "" : ""), (SubjectSemesterScore.Semester.HasValue ? SubjectSemesterScore.Semester.Value + "" : ""), SubjectSemesterScore.SubjectID));
                 }
+                foreach(string key in dicSCAttends.Keys)
+                {
+                    if (present_subject_ids.Contains(key))
+                        continue;
+                    
+                    dynamic o = dicSCAttends[key];
 
+                    DataBindedSheet = new DataBindedSheet();
+                    DataBindedSheet.Worksheet = wb.Worksheets["DataSection"];
+                    DataBindedSheet.DataTables = new List<DataTable>();
+
+                    int intSchoolYear = 0;
+                    int intSemester = 0;
+                    int.TryParse(o.SchoolYear + "", out intSchoolYear);
+                    int.TryParse(o.Semester + "", out intSemester);
+                    string NewSubjectCode = o.NewSubjectCode + "";
+                    string SubjectCode = o.SubjectCode + "";
+                    string SubjectName = o.SubjectName + "";
+                    DataBindedSheet.DataTables.Add(intSchoolYear.ToDataTable("學年度", "學年度"));
+                    DataBindedSheet.DataTables.Add(intSemester.ToDataTable("學期", "學期"));
+                    DataBindedSheet.DataTables.Add(NewSubjectCode.ToDataTable("課號", "課號"));
+                    DataBindedSheet.DataTables.Add(SubjectCode.ToDataTable("課程識別碼", "課程識別碼"));
+                    DataBindedSheet.DataTables.Add(SubjectName.ToDataTable("課程名稱", "課程名稱"));
+                    DataBindedSheet.DataTables.Add("".ToDataTable("成績", "成績"));
+                    DataBindedSheet.DataTables.Add("".ToDataTable("學分數", "學分數"));
+
+                    int SubjectID = 0;
+                    int.TryParse(o.SubjectID + "", out SubjectID);
+                    if (dicGraduationSubjectLists.ContainsKey(SubjectID))
+                    {
+                        string SubjectGroup = dicGraduationSubjectLists[SubjectID].SubjectGroup;
+                        DataBindedSheet.DataTables.Add(SubjectGroup.ToDataTable("群組別", "群組別"));
+                        if (!dicSubjectGroupGredits.ContainsKey(SubjectGroup))
+                            dicSubjectGroupGredits.Add(SubjectGroup, new KeyValuePair());
+
+                        if (dicGraduationSubjectGroups.ContainsKey(SubjectGroup))
+                            dicSubjectGroupGredits[SubjectGroup].Key = dicGraduationSubjectGroups[SubjectGroup].LowestCredit;
+                    }
+                    else
+                    {
+                        DataBindedSheet.DataTables.Add("".ToDataTable("群組別", "群組別"));
+                    }
+                    DataBindedSheet.DataTables.Add("本學期修課".ToDataTable("備註", "備註"));
+
+                    DataBindedSheets.Add(DataBindedSheet);
+                }
+                
                 int offset_credit = SubjectSemesterScores.Where(x => !string.IsNullOrWhiteSpace(x.OffsetCourse)).Sum(x => x.Credit);
                 DataBindedSheet = new DataBindedSheet();
                 DataBindedSheet.Worksheet = wb.Worksheets["PageFooter-Header"];
@@ -540,17 +843,90 @@ namespace EMBACore.Report
                 DataBindedSheet.Worksheet = wb.Worksheets["PageFooter-Footer"];
                 DataBindedSheet.DataTables = new List<DataTable>();
                 DataBindedSheets.Add(DataBindedSheet);
+
+                //  重覆修課
+                List<UDT.SubjectSemesterScore> DuplicateSubjectSemesterScores = new List<UDT.SubjectSemesterScore>();
+                foreach (int SubjectID in dicDuplicateSubjectSemesterScores.Keys)
+                {
+                    if (dicDuplicateSubjectSemesterScores[SubjectID].Count > 1)
+                        DuplicateSubjectSemesterScores.AddRange(dicDuplicateSubjectSemesterScores[SubjectID]);
+                }
+
+                if (DuplicateSubjectSemesterScores.Count > 1)
+                {
+                    DataBindedSheet = new DataBindedSheet();
+                    DataBindedSheet.Worksheet = wb.Worksheets["Duplicate-Header"];
+                    DataBindedSheet.DataTables = new List<DataTable>();
+                    DataBindedSheets.Add(DataBindedSheet);
+                    foreach (UDT.SubjectSemesterScore SubjectSemesterScore in DuplicateSubjectSemesterScores)
+                    {
+                        DataBindedSheet = new DataBindedSheet();
+                        DataBindedSheet.Worksheet = wb.Worksheets["Duplicate-DataSection"];
+                        DataBindedSheet.DataTables = new List<DataTable>();
+                        DataBindedSheet.DataTables.Add((SubjectSemesterScore.SchoolYear.HasValue ? SubjectSemesterScore.SchoolYear.Value + "" : "").ToDataTable("學年度", "學年度"));
+                        DataBindedSheet.DataTables.Add((SubjectSemesterScore.Semester.HasValue ? SubjectSemesterScore.Semester.Value + "" : "").ToDataTable("學期", "學期"));
+                        DataBindedSheet.DataTables.Add(SubjectSemesterScore.NewSubjectCode.ToDataTable("課號", "課號"));
+
+                        DataBindedSheet.DataTables.Add(SubjectSemesterScore.SubjectCode.ToDataTable("課程識別碼", "課程識別碼"));
+                        DataBindedSheet.DataTables.Add(SubjectSemesterScore.SubjectName.ToDataTable("課程名稱", "課程名稱"));
+                        DataBindedSheet.DataTables.Add(SubjectSemesterScore.Score.ToDataTable("成績", "成績"));
+                        //DataBindedSheet.DataTables.Add(SubjectSemesterScore.Credit.ToDataTable("學分數", "學分數"));
+
+                        if (dicGraduationSubjectLists.ContainsKey(SubjectSemesterScore.SubjectID))
+                        {
+                            string SubjectGroup = dicGraduationSubjectLists[SubjectSemesterScore.SubjectID].SubjectGroup;
+                            DataBindedSheet.DataTables.Add(SubjectGroup.ToDataTable("群組別", "群組別"));
+                            if (!dicSubjectGroupGredits.ContainsKey(SubjectGroup))
+                                dicSubjectGroupGredits.Add(SubjectGroup, new KeyValuePair());
+
+                            if (dicGraduationSubjectGroups.ContainsKey(SubjectGroup))
+                                dicSubjectGroupGredits[SubjectGroup].Key = dicGraduationSubjectGroups[SubjectGroup].LowestCredit;
+                            if (SubjectSemesterScore.IsPass)
+                            {
+                                if (dicSubjectGroupGredits[SubjectGroup].Value == null)
+                                    dicSubjectGroupGredits[SubjectGroup].Value = SubjectSemesterScore.Credit;
+                                else
+                                    dicSubjectGroupGredits[SubjectGroup].Value += SubjectSemesterScore.Credit;
+                            }
+                            if (this.dicSubjects.ContainsKey(SubjectSemesterScore.SubjectID.ToString()))
+                                DataBindedSheet.DataTables.Add(this.dicSubjects[SubjectSemesterScore.SubjectID.ToString()].Credit.ToDataTable("學分數", "學分數"));
+                            else
+                                DataBindedSheet.DataTables.Add(SubjectSemesterScore.Credit.ToDataTable("學分數", "學分數"));
+                        }
+                        else
+                        {
+                            DataBindedSheet.DataTables.Add("".ToDataTable("群組別", "群組別"));
+                            DataBindedSheet.DataTables.Add(SubjectSemesterScore.Credit.ToDataTable("學分數", "學分數"));
+                        }
+
+                        if (!string.IsNullOrEmpty(SubjectSemesterScore.OffsetCourse) || SubjectSemesterScore.IsPass)
+                        {
+                            DataBindedSheet.DataTables.Add("已取得學分".ToDataTable("備註", "備註"));
+                        }
+                        else
+                            DataBindedSheet.DataTables.Add("未取得學分".ToDataTable("備註", "備註"));
+
+                        if (SubjectSemesterScore.IsPass && string.IsNullOrEmpty(SubjectSemesterScore.OffsetCourse))
+                            credit_total += SubjectSemesterScore.Credit;
+
+                        DataBindedSheets.Add(DataBindedSheet);
+                    }
+                    DataBindedSheet = new DataBindedSheet();
+                    DataBindedSheet.Worksheet = wb.Worksheets["Duplicate-Footer"];
+                    DataBindedSheet.DataTables = new List<DataTable>();
+                    DataBindedSheets.Add(DataBindedSheet);
+                }
             }
 
             return DataBindedSheets;
         }
 
-        private Workbook GenerateWorkbook(StudentRecord Student)
+        private Workbook GenerateWorkbook(StudentRecord Student, int SchoolYear, int Semester)
         {
             Workbook workbook = new Workbook();
             workbook.Worksheets.Cast<Worksheet>().ToList().ForEach(x => workbook.Worksheets.RemoveAt(x.Name));
 
-            List<DataBindedSheet> TemplateSheets = this.GetDataBindedSheets(Student);
+            List<DataBindedSheet> TemplateSheets = this.GetDataBindedSheets(Student, SchoolYear, Semester);
 
             int instanceSheetIndex = workbook.Worksheets.Add();
             workbook.Worksheets[instanceSheetIndex].Name = Student.StudentNumber + "-" + Student.Name;
@@ -595,12 +971,14 @@ namespace EMBACore.Report
             this.circularProgress.Visible = true;
             this.circularProgress.IsRunning = true;
             this.btnPrint.Enabled = false;
+            int SchoolYear = int.Parse(this.nudSchoolYear.Value + "");
+            int Semester = int.Parse((this.cboSemester.SelectedItem as EMBACore.DataItems.SemesterItem).Value);
             Task<Workbook> task = Task<Workbook>.Factory.StartNew(() =>
             {
                 Workbook new_workbook = new Workbook();
                 foreach (string key in this.dicStudents.Keys)
                 {
-                    Workbook wb = this.GenerateWorkbook(this.dicStudents[key]);
+                    Workbook wb = this.GenerateWorkbook(this.dicStudents[key], SchoolYear, Semester);
                     new_workbook.Combine(wb);
                     new_workbook.Worksheets.Cast<Worksheet>().ToList().ForEach((x) =>
                     {

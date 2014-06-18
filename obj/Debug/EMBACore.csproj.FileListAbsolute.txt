@@ -162,7 +162,6 @@ E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.Forms.CS_Template_CourseAttendanc
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.Forms.DepartmentGroupForm.resources
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.Forms.DepartmentGroup_SingleForm.resources
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.Forms.ApproveAddDropCourseForm.resources
-E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.Forms.CourseAttendance.resources
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.Forms.CourseAttendance_Makeup.resources
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.Forms.Email_Content_Template.resources
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.Forms.Email_Credential.resources
@@ -209,3 +208,8 @@ E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.csproj.GenerateResource.Cache
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.dll
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.pdb
 E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.Forms.CourseTypeDataSourceManagement.resources
+E:\github\NTU_EMBA\EMBACore\bin\Debug\Google.GData.Calendar.dll
+E:\github\NTU_EMBA\EMBACore\bin\Debug\Google.GData.Client.dll
+E:\github\NTU_EMBA\EMBACore\bin\Debug\Google.GData.AccessControl.dll
+E:\github\NTU_EMBA\EMBACore\bin\Debug\Google.GData.Extensions.dll
+E:\github\NTU_EMBA\EMBACore\obj\Debug\EMBACore.Forms.CourseAttendance.resources

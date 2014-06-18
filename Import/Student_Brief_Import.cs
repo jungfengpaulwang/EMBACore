@@ -412,8 +412,16 @@ namespace EMBACore.Import
             {
                 string student_IDNumber = iRow.GetValue("學號").Trim().ToUpper();
 
-                StudentRecord studentRecord = dicStudents[student_IDNumber];
-                
+                StudentRecord studentRecord = new StudentRecord();
+                    
+                if (dicStudents.ContainsKey(student_IDNumber))
+                    studentRecord = dicStudents[student_IDNumber];
+
+                studentRecord.StudentNumber = iRow.GetValue("學號").Trim();
+                if (mOption.SelectedFields.Contains("姓名") && !string.IsNullOrWhiteSpace(iRow.GetValue("姓名")))
+                {
+                    studentRecord.Name = iRow.GetValue("姓名").Trim();
+                }
                 //  宣告 LogAgent
                 Log.LogAgent logAgent = new Log.LogAgent();
                 logAgent.ActionType = Log.LogActionType.Update;
@@ -431,9 +439,13 @@ namespace EMBACore.Import
                 }
                 if (mOption.SelectedFields.Contains("教學分班") && !string.IsNullOrWhiteSpace(iRow.GetValue("教學分班")))
                 {
-                    logAgent.SetLogValue("教學分班", dicAllClass_ID.ContainsKey(studentRecord.RefClassID) ? dicAllClass_ID[studentRecord.RefClassID].Name : "");
-                    studentRecord.RefClassID = dicAllClass_Name[iRow.GetValue("教學分班").Trim().ToUpper()].ID;
-                    logAgent.SetLogValue("教學分班", iRow.GetValue("教學分班").Trim());
+                    if (dicAllClass_Name.ContainsKey(iRow.GetValue("教學分班").Trim().ToUpper()))
+                    {
+                        string ref_class_id = studentRecord.RefClassID + "";
+                        logAgent.SetLogValue("教學分班", dicAllClass_ID.ContainsKey(ref_class_id) ? dicAllClass_ID[ref_class_id].Name : "");
+                        studentRecord.RefClassID = dicAllClass_Name[iRow.GetValue("教學分班").Trim().ToUpper()].ID;
+                        logAgent.SetLogValue("教學分班", iRow.GetValue("教學分班").Trim());
+                    }
                 }
 
                 if (mOption.SelectedFields.Contains("出生地") && !string.IsNullOrWhiteSpace(iRow.GetValue("出生地")))
@@ -448,6 +460,20 @@ namespace EMBACore.Import
                     logAgent.SetLogValue("登入帳號", studentRecord.SALoginName);
                     studentRecord.SALoginName = iRow.GetValue("登入帳號").Trim();
                     logAgent.SetLogValue("登入帳號", studentRecord.SALoginName);
+                }
+
+                if (mOption.SelectedFields.Contains("生日") && !string.IsNullOrWhiteSpace(iRow.GetValue("生日")))
+                {
+                    logAgent.SetLogValue("生日", studentRecord.SALoginName);
+                    studentRecord.Birthday = DateTime.Parse(iRow.GetValue("生日").Trim());
+                    logAgent.SetLogValue("生日", studentRecord.SALoginName);
+                }
+
+                if (mOption.SelectedFields.Contains("性別") && !string.IsNullOrWhiteSpace(iRow.GetValue("性別")))
+                {
+                    logAgent.SetLogValue("性別", studentRecord.SALoginName);
+                    studentRecord.Gender = iRow.GetValue("性別").Trim();
+                    logAgent.SetLogValue("性別", studentRecord.SALoginName);
                 }
                 //switch (iRow.GetValue("學生狀態").Trim())
                 //{
@@ -833,6 +859,14 @@ namespace EMBACore.Import
                     logAgent.SetLogValue("系所組別", dicAllDepart_ID.ContainsKey(studentBrief2.DepartmentGroupID.ToString()) ? dicAllDepart_ID[studentBrief2.DepartmentGroupID.ToString()].Name : "");
                     studentBrief2.DepartmentGroupID = int.Parse(dicAllDepart_Name[iRow.GetValue("系所組別").Trim().ToUpper()].UID);
                     logAgent.SetLogValue("系所組別", iRow.GetValue("系所組別").Trim());
+                }
+
+                //  年級
+                if (mOption.SelectedFields.Contains("年級") && !string.IsNullOrWhiteSpace(iRow.GetValue("年級")))
+                {
+                    logAgent.SetLogValue("年級", studentBrief2.GradeYear.ToString());
+                    studentBrief2.GradeYear = int.Parse(iRow.GetValue("年級").Trim());
+                    logAgent.SetLogValue("年級", studentBrief2.GradeYear.ToString());
                 }
                 //  畢業學年期
                 //if (mOption.SelectedFields.Contains("畢業學年期") && !string.IsNullOrWhiteSpace(iRow.GetValue("畢業學年期")))
