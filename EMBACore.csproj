@@ -397,6 +397,12 @@
     <Compile Include="Forms\CS_Template.Designer.cs">
       <DependentUpon>CS_Template.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CS_Template_CourseAttendance_ByDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CS_Template_CourseAttendance_ByDate.Designer.cs">
+      <DependentUpon>CS_Template_CourseAttendance_ByDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CS_Template_NoSubject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -631,6 +637,7 @@
     <Compile Include="ListPaneFields\Course_ClassName.cs" />
     <Compile Include="ListPaneFields\Course_CourseName.cs" />
     <Compile Include="ListPaneFields\Course_SerialNumber.cs" />
+    <Compile Include="ListPaneFields\Course_SubjectSemesterScoreInputRule.cs" />
     <Compile Include="ListPaneFields\Student_Class.cs" />
     <Compile Include="ListPaneFields\Student_Gender.cs" />
     <Compile Include="ListPaneFields\Student_GraduationRequirement.cs" />
@@ -722,6 +729,7 @@
     <Compile Include="UDT\Absence.cs" />
     <Compile Include="UDT\AbsenceConfiguration.cs" />
     <Compile Include="UDT\AddDropCourse.cs" />
+    <Compile Include="UDT\SubjectSemesterScoreInputRule.cs" />
     <Compile Include="UDT\CSConfiguration.cs" />
     <Compile Include="UDT\CSOpeningInfo.cs" />
     <Compile Include="UDT\CourseTypeDataSource.cs" />
@@ -902,6 +910,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CS_Template.resx">
       <DependentUpon>CS_Template.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CS_Template_CourseAttendance_ByDate.resx">
+      <DependentUpon>CS_Template_CourseAttendance_ByDate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CS_Template_NoSubject.resx">
       <DependentUpon>CS_Template_NoSubject.cs</DependentUpon>

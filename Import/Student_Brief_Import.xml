@@ -50,12 +50,14 @@
         <Field Required="False" Name="公司地址:村里" Description="" EmptyAlsoValidate="False" />
         <Field Required="False" Name="公司地址:鄰" Description="" EmptyAlsoValidate="False" />
         <Field Required="False" Name="公司地址:其它" Description="" EmptyAlsoValidate="False" />
+				<Field Required="False" Name="系所組別" Description="" EmptyAlsoValidate="False" />
         <Field Required="False" Name="入學年度" Description="" EmptyAlsoValidate="False" />
         <Field Required="False" Name="畢業學校" Description="" EmptyAlsoValidate="False" />
-        <Field Required="False" Name="系所組別" Description="" EmptyAlsoValidate="False" />
-        <!--
+				<Field Required="False" Name="畢業系所" Description="" EmptyAlsoValidate="False" />
+				<Field Required="False" Name="學位" Description="" EmptyAlsoValidate="False" />
         <Field Required="False" Name="公司名稱" Description="" EmptyAlsoValidate="False" />
         <Field Required="False" Name="職稱" Description="" EmptyAlsoValidate="False" />
+			<!--
         <Field Required="False" Name="產業別" Description="" EmptyAlsoValidate="False" />
         <Field Required="False" Name="部門類別" Description="" EmptyAlsoValidate="False" />
         <Field Required="False" Name="層級別" Description="" EmptyAlsoValidate="False" />

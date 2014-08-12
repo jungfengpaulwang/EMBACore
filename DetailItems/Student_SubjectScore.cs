@@ -519,26 +519,26 @@ namespace EMBACore.DetailItems
             ResetDirtyStatus();
         }
 
-        private bool cellMustBeValidScore(DataGridViewCell cell)
-        {
-            if (cell == null )
-                return false;
+        //private bool cellMustBeValidScore(DataGridViewCell cell)(本資料項目僅能抵免，不需輸入成績)
+        //{
+        //    if (cell == null )
+        //        return false;
 
-            if (cell.Value == null)
-                return false;
+        //    if (cell.Value == null)
+        //        return false;
 
-            if (Util.IsValidScore(cell.Value.ToString()))
-            {
-                cell.ErrorText = string.Empty;
-                return true;
-            }
-            else
-            {
-                string errMsg = "不是有效的分數";
-                cell.ErrorText = errMsg;
-                return false;
-            }
-        }
+        //    if (Util.IsValidScore(cell.Value.ToString()))
+        //    {
+        //        cell.ErrorText = string.Empty;
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        string errMsg = "不是有效的分數";
+        //        cell.ErrorText = errMsg;
+        //        return false;
+        //    }
+        //}
         private bool cellCanNotBeNull(DataGridViewCell cell, string errMsg)
         {
             if (cell == null)
@@ -601,25 +601,25 @@ namespace EMBACore.DetailItems
                     row.Cells[6].Value = subj.Credit;                    
                 }                
             }
-            //如果填入分數，則判斷是否取得學分
-            if (cell.ColumnIndex == 8)
-            {
-                if (cell.Value == null)
-                    row.Cells[9].Value = false;
-                else
-                {
-                    string score = cell.Value.ToString().ToUpper();  //變成大寫
-                    if (Util.IsValidScore(score))
-                    {
-                        cell.Value = score;
-                        cell.ErrorText = string.Empty;
-                    }
-                    else
-                        cell.ErrorText = "不是有效的分數";
+            //如果填入分數，則判斷是否取得學分 (本資料項目僅能抵免，不需輸入成績)
+            //if (cell.ColumnIndex == 8)
+            //{
+            //    if (cell.Value == null)
+            //        row.Cells[9].Value = false;
+            //    else
+            //    {
+            //        string score = cell.Value.ToString().ToUpper();  //變成大寫
+            //        if (Util.IsValidScore(score))
+            //        {
+            //            cell.Value = score;
+            //            cell.ErrorText = string.Empty;
+            //        }
+            //        else
+            //            cell.ErrorText = "不是有效的分數";
 
-                    row.Cells[9].Value = Util.IsPass(cell.Value.ToString());
-                }
-            }
+            //        row.Cells[9].Value = Util.IsPass(cell.Value.ToString());
+            //    }
+            //}
         }
 
         //載入此學生的所有科目學期成績

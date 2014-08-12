@@ -62,6 +62,7 @@
             this.labelItem6 = new DevComponents.DotNetBar.LabelItem();
             this.labelItem7 = new DevComponents.DotNetBar.LabelItem();
             this.labelItem5 = new DevComponents.DotNetBar.LabelItem();
+            this.btnSend2 = new DevComponents.DotNetBar.ButtonX();
             this.btnSend = new DevComponents.DotNetBar.ButtonX();
             this.btnExport = new DevComponents.DotNetBar.ButtonX();
             this.btnCancel = new DevComponents.DotNetBar.ButtonX();
@@ -208,9 +209,9 @@
             // 
             this.circularProgress.BackgroundStyle.Class = "";
             this.circularProgress.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.circularProgress.Location = new System.Drawing.Point(541, 5);
+            this.circularProgress.Location = new System.Drawing.Point(301, 5);
             this.circularProgress.Name = "circularProgress";
-            this.circularProgress.Size = new System.Drawing.Size(45, 32);
+            this.circularProgress.Size = new System.Drawing.Size(50, 32);
             this.circularProgress.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeXP;
             this.circularProgress.TabIndex = 2;
             this.circularProgress.Visible = false;
@@ -221,6 +222,7 @@
             this.panel2.Controls.Add(this.btnExit);
             this.panel2.Controls.Add(this.lblMessage);
             this.panel2.Controls.Add(this.buttonX1);
+            this.panel2.Controls.Add(this.btnSend2);
             this.panel2.Controls.Add(this.btnSend);
             this.panel2.Controls.Add(this.btnExport);
             this.panel2.Controls.Add(this.btnCancel);
@@ -255,9 +257,9 @@
             this.lblMessage.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lblMessage.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.lblMessage.ForeColor = System.Drawing.Color.Blue;
-            this.lblMessage.Location = new System.Drawing.Point(203, 5);
+            this.lblMessage.Location = new System.Drawing.Point(153, 5);
             this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(211, 33);
+            this.lblMessage.Size = new System.Drawing.Size(140, 33);
             this.lblMessage.TabIndex = 93;
             // 
             // buttonX1
@@ -269,7 +271,7 @@
             this.buttonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.buttonX1.Location = new System.Drawing.Point(8, 5);
             this.buttonX1.Name = "buttonX1";
-            this.buttonX1.Size = new System.Drawing.Size(187, 33);
+            this.buttonX1.Size = new System.Drawing.Size(139, 33);
             this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX1.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.itemContainer5,
@@ -449,6 +451,21 @@
             this.labelItem5.Name = "labelItem5";
             this.labelItem5.Width = 500;
             // 
+            // btnSend2
+            // 
+            this.btnSend2.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.btnSend2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSend2.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.btnSend2.Enabled = false;
+            this.btnSend2.Location = new System.Drawing.Point(361, 5);
+            this.btnSend2.Name = "btnSend2";
+            this.btnSend2.ShowSubItems = false;
+            this.btnSend2.Size = new System.Drawing.Size(182, 33);
+            this.btnSend2.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.btnSend2.TabIndex = 4;
+            this.btnSend2.Text = "寄發勾選日期之缺補課記錄";
+            this.btnSend2.Click += new System.EventHandler(this.btnSend2_Click);
+            // 
             // btnSend
             // 
             this.btnSend.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -456,12 +473,12 @@
             this.btnSend.AutoExpandOnClick = true;
             this.btnSend.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnSend.Enabled = false;
-            this.btnSend.Location = new System.Drawing.Point(601, 5);
+            this.btnSend.Location = new System.Drawing.Point(550, 5);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(75, 33);
+            this.btnSend.Size = new System.Drawing.Size(126, 33);
             this.btnSend.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.btnSend.TabIndex = 4;
-            this.btnSend.Text = "發送";
+            this.btnSend.Text = "寄發缺課n次通知";
             // 
             // btnExport
             // 
@@ -601,5 +618,6 @@
         private System.Windows.Forms.NumericUpDown nudSchoolYear;
         private DevComponents.DotNetBar.LabelX labelX4;
         private DevComponents.DotNetBar.LabelX labelX3;
+        private DevComponents.DotNetBar.ButtonX btnSend2;
     }
 }

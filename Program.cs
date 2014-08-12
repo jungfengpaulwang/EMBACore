@@ -188,6 +188,8 @@ from student left join class on student.ref_class_id=class.id";
             new ListPaneFields.Course_CourseName() { CacheProvider = CacheProvider.Course }.Register(NLDPanels.Course);
             new ListPaneFields.Course_ClassName() { CacheProvider = CacheProvider.Course }.Register(NLDPanels.Course);
             new ListPaneFields.Course_SerialNumber() { CacheProvider = CacheProvider.Course }.Register(NLDPanels.Course);
+            //new ListPaneFields.Course_SubjectSemesterScoreInputRule() { CacheProvider = CacheProvider.Course }.Register(NLDPanels.Course);
+            ListPaneFields.Course_SubjectSemesterScoreInputRule.Instance.Register(NLDPanels.Course);
         }
 
         #region SetFilteredSource

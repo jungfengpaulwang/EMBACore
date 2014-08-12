@@ -929,15 +929,27 @@ namespace EMBACore.Import
 
                 Log.LogAgent logAgent = dicLogAgents[student_IDNumber];
 
-                educationBackground.StudentID = int.Parse(student.ID);
+				educationBackground.StudentID = int.Parse(student.ID);
+				educationBackground.IsTop = true;
 
                 if (mOption.SelectedFields.Contains("畢業學校") && !string.IsNullOrWhiteSpace(iRow.GetValue("畢業學校")))
                 {
                     logAgent.SetLogValue("畢業學校", educationBackground.SchoolName);
                     educationBackground.SchoolName = iRow.GetValue("畢業學校").Trim();
                     logAgent.SetLogValue("畢業學校", educationBackground.SchoolName);
-                    educationBackground.IsTop = true;
-                }
+				}
+				if (mOption.SelectedFields.Contains("畢業系所") && !string.IsNullOrWhiteSpace(iRow.GetValue("畢業系所")))
+				{
+					logAgent.SetLogValue("畢業系所", educationBackground.Department);
+					educationBackground.Department = iRow.GetValue("畢業系所").Trim();
+					logAgent.SetLogValue("畢業系所", educationBackground.Department);
+				}
+				if (mOption.SelectedFields.Contains("學位") && !string.IsNullOrWhiteSpace(iRow.GetValue("學位")))
+				{
+					logAgent.SetLogValue("學位", educationBackground.Degree);
+					educationBackground.Degree = iRow.GetValue("學位").Trim();
+					logAgent.SetLogValue("學位", educationBackground.Degree);
+				}
 
                 if (string.IsNullOrEmpty(educationBackground.UID))
                     _EducationBackground.Add(educationBackground);
@@ -991,6 +1003,7 @@ namespace EMBACore.Import
                     experienceRecord = new Experience();
 
                 experienceRecord.StudentID = int.Parse(student.ID);
+				experienceRecord.WorkStatus = "現職";
 
                 Log.LogAgent logAgent = dicLogAgents[student_IDNumber];
                 if (mOption.SelectedFields.Contains("公司名稱") && !string.IsNullOrWhiteSpace(iRow.GetValue("公司名稱")))
@@ -1035,12 +1048,12 @@ namespace EMBACore.Import
                     logAgent.SetLogValue("工作地點", experienceRecord.WorkPlace);
                 }
 
-                if (mOption.SelectedFields.Contains("工作狀態") && !string.IsNullOrWhiteSpace(iRow.GetValue("工作狀態")))
-                {
-                    logAgent.SetLogValue("工作狀態", experienceRecord.WorkStatus);
-                    experienceRecord.WorkStatus = iRow.GetValue("工作狀態").Trim();
-                    logAgent.SetLogValue("工作狀態", experienceRecord.WorkStatus);
-                }
+				//if (mOption.SelectedFields.Contains("工作狀態") && !string.IsNullOrWhiteSpace(iRow.GetValue("工作狀態")))
+				//{
+				//	logAgent.SetLogValue("工作狀態", experienceRecord.WorkStatus);
+				//	experienceRecord.WorkStatus = iRow.GetValue("工作狀態").Trim();
+				//	logAgent.SetLogValue("工作狀態", experienceRecord.WorkStatus);
+				//}
 
                 if (mOption.SelectedFields.Contains("工作起日") && !string.IsNullOrWhiteSpace(iRow.GetValue("工作起日")))
                 {

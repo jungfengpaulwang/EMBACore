@@ -16,6 +16,7 @@ using EMBACore.Import;
 using EMBACore.UDT;
 using EMBACore.Export;
 using Campus.Windows;
+using System.Threading.Tasks;
 
 namespace EMBACore.Initialization
 {
@@ -278,6 +279,83 @@ namespace EMBACore.Initialization
                 (new Forms.ScoreInputSemesterSetting()).ShowDialog();
             };
             #endregion
+            
+            #region 指定畢業條件
+
+            MotherForm.RibbonBarItems["課程", "指定"]["成績輸入規則"].Image = Properties.Resources.calc_save_64;
+            MotherForm.RibbonBarItems["課程", "指定"]["成績輸入規則"].Size = RibbonBarButton.MenuButtonSize.Large;
+
+            Catalog button_assignGraduationRequirement = RoleAclSource.Instance["課程"]["功能按鈕"];
+            button_assignGraduationRequirement.Add(new RibbonFeature("Course_Button_AssignSubjectSemesterScoreInputRule", "成績輸入規則"));
+            MotherForm.RibbonBarItems["課程", "指定"]["成績輸入規則"].Enable = UserAcl.Current["Course_Button_AssignSubjectSemesterScoreInputRule"].Executable;
+
+            MotherForm.RibbonBarItems["課程", "指定"]["成績輸入規則"].SupposeHasChildern = true;
+            MotherForm.RibbonBarItems["課程", "指定"]["成績輸入規則"].PopupOpen += new EventHandler<PopupOpenEventArgs>(CourseInit_PopupOpen);
+
+            #endregion
+        }
+
+        static void CourseInit_PopupOpen(object sender, PopupOpenEventArgs e)
+        {
+            //MenuButton mb = e.VirtualButtons["不指定"];
+            e.VirtualButtons["不指定"].Click += delegate
+            {
+                List<string> selectedIDs = K12.Presentation.NLDPanels.Course.SelectedSource;
+                if (selectedIDs.Count == 0)
+                {
+                    MessageBox.Show("請先選擇課程！");
+                    return;
+                }
+                Task task = Task.Factory.StartNew(() =>
+                {
+                    List<UDT.SubjectSemesterScoreInputRule> SubjectSemesterScoreInputRules = (new AccessHelper()).Select<UDT.SubjectSemesterScoreInputRule>(string.Format("ref_course_id in ({0})", string.Join(",", selectedIDs)));
+                    if (SubjectSemesterScoreInputRules.Count > 0)
+                    {
+                        SubjectSemesterScoreInputRules.ForEach(x => x.Deleted = true);
+                        SubjectSemesterScoreInputRules.SaveAll();
+                    }
+                });
+                task.ContinueWith((x) =>
+                {
+                    ListPaneFields.Course_SubjectSemesterScoreInputRule.Instance.ReloadMe();
+
+                }, TaskScheduler.FromCurrentSynchronizationContext());
+            };
+            e.VirtualButtons["P/N 制"].Tag = 1;
+            e.VirtualButtons["P/N 制"].BeginGroup = true;
+            e.VirtualButtons["P/N 制"].Click += (s1, e1) =>
+            {
+                List<string> selectedIDs = K12.Presentation.NLDPanels.Course.SelectedSource;
+                if (selectedIDs.Count == 0)
+                {
+                    MessageBox.Show("請先選擇課程！");
+                    return;
+                }
+                Task task = Task.Factory.StartNew(() =>
+                {
+                    List<UDT.SubjectSemesterScoreInputRule> SubjectSemesterScoreInputRules = (new AccessHelper()).Select<UDT.SubjectSemesterScoreInputRule>(string.Format("ref_course_id in ({0})", string.Join(",", selectedIDs)));
+                    Dictionary<string, UDT.SubjectSemesterScoreInputRule> dicSubjectSemesterScoreInputRules = new Dictionary<string, SubjectSemesterScoreInputRule>();
+                    if (SubjectSemesterScoreInputRules.Count > 0)
+                        dicSubjectSemesterScoreInputRules = SubjectSemesterScoreInputRules.ToDictionary(x => x.CourseID.ToString());
+
+                    List<UDT.SubjectSemesterScoreInputRule> Insert_SubjectSemesterScoreInputRules = new List<SubjectSemesterScoreInputRule>();
+                    foreach (string CourseID in selectedIDs)
+                    {
+                        if (!dicSubjectSemesterScoreInputRules.ContainsKey(CourseID))
+                        {
+                            UDT.SubjectSemesterScoreInputRule SubjectSemesterScoreInputRule = new UDT.SubjectSemesterScoreInputRule();
+                            SubjectSemesterScoreInputRule.CourseID = int.Parse(CourseID);
+                            SubjectSemesterScoreInputRule.InputRule = 1;
+                            Insert_SubjectSemesterScoreInputRules.Add(SubjectSemesterScoreInputRule);
+                        }
+                    }
+                    Insert_SubjectSemesterScoreInputRules.SaveAll();
+                });
+                task.ContinueWith((x) =>
+                {
+                    ListPaneFields.Course_SubjectSemesterScoreInputRule.Instance.ReloadMe();
+                }, TaskScheduler.FromCurrentSynchronizationContext());
+            };
         }
 
         static void SetButtonPermission(RibbonBarButton btn, string featureCode, string categoryName)         
@@ -468,11 +546,25 @@ namespace EMBACore.Initialization
             #region 課程>缺課紀錄>管理缺課通知內容樣版
             RoleAclSource.Instance["課程"]["功能按鈕"].Add(new RibbonFeature("ischool.EMBA.Course_Button_ManageEmailTemplate", "管理缺課通知內容樣版"));
 
-            var templateManager = MotherForm.RibbonBarItems["課程", "缺課紀錄"];
+            MotherForm.RibbonBarItems["課程", "缺課紀錄"]["設定"].Size = RibbonBarButton.MenuButtonSize.Large;
+            MotherForm.RibbonBarItems["課程", "缺課紀錄"]["設定"].Image = Properties.Resources.sandglass_unlock_64;
+
+            var templateManager = MotherForm.RibbonBarItems["課程", "缺課紀錄"]["設定"]["樣版設定"];
             templateManager["管理缺課通知內容樣版"].Enable = UserAcl.Current["ischool.EMBA.Course_Button_ManageEmailTemplate"].Executable;
             templateManager["管理缺課通知內容樣版"].Click += delegate
             {
                 (new Forms.CS_Template_CourseAttendance()).ShowDialog();
+            };
+            #endregion
+
+            #region 課程>缺課紀錄>管理「寄發勾選日期之缺補課記錄」內容樣版
+            RoleAclSource.Instance["課程"]["功能按鈕"].Add(new RibbonFeature("ischool.EMBA.Course_Button_ManageEmailTemplate_ByDate", "管理「寄發勾選日期之缺補課記錄」內容樣版"));
+
+            var templateManager_ByDate = MotherForm.RibbonBarItems["課程", "缺課紀錄"]["設定"]["樣版設定"];
+            templateManager_ByDate["管理「寄發勾選日期之缺補課記錄」內容樣版"].Enable = UserAcl.Current["ischool.EMBA.Course_Button_ManageEmailTemplate_ByDate"].Executable;
+            templateManager_ByDate["管理「寄發勾選日期之缺補課記錄」內容樣版"].Click += delegate
+            {
+                (new Forms.CS_Template_CourseAttendance_ByDate()).ShowDialog();
             };
             #endregion
 

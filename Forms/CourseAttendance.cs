@@ -66,7 +66,9 @@ namespace EMBACore.Forms
         private UDT.CSConfiguration conf_subject_2;
         private UDT.CSConfiguration conf_3;
         private UDT.CSConfiguration conf_subject_3;
-        private string TemplateName_Subfix = "course-attend-reminder";
+        private UDT.CSConfiguration conf_by_date;
+        private UDT.CSConfiguration conf_subject_by_date;
+        private string TemplateName_Subfix = "course-attend-reminder";  //
 
         private bool form_loaded;
 
@@ -158,6 +160,7 @@ namespace EMBACore.Forms
             task.ContinueWith((x) =>
             {
                 this.btnSend.Enabled = true;
+                this.btnSend2.Enabled = true;
             }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
@@ -222,7 +225,7 @@ namespace EMBACore.Forms
             string semester = this.cboSemester.SelectedValue.ToString();
             Task<DataTable> task = Task<DataTable>.Factory.StartNew(() =>
             {
-                string strSQL = "select c.id, c.course_name, ce.subject_code from course c left outer join $ischool.emba.course_ext ce on c.id = ce.ref_course_id where c.school_year={0} and c.semester = {1} order by ce.subject_code, c.course_name";
+                string strSQL = "select c.id, c.course_name, ce.subject_code from course c left outer join $ischool.emba.course_ext ce on c.id = ce.ref_course_id where c.school_year={0} and c.semester = {1} order by ce.serial_no;";
                 strSQL = string.Format(strSQL, school_year, semester);
                 DataTable dt = this.Query.Select(strSQL);
 
@@ -273,6 +276,7 @@ namespace EMBACore.Forms
                 return;
             }
             this.btnSend.Enabled = false;
+            this.btnSend2.Enabled = false;
             this.circularProgress.Visible = true;
             this.circularProgress.IsRunning = true;
 
@@ -288,6 +292,7 @@ namespace EMBACore.Forms
                 MessageBox.Show(ex.Message);
 
                 this.btnSend.Enabled = true;
+                this.btnSend2.Enabled = true;
                 this.circularProgress.Visible = false;
                 this.circularProgress.IsRunning = false;
             }
@@ -305,6 +310,11 @@ namespace EMBACore.Forms
             conf_3 = UDT.CSConfiguration.GetTemplate(this.TemplateName_Subfix + "-3");
             conf_subject_3 = UDT.CSConfiguration.GetTemplate(this.TemplateName_Subfix + "-3_subject");
 
+            conf_by_date = UDT.CSConfiguration.GetTemplate(this.TemplateName_Subfix + "-bydate");
+            conf_subject_by_date = UDT.CSConfiguration.GetTemplate(this.TemplateName_Subfix + "-bydate_subject");
+
+            btnSend2.Tag = new object[] { conf_by_date, conf_subject_by_date, btnSend2.Text };
+            
             this.btnSend.SubItems.Clear();
 
             ButtonItem button3 = new ButtonItem();
@@ -345,6 +355,126 @@ namespace EMBACore.Forms
             string Content = Conf_Content.Content;
             MailLogBase mailLogBase = new MailLogBase(SchoolYear, Semester, user_account, this.from_email, this.from_name, Subject, Content, EmailCategory, Guid.NewGuid().ToString());
             return mailLogBase;
+        }
+
+        private void SendEMail(MailLogBase MailLogBase)
+        {
+            dynamic course = (this.cboCourse.Items[this.cboCourse.SelectedIndex] as ComboItem).Tag;
+
+            List<string> StudentIDs = new List<string>();
+            Dictionary<string, Dictionary<int, string>> dicSections = new Dictionary<string, Dictionary<int, string>>();
+            Dictionary<string, string> dicAttendNos = new Dictionary<string, string>();
+            Dictionary<int, object> CheckedColumns = new Dictionary<int, object>();
+
+            foreach(DataGridViewColumn column in this.dg.Columns)
+            {
+                if (column.HeaderCell.GetType().Name != "DatagridViewCheckBoxHeaderCell")
+                    continue;
+
+                if ((column.HeaderCell as DatagridViewCheckBoxHeaderCell).Checked)
+                    CheckedColumns.Add(column.Index, column.Tag);
+            }
+            if (CheckedColumns.Count == 0)
+                throw new Exception("請先勾選日期。");
+
+            foreach (DataGridViewRow row in this.dg.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                bool is_cancel = false;
+                if (bool.TryParse(row.Cells[3].Value + "", out is_cancel) && is_cancel)
+                    continue;
+
+                string StudentID = row.Tag + "";
+
+                int attend_no = 0;
+                bool dirty = false;
+                foreach (int j in CheckedColumns.Keys)
+                {
+                    if (string.IsNullOrEmpty(row.Cells[j].Value + ""))
+                        continue;
+
+                    dirty = true;
+
+                    if (!dicSections.ContainsKey(StudentID))
+                        dicSections.Add(StudentID, new Dictionary<int, string>()); 
+
+                    object[] sections = this.dg.Columns[j].Tag as object[];
+                    DateTime begin_time = DateTime.Parse(sections[0] + "");
+                    DateTime end_time = DateTime.Parse(sections[1] + "");
+                    string sDate = begin_time.Year.ToString().Length == 4 ? begin_time.ToString("yyyy/MM/dd") : (begin_time.Year + 1911) + "/" + begin_time.Month.ToString("00") + "/" + begin_time.Day.ToString("00");
+                    string bTime = begin_time.Hour.ToString("00") + ":" + begin_time.Minute.ToString("00");
+                    string eTime = end_time.Hour.ToString("00") + ":" + end_time.Minute.ToString("00");
+                    string section_time = sDate + " " + bTime + "~" + eTime + ((row.Cells[j].Value + "").Contains("補") ? "(補)" : "");
+
+                    dicSections[StudentID].Add(j, section_time);
+
+                    if (!(row.Cells[j].Value + "").Contains("補"))
+                        attend_no += 1;
+                }
+                if (dirty)
+                {
+                    StudentIDs.Add(StudentID);
+
+                    if (!dicAttendNos.ContainsKey(StudentID))
+                        dicAttendNos.Add(StudentID, attend_no.ToString());
+                }
+            }
+
+            if (StudentIDs.Count == 0)
+                throw new Exception("勾選日期沒有學生缺(補)課。");
+
+            MandrillApi mandrill = new MandrillApi(this.MandrillAPIKey, false);
+
+            string pong = string.Empty;
+
+            try
+            {
+                pong = mandrill.Ping();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("未正確設定「MandrillAPIKey」, 錯誤訊息：" + ex.Message);
+                this.btnSend.Enabled = true;
+                this.btnSend2.Enabled = true;
+                this.circularProgress.Visible = false;
+                this.circularProgress.IsRunning = false;
+                return;
+            }
+            if (!pong.ToUpper().Contains("PONG!"))
+            {
+                MessageBox.Show("未正確設定「MandrillAPIKey」。");
+                this.btnSend.Enabled = true;
+                this.btnSend2.Enabled = true;
+                this.circularProgress.Visible = false;
+                this.circularProgress.IsRunning = false;
+                return;
+            }
+
+            Task<List<UDT.MailLog>> task = Task<List<UDT.MailLog>>.Factory.StartNew(() =>
+            {
+                List<UDT.MailLog> MandrillSendLogs = new List<UDT.MailLog>();
+                this.SendEmails(StudentIDs, course, dicSections, dicAttendNos, MailLogBase, mandrill, MandrillSendLogs);
+                return MandrillSendLogs;
+            });
+            task.ContinueWith((x) =>
+            {
+                this.btnSend.Enabled = true;
+                this.btnSend2.Enabled = true;
+                this.circularProgress.Visible = false;
+                this.circularProgress.IsRunning = false;
+
+                if (x.Exception != null)
+                    MessageBox.Show(x.Exception.InnerException.Message);
+                else
+                {
+                    x.Result.SaveAll();
+                    this.UpdateLogShow(x.Result);
+                    MessageBox.Show("已寄出缺課通知。");
+                }
+
+            }, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         private void SendEMail(MailLogBase MailLogBase, int AttendNo)
@@ -416,6 +546,7 @@ namespace EMBACore.Forms
             {
                 MessageBox.Show("未正確設定「MandrillAPIKey」, 錯誤訊息：" + ex.Message);
                 this.btnSend.Enabled = true;
+                this.btnSend2.Enabled = true;
                 this.circularProgress.Visible = false;
                 this.circularProgress.IsRunning = false;
                 return;
@@ -424,6 +555,7 @@ namespace EMBACore.Forms
             {
                 MessageBox.Show("未正確設定「MandrillAPIKey」。");
                 this.btnSend.Enabled = true;
+                this.btnSend2.Enabled = true;
                 this.circularProgress.Visible = false;
                 this.circularProgress.IsRunning = false;
                 return;
@@ -438,6 +570,7 @@ namespace EMBACore.Forms
             task.ContinueWith((x) =>
             {
                 this.btnSend.Enabled = true;
+                this.btnSend2.Enabled = true;
                 this.circularProgress.Visible = false;
                 this.circularProgress.IsRunning = false;
 
@@ -628,7 +761,19 @@ namespace EMBACore.Forms
                 mail_log.CourseID = Course.CourseID + "";
                 List<int> ColumnIndexs = dicSections[StudentID].Keys.ToList();
                 ColumnIndexs.ForEach((x) => mail_log.AddSectionID(this.SectionIDs[x-7].ToString()));
-                this.Emailing(mail_log, Emails.Distinct().ToList(), StudentName, Course.CourseName + "", dicAttendNos[StudentID], string.Join("、", dicSections[StudentID].Values), mandrill, MandrillSendLogs);
+
+                //  2014/06/07 09:00~12:40(補)
+                List<string> absence = dicSections[StudentID].Values.ToList();
+                string absence_dates = string.Join("、", absence.Select(x => x.Split(new char[]{' '}).ElementAt(0)));
+                string absence_times = string.Empty;
+
+                //.ToString("yyyy/MM/dd hh:mm:ss");
+                if (absence.Count == 1)
+                    absence_times = absence.ElementAt(0).Split(new char[] { ' ' }).ElementAt(1);
+                else
+                    absence_times = string.Join("、", absence);
+
+                this.Emailing(mail_log, Emails.Distinct().ToList(), StudentName, Course.CourseName + "", dicAttendNos[StudentID], absence_times, mandrill, MandrillSendLogs, absence_dates);
 
                 if (this.validated_cc.Count() > 0)
                 {
@@ -636,22 +781,22 @@ namespace EMBACore.Forms
                     mail_log.StudentID = StudentID;
                     mail_log.CourseID = Course.CourseID + "";
                     ColumnIndexs.ForEach((x) => mail_log.AddSectionID(this.SectionIDs[x - 7].ToString()));
-                    this.Emailing(mail_log, this.validated_cc.Distinct().ToList(), StudentName, Course.CourseName + "", dicAttendNos[StudentID], string.Join("、", dicSections[StudentID].Values), mandrill, MandrillSendLogs);
+                    this.Emailing(mail_log, this.validated_cc.Distinct().ToList(), StudentName, Course.CourseName + "", dicAttendNos[StudentID], absence_times, mandrill, MandrillSendLogs, absence_dates);
                 }
             }
         }
 
-        private void Emailing(MailLog MailLog, List<string> Emails, string StudentName, string CourseName, string AttendNo, string AttendPeriod, MandrillApi mandrill, List<UDT.MailLog> MandrillSendLogs)
+        private void Emailing(MailLog MailLog, List<string> Emails, string StudentName, string CourseName, string AttendNo, string AttendTime, MandrillApi mandrill, List<UDT.MailLog> MandrillSendLogs, string AttendPeriod)
         {
             DateTime time_stamp = DateTime.Now;
-            string email_subject =MailLog.MailLogBase.MailSubject;
+            string email_subject = MailLog.MailLogBase.MailSubject;
             string email_body = MailLog.MailLogBase.MailContent;
             
             try
             {
                 //  學年度、學期、開課、學生姓名、缺課次數、缺課時間                
-                email_subject = email_subject.Replace("[[學年度]]", MailLog.MailLogBase.SchoolYear.ToString()).Replace("[[學期]]", DataItems.SemesterItem.GetSemesterByCode(MailLog.MailLogBase.Semester + "").Name).Replace("[[開課]]", CourseName).Replace("[[學生姓名]]", StudentName).Replace("[[缺課次數]]", AttendNo).Replace("[[缺課時間]]", AttendPeriod).Replace("[[上課總堂數]]", this.SectionIDs.Count.ToString());
-                email_body = email_body.Replace("[[學年度]]", MailLog.MailLogBase.SchoolYear.ToString()).Replace("[[學期]]", DataItems.SemesterItem.GetSemesterByCode(MailLog.MailLogBase.Semester + "").Name).Replace("[[開課]]", CourseName).Replace("[[學生姓名]]", StudentName).Replace("[[缺課次數]]", AttendNo).Replace("[[缺課時間]]", AttendPeriod).Replace("[[上課總堂數]]", this.SectionIDs.Count.ToString());
+                email_subject = email_subject.Replace("[[學年度]]", MailLog.MailLogBase.SchoolYear.ToString()).Replace("[[學期]]", DataItems.SemesterItem.GetSemesterByCode(MailLog.MailLogBase.Semester + "").Name).Replace("[[開課]]", CourseName).Replace("[[學生姓名]]", StudentName).Replace("[[缺課次數]]", AttendNo).Replace("[[缺課時間]]", AttendTime).Replace("[[上課總堂數]]", this.SectionIDs.Count.ToString()).Replace("[[缺課日期]]", AttendPeriod);
+                email_body = email_body.Replace("[[學年度]]", MailLog.MailLogBase.SchoolYear.ToString()).Replace("[[學期]]", DataItems.SemesterItem.GetSemesterByCode(MailLog.MailLogBase.Semester + "").Name).Replace("[[開課]]", CourseName).Replace("[[學生姓名]]", StudentName).Replace("[[缺課次數]]", AttendNo).Replace("[[缺課時間]]", AttendTime).Replace("[[上課總堂數]]", this.SectionIDs.Count.ToString()).Replace("[[缺課日期]]", AttendPeriod);
                 if (MailLog.IsCC)
                 {
                     email_subject += "【副本】";
@@ -1254,7 +1399,7 @@ namespace EMBACore.Forms
 
             int studentID = (int)dg.CurrentCell.OwningRow.Tag;
             int sectionID = this.SectionIDs[this.dg.CurrentCell.ColumnIndex - 7];
-             string key = studentID + "_" + sectionID;
+            string key = studentID + "_" + sectionID;
 
             UDT.Absence absRec = this.GetAbsenceRecord(studentID, sectionID);
 
@@ -1526,6 +1671,41 @@ namespace EMBACore.Forms
                 this.ColumnCellCheckBoxChecked = false;
             }
         }
+
+        private void btnSend2_Click(object sender, EventArgs e)
+        {
+            if (this.cboCourse.SelectedIndex < 0)
+            {
+                MessageBox.Show("請先選擇課程。");
+                return;
+            }
+            if (this.updatedRecs.Count > 0)
+            {
+                MessageBox.Show("請先儲存。");
+                return;
+            }
+            this.btnSend.Enabled = false;
+            this.btnSend2.Enabled = false;
+            this.circularProgress.Visible = true;
+            this.circularProgress.IsRunning = true;
+
+            try
+            {
+                object[] args = this.btnSend2.Tag as object[];
+                MailLogBase MailLogBase = this.InitMailLog(args[1] as UDT.CSConfiguration, args[0] as UDT.CSConfiguration, args[2] as string);
+
+                this.SendEMail(MailLogBase);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+                this.btnSend.Enabled = true;
+                this.btnSend2.Enabled = true;
+                this.circularProgress.Visible = false;
+                this.circularProgress.IsRunning = false;
+            }
+        }
     }
 
     public class MailLogBase
@@ -1694,6 +1874,14 @@ namespace EMBACore.Forms
         public DatagridViewCheckBoxHeaderCell(System.Drawing.Font CellFont)
         {
             this.CellFont = CellFont;
+        }
+        public bool Checked
+        {
+            get
+            {
+                return this._cbState == System.Windows.Forms.VisualStyles.
+                    CheckBoxState.CheckedNormal;
+            }
         }
 
         protected override void Paint(System.Drawing.Graphics graphics,

@@ -73,7 +73,7 @@ namespace EMBACore
         /// </summary>
         /// <param name="score"></param>
         /// <returns></returns>
-        public static bool IsPass(string score)
+        public static bool IsPass(string score, string input_rule)
         {
             bool result = false;
             if (!string.IsNullOrWhiteSpace(score))
@@ -86,14 +86,17 @@ namespace EMBACore
                 else
                 {
                     List<string> passGrade = new List<string>();
-                    passGrade.AddRange(new string[] { "A+", "A", "A-", "B+", "B", "B-" });
+                    if (input_rule == "1")
+                        passGrade.Add("P");
+                    else
+                        passGrade.AddRange(new string[] { "A+", "A", "A-", "B+", "B", "B-" });
                     result = passGrade.Contains(score.ToUpper());   //B- 以上
                 }
             }
             return result;
         }
 
-        public static bool IsValidScore(string score)
+        public static bool IsValidScore(string score, string input_rule)
         {
             if (string.IsNullOrWhiteSpace(score))
                 return true;  //允許成績是空白
@@ -101,7 +104,12 @@ namespace EMBACore
             bool result = false;            
             
             List<string> allowScores = new List<string>();
-            allowScores.AddRange(new string[] { "A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "F", "X" });
+            if (input_rule == "1")
+            {
+                allowScores.Add("P"); allowScores.Add("N");
+            }
+            else
+                allowScores.AddRange(new string[] { "A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "F", "X" });
             //先判斷是否是數字
             int outInt = 0;
             result = int.TryParse(score, out outInt);

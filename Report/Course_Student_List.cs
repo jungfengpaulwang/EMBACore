@@ -78,7 +78,7 @@ left join
 ) as table_b
 on table_d.student_id=table_b.student_id
 left join 
-(select eb.ref_student_id as student_id, eb.school_name, eb.department, eb.degree from $ischool.emba.education_background as eb join student on student.id=eb.ref_student_id where is_top=true
+(select eb.ref_student_id as student_id, case trim(both ' ' from degree) when '學士' then trim(both ' ' from school_name) || trim(both ' ' from department) when '' then trim(both ' ' from school_name) || trim(both ' ' from department) else trim(both ' ' from school_name) || trim(both ' ' from department) || '(' || trim(both ' ' from degree) || ')' end as school_name from $ischool.emba.education_background as eb join student on student.id=eb.ref_student_id where is_top=true
 ) as table_c 
 on table_d.student_id=table_c.student_id
 order by table_d.學號", "'" + CourseID + "'");

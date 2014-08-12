@@ -24,6 +24,7 @@ namespace EMBACore.Forms
         private string currentSubjectCode = "";
         private string currentCourseName = "";
         private int currentSubjectID ;
+        private string inputRule = "";
 
         private int currentCredit;
         private bool currentIsRequired;
@@ -88,7 +89,7 @@ namespace EMBACore.Forms
             try
             {
                 QueryHelper q = new QueryHelper();
-                string strSQL = string.Format("SELECT c.*, s.name subject_name, s.subject_code, c_ext.class_name, c_ext.ref_subject_id, c_ext.is_required, c_ext.score_confirmed FROM course c left outer join $ischool.emba.course_ext c_ext on c_ext.ref_course_id = c.id left outer join $ischool.emba.subject s on c_ext.ref_subject_id = s.uid WHERE c.school_year={0} and c.semester={1} ORDER BY c.course_name", this.nudSchoolYear.Value.ToString(), ((SemesterItem)this.cboSemester.SelectedItem).Value);
+                string strSQL = string.Format("SELECT c.*, s.name subject_name, s.subject_code, c_ext.class_name, c_ext.ref_subject_id, c_ext.is_required, c_ext.score_confirmed, si.input_rule FROM course c left outer join $ischool.emba.course_ext c_ext on c_ext.ref_course_id = c.id left outer join $ischool.emba.subject s on c_ext.ref_subject_id = s.uid left outer join $ischool.emba.course.subject_semester_score_input_rule as si on si.ref_course_id=c.id WHERE c.school_year={0} and c.semester={1} ORDER BY c.course_name", this.nudSchoolYear.Value.ToString(), ((SemesterItem)this.cboSemester.SelectedItem).Value);
 
                 DataTable dt = q.Select(strSQL);
                 this.itemPanel1.Items.Clear();
@@ -143,6 +144,7 @@ namespace EMBACore.Forms
             this.currentSubjectName = ((DataRow)bi.Tag)["subject_name"].ToString();
             this.currentCredit = int.Parse(((DataRow)bi.Tag)["credit"].ToString());
             this.currentIsRequired = bool.Parse(((DataRow)bi.Tag)["is_required"].ToString());
+            this.inputRule = ((DataRow)bi.Tag)["input_rule"] + "";
 
             this.lblCourseName.Text = string.Format(" {0} ( {1} 學年度  {2} )", bi.Text, schoolYear, SemesterItem.GetSemesterByCode(semester));
             this.reloadStudents(courseID, schoolYear, semester);
@@ -231,12 +233,12 @@ namespace EMBACore.Forms
                 }
 
                 string newValue = (row.Cells[e.ColumnIndex].Value == null ? "" : row.Cells[e.ColumnIndex].Value.ToString()).ToUpper();
-                if (Util.IsValidScore(newValue))
+                if (Util.IsValidScore(newValue, this.inputRule))
                 {
                     row.Cells[e.ColumnIndex].Value = newValue;  //重新指定值一次，確保輸入的是大寫
                     ssw.NewScore = newValue;
                     row.Cells[e.ColumnIndex].Style.BackColor = ssw.IsDirty ? Color.Pink : Color.White;
-                    row.Cells[e.ColumnIndex + 1].Value = Util.IsPass(newValue);
+                    row.Cells[e.ColumnIndex + 1].Value = Util.IsPass(newValue, this.inputRule);
                     cell.ErrorText= "";
                 }
                 else
@@ -266,7 +268,7 @@ namespace EMBACore.Forms
                     string Score = (row.Cells["colScore"].Value == null) ? "" : row.Cells["colScore"].Value.ToString();
                     if (!string.IsNullOrWhiteSpace(Score) )  //有輸入分數
                     {
-                        if (!Util.IsValidScore(Score))  //但不是有效分數
+                        if (!Util.IsValidScore(Score, this.inputRule))  //但不是有效分數
                         {
                             scoreAllRight = false;
                             break;

@@ -40,6 +40,7 @@ namespace EMBACore.Initialization
             Manager.SyncSchema(new EMBACore.UDT.SubjectSemesterScore());
             Manager.SyncSchema(new EMBACore.UDT.SyncStudentLock());
             Manager.SyncSchema(new EMBACore.UDT.TeacherExtVO());
+            Manager.SyncSchema(new EMBACore.UDT.SubjectSemesterScoreInputRule());
 
             #endregion
         }
